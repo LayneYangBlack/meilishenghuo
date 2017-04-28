@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商家活动汇总</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <style type="text/css">
+        @charset "utf-8";
+        /*=========================Reset_start==========================*/
+        body,h1,h2,h3,h4,h5,h6,div,p,dl,dt,dd,ol,ul,li,form,table,th,td,a,img,span,strong,var,em,input,textarea,select,option{margin: 0; padding: 0;}
+        html,body{font-size: 12px; margin: 0 auto;}
+        ul,ol{list-style: none;}
+        img{border: 0;}
+        input,select,textarea{outline:0;}
+        textarea{resize:none;}
+        table{border-collapse: collapse; border-spacing: 0;}
+        th,strong,var,em{font-weight: normal; font-style: normal;}
+        a{text-decoration: none;}
+        /*a:link,a:visited,a:hover,a:active{text-decoration:none;} */
+        /*==========================Reset_End===========================*/
+        html{
+            font-size: 100px;
+            width: 100%;; overflow:hidden;
+            background: #ebebeb;
+        }
+        body{
+        	background: #ebebeb;
+        }
+        #lzh_h{
+            font-weight: 600;
+            width: 100%;background:#75ca77 ;padding: 0.13rem 0 0.13rem 0;
+            font-size: 0.12rem;color:#fff;
+            border-bottom: 1px solid #eaeaea;
+        }
+        #lzh_h #h1{
+            margin-left: 0.10rem;margin-right: 0.18rem;
+        }
+        #lzh_h #h1 span,#lzh_h #h2 span,#lzh_h #h3 span{
+            font-size: 0.17rem;
+        }
+        #lzh_h #h2 {
+            margin-right: 0.15rem;
+        }
+        .lzh_con{
+            width: 100%;background:#e6e6e6;
+        }
+        .con{
+            background: #fff;padding:3% 0 5px 5%;width: 95%; margin-top: 2%;; overflow:hidden;
+        }
+        .lzh_con .con .con_1{
+            overflow: hidden;margin-top: 10px;line-height: 22px;
+        }
+        .lzh_con .con .con_1 .left img{
+            height: 100%;width: 100%;
+        }
+        .lzh_con .con .con_1 .left{
+            float: left;width: 40%;
+        }
+        .lzh_con .con .con_1 .right{
+            float: left;
+            width: 53%;
+            /*height: 80px;*/
+            margin-left:3%;
+            font-size: 0.13rem;color: #9296a3;
+            position: relative;
+
+        }
+        .lzh_con .con_2{
+            font-size: 0.14rem;
+            font-weight:300;
+            overflow:hidden;
+            word-break:keep-all;
+            white-space:nowrap;
+            text-overflow:ellipsis;
+            width: 100%;
+            display: block;
+        }
+        .right_2{
+            /*margin-left: 0.35rem;*/
+            overflow: hidden;
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+        }
+        .right_2 span{
+            float: right;
+        }
+        .lzh_con .rigt_sp_2{
+            font-size: 0.19rem;color:#ff9900 ;margin-left: 0.05rem;margin-top: 0.06rem;
+        }
+        .rigt_sp_3{
+            font-size: 0.08rem;float: right;margin-top: 0.06rem;
+        }
+        .rigt_sp_1{float: left;font-size: 0.05rem;display: block;}
+    </style>
+</head>
+<body>
+<div id="main">
+    <!--<div class="lzh_con">-->
+        <!--<div class="con">-->
+            <!--<span class="con_2">星巴克咖啡大酬宾，周末携家人消费，可第三附发大师傅</span>-->
+            <!--<div class="con_1">-->
+                <!--<div class="left">-->
+                    <!--<img src="../../image/test/1.jpg" alt="">-->
+                <!--</div>-->
+                <!--<div class="right">-->
+                    <!--<span>星巴克海淀区大钟寺店</span><br>-->
+                    <!--<span style="font-size: 0.12rem">16-06-26</span>&nbsp|&nbsp<span>剩余<span style="font-size: 0.14rem">62</span>份</span>-->
+                    <!--<div class="right_2">-->
+                        <!--<span  class="rigt_sp_1" style="float: left;font-size: 0.05rem;width: 0.4rem;display: block;margin-left: -0.3rem;">未通过</span>-->
+                        <!--<span class="rigt_sp_2">297821</span>-->
+                        <!--<span class="rigt_sp_3">参与人数</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="lzh_con">-->
+        <!--<div class="con">-->
+            <!--<span class="con_2">星巴克咖啡大酬宾，周末携家人消费，可第三附发大师傅</span>-->
+            <!--<div class="con_1">-->
+                <!--<div class="left">-->
+                    <!--<img src="../../image/test/1.jpg" alt="">-->
+                <!--</div>-->
+                <!--<div class="right">-->
+                    <!--<span>星巴克海淀区大钟寺店</span><br>-->
+                    <!--<span style="font-size: 0.12rem">16-06-26</span>&nbsp|&nbsp<span>剩余<span style="font-size: 0.14rem">62</span>份</span>-->
+                    <!--<div class="right_2">-->
+                        <!--<span  class="rigt_sp_1" style="float: left;font-size: 0.05rem;width: 0.4rem;display: block;margin-left: -0.3rem;">未通过</span>-->
+                        <!--<span class="rigt_sp_2">297821</span>-->
+                        <!--<span class="rigt_sp_3">参与人数</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script id="scriptDiv" type="text/html">
+    <%for(var i =0 ; i < list.length;i++) { %>
+    <div class="lzh_con"  onclick="openPublishDetail('<%=list[i].id%>')" style="margin-top: 10px;">
+        <div class="con">
+            <span class="con_2"><%=list[i].title%></span>
+            <div class="con_1">
+                <div class="left" >
+                    <img src="../../image/defaultCover@2x.png" style="height:<%=photo.height%>px" data-echo="<%=list[i].cover%>">
+                </div>
+                <div class="right" style="height:<%=photo.height%>px">
+                    <span><%=list[i].shopName%></span><br>
+                    <span style="font-size: 0.12rem"><%=list[i].ctime%></span>&nbsp|&nbsp<span>剩余<span style="font-size: 0.14rem"><%=list[i].remainNum%></span>份</span>
+                    <div class="right_2">
+                        <span  class="rigt_sp_1" style="float: left;font-size: 0.1rem;margin-top: 0.06rem; display: block;color: <%=list[i].publishColor%>"><%=list[i].publishStatus%></span>
+                        <span class="rigt_sp_2"><%=list[i].joinUserNum%></span>
+                        <span class="rigt_sp_3">参与人数</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <% } %>
+</script>
+<script type="text/javascript">
+
+    var allResult = {};
+    apiready = function(){
+        api.showProgress({title: '努力加载中...',text: '先喝杯茶...'});
+        new datalistModel(initInfo,activityPaperUrl,{},10,5,100,true);
+        echoExt.init();
+         api.hideProgress();
+    };
+
+    function initInfo(results, append) {
+        if (results && results.length > 0) {
+            for(var i=0;i<results.length;i++){
+                allResult[results[i].id]=results[i];
+                if(results[i].status == 1){
+                    results[i].publishStatus = "审核通过,待支付";
+                    results[i].publishColor = "#ff9900";
+                }else if(results[i].status == 0){
+                    results[i].publishStatus = "审核中";
+                    results[i].publishColor = "#ccc";
+                }else if(results[i].status == 2){
+                    results[i].publishStatus = "审核没通过";
+                    results[i].publishColor = "red";
+                }else if(results[i].status == status_pay){
+                    results[i].publishStatus = "发布成功";
+                    results[i].publishColor = "#75ca77";
+                }
+                results[i].ctime =formatTimeToDay(results[i].ctime);
+            }
+
+            var width = api.frameWidth*0.4;
+            var height = width/1.7;
+            var data = {list: results,photo:{width:width,height:height}};
+            var html1 = template('scriptDiv', data);
+            if (append) {
+                document.getElementById('main').innerHTML = document.getElementById('main').innerHTML + html1;
+            } else {
+                document.getElementById('main').innerHTML = html1;
+            }
+
+        }else if(results.length==0){
+            document.getElementById('main').innerHTML = '';
+        }
+    }
+
+    function openPublishDetail(id){
+        openNewWindow('activityDetail','./activityDetail.html',{activity:allResult[id]});
+    }
+
+
+</script>
+</body>
+</html>

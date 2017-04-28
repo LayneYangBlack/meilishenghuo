@@ -1,0 +1,137 @@
+.top {
+    background-color: #FFF;
+    /*border-top: 1px solid #DADDE0;*/
+    width: 100%;
+    text-align: center;
+    position: relative;
+    font-size: 10px;
+    /*height: 50px;*/
+}
+
+.top ul {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    border-bottom : 1px solid rgb(231,231,231);
+}
+
+.top ul li {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    border-right : 1px solid rgb(231,231,231);
+}
+
+.top li {
+    -webkit-background-size: 27px 27px !important;
+    background-size: 27px 27px !important;
+    color: #707070;
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 10px;
+    font-size: 10px;
+}
+
+.top li.active a, .top a.active {
+    color: #6BBDFA;
+}
+
+
+
+.left {
+	position: absolute;
+	/*height:200px;*/
+	width: 30%;
+	overflow:auto;
+	text-align: center;
+	/*border-bottom: 1px solid rgb(231,231,231);*/
+	background-color: rgb(246,246,246);
+}
+
+.left ul {
+	/*border-right: 1px solid rgb(231,231,231);*/
+}
+
+.left ul li {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.selected {
+	background-color: rgb(255,255,255);
+}
+
+.secondSelected {
+	color: rgb(250,207,166);
+}
+
+.right {
+	margin-left: 30%;
+	/*height:200px;*/
+	width: 70%;
+	overflow:auto;
+	text-align: center;
+	/*border-bottom: 1px solid rgb(231,231,231);*/
+}
+
+.right ul {
+	padding-left: 8%;
+}
+
+.right ul li {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid rgb(231,231,231);
+}
+
+.right ul li:last-child{
+	border-bottom: 0px;
+}
+
+
+
+
+
+
+.searchBar {
+	/*width: 100%;*/
+	padding: 5px;
+	/*position: fixed;*/
+	background-color: #fff;
+	height: 30px;
+	border-bottom: 1px solid rgba(0,0,0,.1);
+	/*z-index: 100;*/
+	display: none;
+}
+			
+.search {
+	margin-left: 5px;
+	/*padding-right: 42px;*/
+	/*position: absolute;*/
+}
+		
+.keyWord {
+	width: 75%;
+	-webkit-appearance: none;
+	padding: 5px;
+	margin-bottom: 15px;
+	/*line-height: 21px;*/
+	-webkit-user-select: text;
+	background-color: #fff;
+	border: 1px solid rgba(0, 0, 0, .2);
+	border-radius: 3px;
+	outline: none;
+}
+			
+.searchBtn{
+	text-align: center;
+	color: rgb(106,187,247);
+	padding: 5px;
+	/*border: 1px solid rgb(231,231,231);
+	border-radius: 5px;*/
+}
+

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style type="text/css">
+
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background: #F1f2f3;
+            width: 100%; /*height: 100%;*/
+            min-height: 100%;
+        }
+
+        .item{
+            background-color: #ffffff;
+            font-size: 16px;
+            padding: 10px 10px;
+            margin: 5px 0;
+        }
+        .left_box{
+            float: left;
+            width: 25%;
+        }
+        .left_box img{
+            width: 100%;
+        }
+        .center_box{
+            float: right;
+            line-height: 20px;
+            width: 73%;
+            margin-left: 2%;
+        }
+        .center_box img{
+            width: 16px;
+            padding-left: 5px;
+        }
+        .name{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+        .name span{
+            float: right;
+            text-align: right;
+            font-size: 12px;
+            margin-right: 5px;
+            color:#9296a3 ;
+        }
+        .right_box{
+            float: right;
+            width: 73%;
+            color:#9296a3 ;
+            line-height: 30px;
+            font-size: 12px;
+            margin-left: 2%;
+        }
+        .right_box>span{
+            font-size: 12px;
+            color:#FA8200 ;
+            float: right;
+        }
+
+        .tagButton2{
+            font-size:18px;
+            padding-right: 5px;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <!--<div class="item">-->
+
+        <!--<div class="left_box">-->
+            <!--<img class="icon" src="../../image/test/1.jpg" onerror="this.src='../../image/user-photo.png'">-->
+        <!--</div>-->
+        <!--<div class="center_box">-->
+            <!--<div class="name">-->
+                <!--爱妃的<img src="../../icon/user/@2female.png">-->
+                <!--<span >2016-12-09</span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="right_box">获得优惠券，平台奖励<span ><span class="tagButton2">+3</span>金豆</span></div>-->
+        <!--<div style="clear: both;"></div>-->
+    <!--</div>-->
+
+    <!--<div class="item">-->
+
+        <!--<div class="left_box">-->
+            <!--<img class="icon" src="../../image/test/1.jpg" onerror="this.src='../../image/user-photo.png'">-->
+        <!--</div>-->
+        <!--<div class="center_box">-->
+            <!--<div class="name">-->
+                <!--爱妃的<img src="../../icon/user/@2female.png">-->
+                <!--<span >2016-12-09</span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="right_box">获得优惠券，平台奖励<span ><span class="tagButton2">+3</span>金豆</span></div>-->
+        <!--<div style="clear: both;"></div>-->
+    <!--</div>-->
+    <!--<div class="item">-->
+
+        <!--<div class="left_box">-->
+            <!--<img class="icon" src="../../image/test/1.jpg" onerror="this.src='../../image/user-photo.png'">-->
+        <!--</div>-->
+        <!--<div class="center_box">-->
+            <!--<div class="name">-->
+                <!--爱妃的<img src="../../icon/user/@2female.png">-->
+                <!--<span >2016-12-09</span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="right_box">获得优惠券，平台奖励<span ><span class="tagButton2">+3</span>金豆</span></div>-->
+        <!--<div style="clear: both;"></div>-->
+    <!--</div>-->
+    <!--<div class="item">-->
+
+        <!--<div class="left_box">-->
+            <!--<img class="icon" src="../../image/test/1.jpg" onerror="this.src='../../image/user-photo.png'">-->
+        <!--</div>-->
+        <!--<div class="center_box">-->
+            <!--<div class="name">-->
+                <!--爱妃的<img src="../../icon/user/@2female.png">-->
+                <!--<span >2016-12-09</span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="right_box">获得优惠券，平台奖励<span ><span class="tagButton2">+3</span>金豆</span></div>-->
+        <!--<div style="clear: both;"></div>-->
+    <!--</div>-->
+</div>
+</body>
+<script id="scriptDiv" type="text/html">
+    <% for (var i = 0; i < list.length; i ++) { %>
+
+    <div class="item">
+
+        <div class="left_box">
+            <img class="icon" src="<%=list[i].userIcon%>" onerror="this.src='../../image/user-photo.png'">
+        </div>
+        <div class="center_box">
+            <div class="name">
+                <%=list[i].userName%><img src="<%=list[i].sexIcon%>">
+                <span ><%=list[i].time%></span>
+            </div>
+        </div>
+        <div class="right_box">获<span ><span class="tagButton2">+3<%=list[i].goldBean%></span>金豆</span></div>
+        <div style="clear: both;"></div>
+    </div>
+    <% } %>
+</script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript">
+
+    var uid;
+    var allResult = [];
+    apiready = function () {
+        var user = api.pageParam.user;
+        new datalistModel(addDataToHtml,userSharePersonGoldBeanPagerUrl,{uid:user.uid},10,5,100,true);
+    };
+
+
+    function addDataToHtml(results, append) {
+        if (results && results.length > 0) {
+            for(var i=0;i<results.length;i++){
+                allResult[results[i].id]=results[i];
+                results[i].time =formatTimeToDay(results[i].time);
+            }
+            for(var i=0;i<results.length;i++){
+                allResult[results[i].id]=results[i];
+                if(results[i].userSex == 1){
+                    results[i].sexIcon = "../../icon/user/@2male.png"
+                }else if(results[i].userSex == 2){
+                    results[i].sexIcon = "../../icon/user/@2female.png"
+                }
+            }
+            var data = {list: results};
+            var html = template('scriptDiv', data);
+            if (append) {
+                var div = document.createElement("div");
+                div.innerHTML = html;
+                document.getElementById('main').appendChild(div);
+            } else {
+                document.getElementById('main').innerHTML = html;
+            }
+        }else if(results.length==0){
+            document.getElementById('main').innerHTML = '';
+        }
+
+    }
+
+
+
+    </script>
+</html>

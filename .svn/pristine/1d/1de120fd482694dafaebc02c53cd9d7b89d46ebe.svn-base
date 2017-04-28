@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>我</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+    <style type="text/css">
+        html {
+            width: 100%;
+            height: 100%;
+        }
+        body {
+            background: #ebebeb;
+            width: 100%;
+            max-height: 100%;
+            font-size: 14px;;
+        }
+        .item99{
+            font-size: 16px;
+            background-color: #ffffff;
+            border-top: 1px solid #eaeaea;
+            border-bottom: 1px solid #eaeaea;
+            margin-top: 10px;
+            position: relative;
+        }
+        .left_box{
+            float: left;
+            width: 25%;
+            margin-left: 5px;
+            height: 70px;
+            margin-top: 12px;
+        }
+        .left_box img{
+            width: 100%;
+            height: 90px;
+            padding-left: 5px;
+            margin-bottom: 0px;
+        }
+        .center_box{
+            float: left;
+            line-height: 25px;
+
+            height: 70px;
+            margin-top: 15px;
+        }
+        .center_box p{
+            font-size: 13px;
+            margin-top: 5px;
+            color:#9296a3 ;
+        }
+
+        .center_box span{
+            padding: 0 5px;
+        }
+        .center_box span:first-child{
+            padding-left: 0px;
+        }
+        .center_box img{
+            width: 14px;
+            padding-left: 5px;
+            vertical-align: top;
+
+        }
+
+        .right_box{
+            /*float: right;*/
+            position: absolute;
+            color:#9A9EA9 ;
+            /*margin-top: 35px;*/
+            width: 20px;
+            top: 30px;
+            right: 7px;
+        }
+       
+        .left_bean{
+            float: left;
+            width: 50%;
+            height: 50px;
+            line-height: 21px;
+            text-align: center;
+        }
+        .right_bean{
+            float: left;
+            width: 50%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background-color: #75ca77;
+            color: #ffffff;
+        }
+        ul li{
+            clear: both;
+            line-height: 50px;
+            height: 50px;
+            /*padding: 0 10px 8px;*/
+            border-bottom: solid 1px #eaeaea;
+            margin-left: 10px;
+        }
+        li img{
+            width: 22px;
+            vertical-align: middle;
+        }
+        ul li>div:first-child{
+            float: left;
+        }
+        ul li>div:last-child{
+            float: right;
+        }
+        /*#bg_2{  display: none;;*/
+            /*position: absolute;  top: 0%;  left: 0%;  width: 100%;  height: 100%;*/
+            /*background-color: black;  z-index: 1001;  -moz-opacity: 0.7;  opacity: .70;  filter: alpha(opacity=70);}*/
+        /*#show_2 {   position: absolute;  width: 100%;  bottom: 0px;   background-color: #f4f4f4;*/
+            /*z-index: 1002;  overflow: auto;height:auto; display: none; }*/
+        /*.item{height: 0.45rem;width: 100%;border-bottom: 1px solid #f1f2f3;float: right;background: white;}*/
+        /*.item p{line-height: 0.5rem;float: left; font-size: 0.15rem;margin-left: 0.2rem}*/
+        /*.next{background: url("../../icon/icon_right_normal.png");margin-top: 0.15rem;float: right;background-size:cover;*/
+        /*;width: 0.15rem;height: 0.2rem; margin-right: 7.2%}*/
+        /*.iii img{width: 0.3rem;float: left;height: 0.3rem;margin-left: 0.2rem;margin-top: 0.1rem}*/
+        /*.lili{margin-top:0.1rem;}*/
+        /*.lili p:last-child{float: right;display: block;width: 0.68rem;height: 0.24rem;background: #ff9900;border-radius: 15px;*/
+            /*line-height: 0.24rem;font-size: 0.12rem;color: white;text-align: center;margin-top: 0.12rem; }*/
+        /*.lili p:first-child{float: left;padding-left: 6%; line-height: 0.5rem;}*/
+        /*.bottom{width: 100%;height: 0.5rem;color:green;font-size: 0.15rem;text-align: center;line-height: 0.5rem;float: left;margin-top: 0.05rem;*/
+            /*background: white;}*/
+        /*.top_verticle{*/
+            /*padding-left: 3%;font-size: 0.14rem;padding-top: 3%;line-height: 0.2rem;*/
+            /*color: #999999;*/
+        /*}*/
+.bottomSpan{
+    display: inline-block; font-size: 10px;color: #9296a3;line-height: 16px;;
+}
+
+    </style>
+</head>
+<body id="body" >
+
+
+<div id="main">
+    <div class="item99" style="height: 90px;margin: 0;" onclick="openIdAuthentification()">
+    <div class="left_box">
+    <!--<img src="../../image/test/1.jpg" onerror="this.src='../../image/user-photo.png'">-->
+    </div>
+    <div class="center_box" onclick="openNickname();">
+    蓝天海水<img src="../../icon/user/@2female.png" onerror="this.src='../../image/user-photo.png'">
+    <p><span>资料完善度3星</span><span>学生</span><span>24岁</span><span>本科</span></p>
+    </div>
+    <div class="right_box"><img src="../../icon/icon_right_normal.png"></div>
+
+    </div>
+    <div style="clear: both"></div>
+    <div class="item99" style="border: none; height: 50px;line-height: 50px;">
+    <div class="left_bean" onclick="openUserDetail()" >
+    <p style="font-size: 20px;color: #FF9829">1886</p>
+    <p style="padding-top: 5px">可换金豆<img style="width: 6px;vertical-align:top;" src="../../image/red.png" alt=""></p>
+    </div>
+    <div class="right_bean" onclick="openConsumeBean()">
+    兑换提现
+    </div>
+    <div style="clear: both"></div>
+    </div>
+    <div class="item99">
+    <ul >
+    <li>
+    <div style="line-height: 16px;padding-top: 0.19rem;">积分等级</div>
+    <div style="line-height: 20px;padding-top: 0.18rem">3,778<span style="padding-left: 5px;color: #76CA78">Lv4</span><img src="../../icon/icon_right_normal.png"></div>
+    </li>
+    <li>
+    <div  onclick="box2_Show()"  style="width: 80%; line-height:16px;padding-top: 0.16rem;">分享绑定个人/商家<br>
+    <span style="font-size: 10px;line-height: 16px;  width: 100%;  white-space: nowrap;overflow: hidden;color: #CCCCCC">个人或者商家因你的分享注册成功，你将不断获阿斯顿请问大师青蛙的青蛙的</span></div>
+    <div><img src="../../icon/icon_right_normal.png"></div>
+    </li>
+    <li style="border: none;">
+    <div style="width: 80%;line-height:16px;padding-top: 0.16rem;" onclick="openUserQrCode()">我的二维码<br>
+    <span style="font-size: 10px;width: 100%;  white-space: nowrap;overflow: hidden;color: #CCCCCC">个人或者商家扫码注册，平台额外给你金豆奖励</span></div>
+    <div><img src="../../image/ewm.png" alt=""><img src="../../icon/icon_right_normal.png"></div>
+    </li>
+    </ul>
+    </div>
+    <div class="item99">
+        <ul >
+            <li onclick="openMessage()">
+                <div>消息<img style=" display: inline-block;width: 6px;vertical-align:top;margin-top: 0.1rem;" src="../../image/red.png" alt=""></div>
+                <div><img src="../../icon/icon_right_normal.png"></div>
+            </li>
+            <li style="border: none;" onclick="openSeting()">
+                <div style="line-height:16px;padding-top:0.16rem;">设置<br>
+                    <span class="bottomSpan"> 修改密码</span> <span style="margin-right: 15px;margin-left:15px;"class="bottomSpan">设置消息声音</span><span class="bottomSpan">退出APP</span></div>
+                <div><img src="../../icon/icon_right_normal.png"></div>
+            </li>
+        </ul>
+    </div>
+    </div>
+
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+
+<script id="scriptDiv" type="text/html">
+    <div class="item99" style="height: 90px;margin: 0;border-top: none;" onclick="openUserInfo()">
+        <div class="left_box">
+            <img src="<%= user.icon%>" style="max-width: 66px;max-height: 64px;" onerror="this.src='../../image/user-photo.png'">
+        </div>
+        <div class="center_box">
+            <%= user.name %>
+            <%if(user.sex != 0){%>
+            <img src="<%=user.sexIcon%>" onerror="this.src='../../image/user-photo.png'">
+            <%}%>
+            <p><span>资料完善度<%=user.star%>星</span><span><%= user.profession %></span><span><%= user.age%>岁</span><span><%= user.education%></span></p>
+        </div>
+        <img class="right_box" src="../../icon/icon_right_normal.png">
+
+    </div>
+    <div style="clear: both"></div>
+    <div class="item99" style="border: none;">
+        <div class="left_bean" onclick="openUserDetail()" >
+            <p style="font-size: 20px;color: #FF9829;margin-top: 2px;"><%= user.remainGoldBean%></p>
+            <p style="padding-top: 3px">可换金豆<img id='beanRed' style="width: 6px;vertical-align:top;display: none" src="../../image/red.png" alt=""></p>
+        </div>
+        <div class="right_bean" onclick="openConsumeBean()">
+            兑换提现
+        </div>
+        <div style="clear: both"></div>
+    </div>
+    <div class="item99">
+        <ul>
+            <li onclick="openUserScoreList()">
+                <div style="line-height: 16px;padding-top: 0.19rem;">积分等级</div>
+                <div style="line-height: 20px;padding-top: 0.18rem"><%=user.scores%><span style="padding-left: 5px;color: #76CA78">Lv<%=user.level%></span><img style="margin-right: 7px;" src="../../icon/icon_right_normal.png"></div>
+            </li>
+            <li onclick="box2_Show()">
+                <div style="width: 80%;  line-height:16px;padding-top: 0.16rem;">分享绑定个人/商家<br>
+                    <span style="font-size: 10px;width: 100%;  white-space: nowrap;overflow: hidden;line-height:20px;color: #9296a3">个人或者商家因你的分享注册成功，你将不断获得金豆提成奖励</span></div>
+                <div><img style="margin-right: 7px;" src="../../icon/icon_right_normal.png"></div>
+            </li>
+            <li style="border: none;" onclick="openUserQrCode()">
+                <div style="width: 80%; line-height:16px;padding-top: 0.16rem;" >我的二维码<br>
+                    <span style="font-size: 10px;width: 100%;  white-space: nowrap;overflow: hidden;color: #9296a3;line-height: 20px;">个人或者商家扫码注册，平台额外给你金豆奖励</span></div>
+                <div><img src="../../image/ewm.png" alt=""> <img style="margin-right: 7px;" src="../../icon/icon_right_normal.png"></div>
+            </li>
+        </ul>
+    </div>
+    <div class="item99">
+        <ul>
+            <li onclick="openMessage()">
+                <div >消息 <img id="redPoint" style="display: none;width: 6px;vertical-align:top;margin-top: 0.1rem;" src="../../image/red.png" alt="">
+                </div>
+                <div><img style="margin-right: 7px;" src="../../icon/icon_right_normal.png"></div>
+            </li>
+            <li  style="border: none;" onclick="openSetting()">
+                <div style="line-height:16px;padding-top:0.16rem;">设置<br>
+                    <!--<span style="font-size: 10px;color: #CCCCCC"> 修改密码&nbsp;&nbsp;&nbsp;设置消息声音 退出APP</span></div>-->
+                    <span class="bottomSpan"> 修改密码</span> <span style="margin-right: 15px;margin-left:15px;"class="bottomSpan">设置消息声音</span><span class="bottomSpan">退出APP</span></div>
+                <div><img style="margin-right: 7px;" src="../../icon/icon_right_normal.png"></div>
+            </li>
+        </ul>
+    </div>
+</script>
+<script type="text/javascript">
+    var userInfo = null;
+    function openConsumeBean(){
+        openNewWindow("consumeBean","../user/consumeBean.html",{user:userInfo})
+    }
+
+    function openMessage(){
+
+        $api.setStorage('redPint',false);
+        document.getElementById('redPoint').style.display = 'none';
+        isRemoveUserRed();
+        openNewWindow("message","./message.html",{openHtml:'user_body'});
+    }
+    function openUserDetail(){
+
+        $api.setStorage('beanRed',false);
+        document.getElementById('beanRed').style.display = 'none';
+        isRemoveUserRed();
+        openNewWindow("userBean","../user/userBean.html",{user:userInfo});
+    }
+
+    function openUserQrCode(){
+        openNewWindow("userQRCode","./userQRCode.html",{user:userInfo})
+    }
+
+    apiready = function () {
+
+
+        api.setRefreshHeaderInfo({
+            visible: true,
+            bgColor: 'rgba(0,0,0,0)',
+            textColor: '#666',
+            textDown: '下拉刷新...',
+            textUp: '松开刷新...'
+        }, function (ret, err) {
+            ajaxGet(userInfoUrl, {}, function(ret,err){
+                if(ret){
+                    userInfo = ret;
+                    if(ret.sex == 1){
+                        ret.sexIcon = "../../icon/user/@2male.png"
+                    }else if(ret.sex == 2){
+                        ret.sexIcon = "../../icon/user/@2female.png"
+                    }
+                    if(ret.name == null){
+                        ret.name = "未填"
+                    }
+                    appendHtml(ret);
+                    document.getElementById('body').style.display = 'block'
+                }else{
+                    toast("获取数据失败");
+                }
+                api.refreshHeaderLoadDone();
+
+            });
+        });
+        api.refreshHeaderLoading();
+
+    };
+
+
+    function changeRed(){
+        if($api.getStorage('redPint') == "true"){
+            document.getElementById('redPoint').style.display = 'inline-block';
+        }else{
+            document.getElementById('redPoint').style.display = 'none';
+        }
+
+        if($api.getStorage('beanRed')== "true"){
+            document.getElementById('beanRed').style.display = 'inline-block';
+        }else{
+            document.getElementById('beanRed').style.display = 'none';
+        }
+    }
+
+    function isRemoveUserRed(){
+       var message =  document.getElementById("redPoint").style.display;
+       var beanRed =  document.getElementById("beanRed").style.display;
+        if(message.indexOf("inline-block") != -1 || beanRed.indexOf("inline-block")!= -1){
+            return;
+        }
+        api.execScript({
+            name: rootWindowName,
+            script: 'removeRedPoint();'
+        });
+    }
+
+    function openSetting(){
+        openNewWindow("setting",'./setting.html',{})
+    }
+    function openUserInfo(){
+        openNewWindow("userInfo","../user/userInfo.html",{user:userInfo});
+    }
+    function openUserScoreList(){
+        openNewWindow("userScoreList","./userScoreList.html",{user:userInfo});
+
+    }
+    function appendHtml(userInfo){
+        var data = {user: userInfo};
+        var html = template('scriptDiv', data);
+        document.getElementById('main').innerHTML = html ;
+        document.getElementById('body').style.display = 'block';
+        changeRed();
+    }
+
+
+    function box2_Show(){
+        openNewWindow("share","./share.html",{user:userInfo});
+    }
+
+    function showTip(){
+        toast("分享成功!");
+
+    }
+
+</script>
+
+</html>

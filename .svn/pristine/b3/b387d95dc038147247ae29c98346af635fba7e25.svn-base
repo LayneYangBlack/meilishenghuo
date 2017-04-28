@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发布商家活动</title>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="../../css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+        html,body{
+            font-size: 20px;
+            background-color: #ebebeb;
+        }
+        .top_bj{;height:2.45rem; float: left;}
+        .top_bj p{text-align: center;line-height: 2.45rem;font-size: 1rem;color: white;}
+        .zuo_arr{background:url("../../images/fabu/zuo_arr.png"); margin-top: 0.25rem; float: left;background-size: 1rem 1.5rem;
+            width: 1rem;height: 1.5rem;margin-left: 5%;}
+        .jindu img{width: 100%;background: #fff;}
+        .jindu{width:100%; margin:0px auto; padding:0px; height:3rem;background: #fff; }
+        .jindu_bj{width: 90%;;float: left;background: #ffffff; margin:0.5rem 5% 0 5%}
+
+        .item1 li{height: 2.5rem;width: 95%;border-bottom: 1px solid #eaeaea;float: left;margin-left: 5%;}
+        .item1 li p{line-height: 5rem;float: left; font-size: 0.75rem;}
+        .next{background: url("../../icon/icon_right_normal.png");margin-top: 0.75rem;float: right;background-size:cover;
+        ;width: 0.75rem;height: 1rem; margin-right: 15px;}
+        #nr66 img{
+			width: 0.75rem;height: 0.5rem;margin-left: 8px;}
+        .item1 li p:nth-child(2){float: right;padding-right: 13%;display: block; line-height: 2.5rem;}
+        .item1 li p:nth-child(1){float: left; line-height: 2.5rem;}
+        .nav{width: 100%;height: 2.4rem;float: left;}
+        .nav li{width: 49.5%;height: 2.3rem;line-height:2.5rem;text-align: center;float: left;border: 1px #eaeaea solid;}
+        .nav li:first-child{margin-left: 0.05%;}
+        .nav li:first-child{border-right:none;}
+        .nav li p{font-size: 0.75rem;line-height: 2.3rem;}
+
+        .tab_nr{width: 100%;float: left;}
+        .footer-five{
+            margin-bottom: 50px;
+        }
+        .tab_nr ul{width: 100%;float: left;}
+        .beijing{width: 100%;}
+        .beijing p{line-height: 1.5rem;display: block;float: left; font-size:0.6rem;color: #b6b6b6;margin-left: 3%; }
+        #nr1{width: 100%;}
+        .tijiao{text-align:center;line-height: 50px;font-size: 0.85rem;}
+        .tijiao a{color: white;display: block;height:50px;text-align: center;}
+        .yc_nr{}
+        #nr6 a:hover{background: #75ca77;color: white;}
+        #nr6 a{border:1px solid #eaeaea; border-radius: 4rem;height: 2.25rem;width: 9.3rem;display: block;line-height: 2.25rem;
+            text-align: center;  color: #75ca77 ; background: white;  margin:1.7rem auto 1rem auto;  font-size: 0.8rem;
+            padding-left: 0.5rem; }
+        #nr10{display: none;}
+        .yc_nr input{
+            text-align: right;
+            float: right;
+            color: #9296a3;
+            width:45%;
+            height: 2.4rem;
+            line-height: 2.5rem;
+            font-size: 0.75rem;
+        }
+         .fcolor{color: white;}
+        .item{background: #ffffff;}
+        .canshu p{font-size: 0.5rem;float: left;margin-left: 2%; color: #9296a3;}
+        .canshu{width: 75%;float: left; }
+        .canshu p span{}
+        .beijing1{width: 20%;margin-left: 5%; height: 0.7rem;font-size: 0.6rem;float: left;overflow: hidden;}
+        .beijing1 span:first-child{float: left;}
+        .beijing1 span:last-child{float: left;display: none;}
+        .count{width: 40%; font-size: 0.6rem;float: left;text-align:left; color:#000 ; padding-left: 5%; padding-top: 0.2rem;}
+        #gps{float: right; padding-right: 6%;width: 10rem;height: 2.5rem; line-height: 2.5rem;overflow: hidden;display: block; text-align: right;}
+    	.tanchu{
+    		text-align: center;
+    		font-size: 16px;
+    		color: #75CA77;
+    		background: #fff;
+    		width: 80%;
+    		position: absolute;
+    		top: 35%;
+    		left: 10%;
+    		display: none;
+    	}
+    	.jinpai{
+    		color: #333;
+    		padding: 15px 0 40px;
+    		font-size: 14px;
+    	}
+    	.buttonleft{
+    		font-size: 16px;
+    		color: #333;
+    		float: left;
+    		background: #ebebeb;
+    	}
+    	.tanchudiv input{
+    		width: 50%;
+    		height: 40px;
+    		line-height: 40px;
+    	}
+    </style>
+    <link href="../../css/mui.picker.all.css" rel="stylesheet" />
+    <link href="../../css/mui.poppicker.css" rel="stylesheet" />
+
+</head>
+<body id="body" style="display: none">
+<div class="tanchu">
+	<div style="margin-top: 10px;">提示</div>
+	<div class="jinpai">金牌以上商家可以选择,加油哦~</div>
+	<div class="tanchudiv">
+		<input class="buttonleft"  type="button" value="取消" />
+		<input class="buttonright" style="color: #fff;float: right;background: #75CA77;" type="button" value="确定"/>
+	</div>
+</div>
+<div class="jindu">
+    <div class="jindu_bj">
+        <img src="../../image/jindu.png" onerror="this.src='../../image/jindu.png'">
+    </div>
+</div>
+<div class="wp_100 item" style="height: 1.5rem;background:#ebebeb;float: left; "><p style="line-height: 1.5rem;font-size: 0.6rem;padding-left: 5%;color: #AFB0B0;color: #AFB0B0;">
+    设置投放对象条件</p></div>
+<div class="wp_100 item1 item" id="nr9" style="float: left;">
+    <li class="yc_nr" onclick="openShopInterest()"><p>兴趣</p><i class="next"></i>
+        <input type="text" id="interest" placeholder="请选择" readonly="readonly" value=""></li>
+
+
+    <div class="moren" id="nr66">
+
+        <div class="wp_100" id="nr6" style="height: 6.8rem;background:#ebebeb;float: left; ">
+
+            <a href="#" onclick="showOtherSelect()" id="nr8">更多精确条件<img src="../../icon/down@2x.png" alt="" /></a>
+            <p style="line-height: 2rem;font-size: 0.6rem;padding-left: 5%;color: #AFB0B0;">
+                设置投放区域（2选1）</p>
+        </div>
+    </div>
+    <div id="nr10">
+        <li class="yc_nr" id="sex"><p>性别</p><i class="next"></i><input type="text" id="sexResult" placeholder="未填" readonly="readonly" value=""></li>
+        <li class="yc_nr" id="educational"><p>学历</p><i class="next"></i><input type="text" id="educationalResult"  readonly="readonly" placeholder="未填" value=""></li>
+        <li class="yc_nr" id="income"><p>月收入</p><i class="next"></i><input type="text" id="incomeResult" placeholder="未填" readonly="readonly" readonly value=""></li>
+        <li class="yc_nr" id="profession" onclick="openShopProfession()"><p>职业</p><i class="next"></i><input type="text" id="professionResult" placeholder="未填" readonly  value=""></li>
+        <li class="yc_nr" id="children"><p>有无八岁以下儿童</p><i class="next"></i><input type="text " id="childrenResult" placeholder="无"readonly value=""></li>
+        <li class="yc_nr" id="car"><p>有无购车</p><i class="next"></i><input type="text" id="carResult" placeholder="有" readonly value=""></li>
+        <li class="yc_nr" style="border:none;" id="house"><p>有无购房</p><i class="next"></i><input type="text" id="houseResult" placeholder="有" readonly value=""></li>
+
+        <div class="wp_100 yc_nr" style="height: 1.5rem;background:#ebebeb;float: left; "><p style="line-height: 1.5rem;font-size: 0.6rem;padding-left: 5%;color: #AFB0B0;">
+            设置投放对区域</p></div>
+    </div>
+</div>
+
+
+<div class="nav item" id="font">
+
+    <li onClick="changeSelect(this,'areaSelect')" id="area" style="background-color: #ff9900"><p style="color: #fff;">按区域</p></li>
+    <li  onClick="changeSelect(this,'pointSelect')" id="point" ><p style="">按距离远近</p></li>
+</div>
+<div class="tab_nr item footer-five">
+    <ul id="areaSelect" style="display: block;" onclick="selectArea()">
+        <div style="width: 100%;float: left; "> <li  class="count">共计：<span id="totalNum"></span>份</li></div>
+        <div style="width: 85%;float: left;" class="" id="main">
+
+            <!--<div style="width: 100%;float: left;margin-top: 0.5rem;">  <div class="beijing1">啥地方开始到南方科技上的发挥空间好看辉煌科技红烧豆腐<p style="float:left;">-->
+                <!--<span>北京</span><span>12</span></p></div>-->
+                <!--<div class="canshu"><p><span>北京</span><span>12</span></p>-->
+                    <!--<p><span>北京</span><span>12</span></p>-->
+                    <!--<p><span>北京</span><span>12</span></p>-->
+                    <!--<p><span>北京</span><span>12</span></p>-->
+                    <!--<p><span>北京</span><span>12</span></p>-->
+                    <!--<p><span>北京</span><span>12</span></p>-->
+                    <!--<p><span>北京</span><span>12</span></p>-->
+                    <!--<p><span>北京</span><span>12</span></p>-->
+
+                <!--</div></div>-->
+            <!--<div style="width: 100%;float: left;  ">  <div class="beijing1"><p style="float:left;">-->
+                <!--<span>北京</span><span>12</span></p></div>-->
+                <!--<div class="canshu"><p><span>北京</span><span>12</span></p>-->
+                    <!--<p><span>北京</span><span>12</span></p>-->
+                    <!--<p><span>北京</span><span>12</span></p>-->
+                    <!--<p><span>北京</span><span>12</span></p>-->
+                    <!--<p><span>北京</span><span>12</span></p>-->
+                    <!--<p><span>北京</span><span>12</span></p>-->
+                    <!--<p><span>北京</span><span>12</span></p>-->
+                    <!--<p><span>北京</span><span>12</span></p>-->
+                <!--</div></div>-->
+            <!--<div style="width: 100%;float: left;  ">  <div class="beijing1"><p style="float: left;">-->
+                <!--<span>北京</span><span>12</span></p></div>-->
+                <!--<div class="canshu"><p><span>北京</span><span>12</span></p>-->
+                    <!--<p><span>北京</span><span>12</span></p>-->
+                    <!--<p><span>北京</span><span>12</span></p>-->
+                    <!--<p><span>北京</span><span>12</span></p>-->
+                    <!--<p><span>北京</span><span>12</span></p>-->
+                    <!--<p><span>北京</span><span>12</span></p>-->
+                    <!--<p><span>北京</span><span>12</span></p>-->
+                    <!--<p><span>北京</span><span>12</span></p>-->
+                <!--</div></div>-->
+
+        </div>
+        <div style="width: 15%;float: right;">
+            <i class="next" style="margin-right:50%;margin-top: 50%;"></i>
+        </div>
+
+        <div class="wp_100"  style="height: 1.5rem;background:#ebebeb;float: left;margin-top: 1rem; "><p style="line-height: 1.5rem;font-size: 0.6rem;padding-left: 5%;color: #AFB0B0;">
+            可向全平台投放，也可限制地区投放</p></div>
+    </ul>
+
+    <ul id="pointSelect" class="item1"  style="display: none" onclick="openPublishPosition()">
+
+        <li style="overflow: hidden;"><p>中心位置</p><i class="next"></i><p  id="gps">请选择</p></li>
+        <li  style="border: none;"><p>距离中心</p><i class="next"></i><p  id="radius" style="float: right; padding-right: 6%;line-height: 2.5rem;">请选择</p></li>
+        <div class="wp_100"  style="height: 1.5rem;background:#ebebeb;float: left; "><p style="line-height: 1.5rem;font-size: 0.6rem;padding-left: 5%;color: #AFB0B0;">
+            以某某地点为中心位置向周边区域投放</p></div>
+    </ul>
+</div>
+
+<div class="wp_100 tijiao" style="height: 2.5rem;background:#75ca77;float: left;position: fixed;bottom: 0;left: 0; " onclick="commit()">
+    <a href="#">下一步</a>
+</div>
+<script type="text/javascript"  src="../../script/mui.min.js"></script>
+<script type="text/javascript"  src="../../script/mui.picker.all.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script id="scriptDiv" type="text/html">
+
+    <% for (var i = 0; i < list.length; i ++) { %>
+    <div style="width: 100%;float: left;margin-top: 0.3rem;">  <div class="beijing1"><p style="float:left;">
+        <span><%=list[i].parent.name%></span><span><%=list[i].parent.beanNum%></span></p></div>
+        <div class="canshu">
+            <% subs = list[i].subs%>
+            <%for(var j =0;j< subs.length;j++){%>
+            <p><span><%=subs[j].name%></span><span><%=subs[j].beanNum%></span></p>
+
+            <% } %>
+        </div></div>
+    <% } %>
+</script>
+<script>
+
+    var params = null;
+    var budget =null;
+    var user =null;
+    var selectType = "areaSelect";
+    var educationalData = null;
+    var income = null;
+    var educationId =null;
+    var incomeId = null;
+    var profession =null;
+    var professionId =null;
+    var hasEightAgeChild = null;
+    var hasCar = null;
+    var hasHouse = null;
+    var sexId = null;
+    apiready = function (){
+        api.showProgress({title: '努力加载中...',text: '先喝杯茶...'});
+        budget = api.pageParam.budget;
+        params = budget;
+        document.getElementById("totalNum").innerHTML = budget.totalNum;
+        user = api.pageParam.user;
+        var selectData = [{value: '0',
+            text: '不限'
+        },{value: '2',
+            text: '无'
+        },{value: '1',
+            text: '有'
+        }];
+
+
+        var sexData = [{value: '0',
+            text: '不限'
+        },{value: '1',
+            text: '男'
+        },{value: '2',
+            text: '女'
+        }];
+        //todo 提炼一个框架
+        (function($, doc) {
+            $.init();
+            $.ready(function () {
+                educationalData = $api.getStorage("educationFilter");
+                income = $api.getStorage("incomeFilter");
+                //普通示例
+                var educationalPicker = new $.PopPicker();
+                educationalPicker.setData(educationalData);
+                educationalPicker.setTitle("学历");
+                var showEducationalPickerButton = doc.getElementById('educational');
+                var educationalResult = doc.getElementById('educationalResult');
+                showEducationalPickerButton.addEventListener('tap', function (event) {
+                    educationalPicker.show(function (items) {
+                        educationalResult.value = items[0].text;
+                        //返回 false 可以阻止选择框的关闭
+                        //return false;
+
+                        educationId = items[0].value;
+                    });
+                }, false);
+
+
+                var sexPicker = new $.PopPicker();
+                sexPicker.setData(sexData);
+                sexPicker.setTitle("性别");
+                var showSexPickerButton = doc.getElementById('sex');
+                var sexResult = doc.getElementById('sexResult');
+                showSexPickerButton.addEventListener('tap', function (event) {
+                    sexPicker.show(function (items) {
+                        sexResult.value = items[0].text;
+                        //返回 false 可以阻止选择框的关闭
+                        //return false;
+                        sexId = items[0].value;
+                    });
+                }, false);
+
+                var childrenPicker = new $.PopPicker();
+                childrenPicker.setData(selectData);
+                childrenPicker.setTitle("有无8岁以下小孩");
+                var showChildrenPickerButton = doc.getElementById('children');
+                var childrenResult = doc.getElementById('childrenResult');
+                showChildrenPickerButton.addEventListener('tap', function (event) {
+                    childrenPicker.show(function (items) {
+                        childrenResult.value = items[0].text;
+                        //返回 false 可以阻止选择框的关闭
+                        //return false;
+                        hasEightAgeChild = items[0].value;
+                    });
+                }, false);
+
+                var carPicker = new $.PopPicker();
+                carPicker.setData(selectData);
+                carPicker.setTitle("有无购车");
+                var showCarPickerButton = doc.getElementById('car');
+                var carResult = doc.getElementById('carResult');
+                showCarPickerButton.addEventListener('tap', function (event) {
+                    carPicker.show(function (items) {
+                        carResult.value = items[0].text;
+                        //返回 false 可以阻止选择框的关闭
+                        //return false;
+                        hasCar = items[0].value;
+                    });
+                }, false);
+                var housePicker = new $.PopPicker();
+                housePicker.setData(selectData);
+                housePicker.setTitle("有无购房");
+                var showHousePickerButton = doc.getElementById('house');
+                var houseResult = doc.getElementById('houseResult');
+                showHousePickerButton.addEventListener('tap', function (event) {
+                    housePicker.show(function (items) {
+                        houseResult.value = items[0].text;
+                        //返回 false 可以阻止选择框的关闭
+                        //return false;
+                        hasHouse = items[0].value;
+                    });
+                }, false);
+
+                var incomePicker = new $.PopPicker();
+                incomePicker.setData(income);
+                incomePicker.setTitle("月收入");
+                var showIncomePickerButton = doc.getElementById('income');
+                var incomeResult = doc.getElementById('incomeResult');
+                showIncomePickerButton.addEventListener('tap', function (event) {
+                    incomePicker.show(function (items) {
+                        incomeResult.value = items[0].text;
+                        //返回 false 可以阻止选择框的关闭
+                        //return false;
+                        incomeId = items[0].value;
+                    });
+                }, false);
+
+
+
+//                //三级选择
+//                var professionPicker = new $.PopPicker({
+//                    layer: 2
+//                });
+//                professionPicker.setData(profession);
+//                professionPicker.setTitle("职业");
+//                var showProfessionPickerButton = doc.getElementById('profession');
+//                var professionResult = doc.getElementById('professionResult');
+//                showProfessionPickerButton.addEventListener('tap', function (event) {
+//                    professionPicker.show(function (items) {
+//                        professionResult.value = items[1].text;
+//                        //返回 false 可以阻止选择框的关闭
+//                        //return false;
+//
+//                        professionId = items[1].value;
+//                    });
+//                }, false);
+            })
+
+        })(mui, document);
+        api.hideProgress();
+        document.getElementById('body').style.display = "block";
+    };
+
+    function changeSelect(self,type){
+      ss =  document.getElementById("font").querySelectorAll("p");
+
+        for(var i = 0;i< ss.length;i++){
+            ss[i].style.color="#000";
+        }
+      var  li_count = document.getElementById("font").querySelectorAll("li");
+        for(var i = 0;i< li_count.length;i++){
+            li_count[i].style.borderColor="#eaeaea";
+        }
+
+        selectType = type;
+        if(type == 'areaSelect'){
+            document.getElementById("areaSelect").style.display = 'block';
+            document.getElementById("pointSelect").style.display = 'none';
+            document.getElementById('area').style.backgroundColor = '#ff9900';
+            document.getElementById('point').style.backgroundColor = '#fff';
+            self.querySelector("p").style.color="#fff";
+            self.style.borderColor="#ff9900";
+
+            return
+        }
+
+        if(type == 'pointSelect'){
+            document.getElementById("areaSelect").style.display = 'none';
+            document.getElementById("pointSelect").style.display = 'block';
+            document.getElementById('area').style.backgroundColor = '#fff';
+            document.getElementById('point').style.backgroundColor = '#ff9900';
+            self.querySelector("p").style.color="#fff";
+            self.style.borderColor="#ff9900";
+        }
+    }
+	document.getElementsByClassName("buttonleft")[0].onclick=function(){
+		 document.getElementsByClassName("tanchu")[0].style.display="none";
+	}
+	
+	document.getElementsByClassName("buttonright")[0].onclick=function(){
+		document.getElementsByClassName("tanchu")[0].style.display="none";
+	}
+    function selectArea(){
+        openNewWindow('distributeBean','./distributeBean.html',{budget:budget});
+    }
+
+
+    function showOtherSelect(){
+        if(user.score<20000){
+            document.getElementsByClassName("tanchu")[0].style.display="block";
+            return;
+        }
+
+        document.getElementById('nr10').style.display ="block";
+        document.getElementById('nr6').style.display ="none";
+    }
+    //显示地区
+    var areaParams = null;
+    function showAreaList(data){
+        var areaMap = data.areaMap;
+        var parent = data.parent;
+        areaParams = {};
+        if(isNotBlack(areaMap)){
+            for(var key in areaMap){
+                areaParams[key] = areaMap[key].beanNum;
+            }
+        }
+        var showParam = [];
+        for(var key in parent){
+            var area = {};
+            area.parent = parent[key];
+            var cityList = [];
+            for(var index in areaMap){
+                if(areaMap[index].parentId == key){
+                    cityList.push(areaMap[index]);
+                }
+            }
+            area.subs = cityList;
+            showParam.push(area);
+        }
+
+        initInfo(showParam);
+
+    }
+
+
+    function initInfo(results) {
+        if (results && results.length > 0) {
+            var data = {list: results};
+            var html1 = template('scriptDiv', data);
+
+            document.getElementById('main').innerHTML =  html1;
+
+        }else if(results.length==0){
+            document.getElementById('main').innerHTML = '';
+        }
+    }
+
+    //打开位置
+    function openPublishPosition(){
+        openNewWindow("selectPosition",'./selectPosition.html',{user:user});
+    }
+
+    //打开位置
+    function openShopProfession(){
+        openNewWindow('shopProfession','./shopProfession.html',{type:'publishSelectCondition'});
+    }
+
+    var shopAddress = null;
+    function showAddress(data){
+        shopAddress = data;
+        document.getElementById("gps").innerHTML = data.address;
+        document.getElementById("radius").innerHTML= data.radius+"公里"
+    }
+
+    var interest = null;
+    function showInterest(data){
+        interest = data.ids;
+        if(interest == 0){
+            document.getElementById("interest").value = "不限";
+            return;
+        }
+        var list = data.list;
+        var text = "";
+        for(var i = 0; i < list.length;i++){
+            if(list[i].parentId != 0){
+                text = text +list[i].name +" ";
+            }
+        }
+        document.getElementById("interest").value = text;
+
+    }
+
+    var profession = null;
+    function showProfession(data){
+        professionId = data.ids;
+        if(professionId == 0){
+            document.getElementById("professionResult").value = "不限";
+            return;
+        }
+        var list = data.list;
+        var text = "";
+        for(var i = 0; i < list.length;i++){
+            if(list[i].parentId != 0){
+                text = text +list[i].name +" ";
+            }
+        }
+        document.getElementById("professionResult").value = text;
+
+    }
+
+
+    function openShopInterest(){
+        openNewWindow('shopInterest','./shopInterest.html',{type:'publishSelectCondition'});
+    }
+
+
+    var flag = false;
+    function checkParams(){
+        if(isBlack(interest)&& interest!=0 ){
+            toast("请选择兴趣！");
+            return;
+        }
+        params.interestIds = interest;
+
+        if(selectType == 'areaSelect'){
+            if(isBlack(areaParams)){
+                toast("请选择区域！");
+                return;
+            }
+            params.areaNumJson = JSON.stringify(areaParams);
+            params.type = 1;
+        }
+
+        if(selectType == 'pointSelect'){
+            if(isBlack(shopAddress)){
+                toast("请选择位置！");
+                return;
+            }
+            params.type = 0;
+            params.address = shopAddress.address;
+            params.coordinate =JSON.stringify({longitude:shopAddress.lon,latitude:shopAddress.lat});
+            params.maxDistance =shopAddress.radius;
+        }
+
+        if(isNotBlack(sexId)){
+            params.sex = sexId;
+        }
+
+        if(isNotBlack(incomeId)){
+            params.incomeFilterId = incomeId;
+        }
+
+        if(isNotBlack(professionId) || professionId == 0){
+            params.professionIds = professionId;
+        }
+
+        if(isNotBlack(educationId)){
+            params.educationFilterId = educationId;
+        }
+
+        if(isNotBlack(hasEightAgeChild)){
+            params.hasEightAgeChild = hasEightAgeChild;
+        }
+
+        if(isNotBlack(hasCar)){
+            params.hasCar = hasCar;
+        }
+
+        if(isNotBlack(hasHouse)){
+            params.hasHouse = hasHouse;
+        }
+        flag = true;
+        return params;
+
+    }
+    function commit(){
+        var data = checkParams();
+        if(flag){
+            openNewWindow('publishBean','./publishBean.html',{params:data})
+        }
+    }
+</script>
+</body>
+</html>

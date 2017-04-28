@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+</head>
+<style>
+    *{margin: 0;padding: 0;}
+    html,body{
+        font-size: 10px;
+        overflow: hidden;
+        background: #ebebeb;
+    }
+    #head{
+        width: 100%;
+        height: 1.25rem;
+        background: #ebebeb;
+        border-bottom: 0.01rem solid #dbdbdb;
+    }
+    .zhucetop1{
+        background: url(../../icon/mall/dfds.jpg) 7% 1.9rem no-repeat;
+        background-size:1.8rem 2rem;
+    }
+    .zhucetop3 input,.zhucetop2 input,.zhucetop1 input{
+        width: 80.44%;
+        /*height: 4.5rem;*/
+        line-height: 25px;
+        border-bottom: 1px solid #dbdbdb;
+        float: right;
+        /*margin-top: 10px;*/
+        margin-top: 15px;
+        border: none;
+        font-size: 16px;
+        color: #333;
+        outline: none;
+    }
+    .zhucetop3,.zhucetop1,.zhucetop2{
+        width: 100%;
+        height: 4.5rem;
+        line-height: 4.5rem;
+        overflow: hidden;
+        color: #ccc;
+    }
+    .zhucetop2{
+        background: url(../../icon/mall/shouji.jpg) 8% 1.8rem no-repeat;
+        background-size:1.3rem 2rem;
+    }
+    .zhucetop3{
+        position: relative;
+        background: url(../../icon/mall/sss.jpg) 8% 1.6rem no-repeat;
+        background-size:2rem 1.9rem;
+    }
+    #zhuce{
+        border: 1px solid #dbdbdb;
+        background: #fff;
+        margin-top: 1.5rem;
+        position: relative;
+    }
+    img{
+        float: left;
+        margin-top: 2rem;
+        margin-left: 2rem;
+    }
+    .zhucefoot{
+        height: 50px;
+        background: #75ca77;
+    }
+    .zhucefoot,.xieyi{
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        color: #fff;
+        font-size: 18px;
+        text-align: center;
+    }
+    .xieyi{
+        position: relative;
+        margin-bottom: 10px;
+        width: 320px;
+        margin: 0 auto;
+    }
+    #yzm{
+        width: 36%;
+        position: absolute;
+        height: 3.2rem;
+        background: #ff9900;
+        text-align: center;
+        line-height: 3.4rem;
+        font-size: 1.4rem;
+        color: #ffffff;
+        top: 0.65rem;
+        right: 4%;
+    }
+    #check_butt,#check_butt2{
+		vertical-align: middle;
+		/*margin-top: 13px;*/
+		/*margin-left: 5px;*/
+		left: 1.6rem;
+		top: -4px;
+		width: 20px;
+		position: absolute;
+		}
+	 #main {
+	        -webkit-box-flex: 1;
+	        -webkit-flex: 1;
+	        flex: 1;
+	    }
+     #wrap {
+        height: 100%;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-flex-flow: column;
+        flex-flow: column;
+    }
+    a {
+		color: rgb(106,188,248);
+		font-size: 12px;
+	}
+</style>
+<body>
+<div id="wrap">		
+	<div id="main">
+	
+
+<div id="zhuce">
+    <div class="zhucetop1" style="font-size:2rem;">
+        <input type="text" id="shop" placeholder="公司全称,需同营业执照一致" value="">
+    </div>
+    <div style="width:80.44%;height:0.1rem;background: #dbdbdb;position: absolute;right:0;"></div>
+    <div class="zhucetop2">
+        <input type="text" value="" id="tel" placeholder="联系人手机号">
+    </div>
+    <div style="width:80.44%;height:0.1rem;background: #dbdbdb;position: absolute;right:0;"></div>
+    <div class="zhucetop3">
+        <input type="text" id="code" placeholder="验证码" value="">
+        <div id="yzm" onclick="sms()">获取验证码</div>
+    </div>
+</div>
+</div>
+	
+<div style="margin-top: 250px;">
+	<div class="xieyi">
+		<img onclick="check_img()" id="check_butt" src="../../icon/carts/uncheck@2x.png" alt=""><a style="font-size: 12px;">阅读并同意《优惠派商家注册协议》</a>
+	</div>
+	<div class="zhucefoot" onclick="login()">
+	    同意协议并注册
+	</div>
+</div>
+
+</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/login.js"></script>
+<script>
+	var imgButt = 0;
+	function check_img(){
+
+		var check_butt =document.getElementById("check_butt");
+		if(imgButt==0){
+			check_butt.src="../../icon/carts/check@2x.png";
+			imgButt=1;
+		}else{
+			imgButt=0;
+			check_butt.src="../../icon/carts/uncheck@2x.png"
+
+		}
+
+	}
+	function check_img2(){
+		var check_butt =document.getElementById("check_butt2");
+		if(imgButt==0){
+			check_butt.src="../../icon/carts/check@2x.png";
+			imgButt=1;
+		}else{
+			imgButt=0;
+			check_butt.src="../../icon/carts/uncheck@2x.png"
+
+		}
+
+	}
+</script>
+<script>
+
+    var selectType='mall';
+    // 完成首页初始化
+    apiready = function() {
+        initSmsTime();
+    };
+
+
+
+    function login(){
+        var tel = $api.byId('tel').value;
+        var code = $api.byId('code').value;
+        var shop = $api.byId('shop').value;
+
+        if(!checkMobileNum(tel)){
+            toast("手机号码不正确");
+            return;
+        }
+
+        if(isBlack(code)){
+            toast("验证码不能为空");
+            return;
+        }
+
+        if(isBlack(shop)){
+            toast("商家名称不能为空!");
+            return;
+        }
+
+        api.showProgress();
+
+        var params = {
+            phone : tel,
+            authCode : code,
+            shopName:shop
+        };
+
+
+        ajaxGet(shopRegisterUrl,params,function(ret,err){
+            if(ret && ret.id){
+                var localPoint=$api.getStorage("localPoint");
+                var localInfo=$api.getStorage("localInfo");
+                $api.clearStorage();
+                $api.setStorage(isShowGuide, true);
+                $api.setStorage("localPoint",localPoint);
+                $api.setStorage("localInfo",localInfo);
+                var user = ret;
+                cleanDb(function(ret,err){
+                    setUserInfo(user);
+                    api.execScript({
+                        name: rootWindowName,
+                        script: 'systemInit();'
+                    });
+                    closeWin();
+                    bindPush();
+                });
+            }else{
+                api.toast({msg: ret.msg});
+            }
+            api.hideProgress();
+        });
+    }
+
+
+
+    /******************获取验证码倒计时*********************/
+
+</script>
+</html>

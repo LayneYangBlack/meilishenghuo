@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>本地选择、缩放、裁剪、上传 图片  （效果优化，增加多点触控缩放 和 上传进度条显示 ,并且把截图的宽高封装成接口，通过页面参数传入）</title>
+    <!--<link rel="stylesheet" href="ion.rangeSlider.css">-->
+    <link href="../../css/ion.rangeSlider.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="ion.rangeSlider.skinHTML5.css">-->
+    <link href="../../css/ion.rangeSlider.skinHTML5.css" rel="stylesheet">
+    <style type="text/css">
+        /*div{box-sizing:border-box;}*/
+        *{margin:0;padding:0;}
+        .imcp_container{
+            width:100%;
+            margin:0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .imcp_container img{
+            display: block;
+            position: absolute;
+            width:100%;
+        }
+        .imcp_container .kuang{
+            position: absolute;
+            left:10%;
+            top:10%;
+            width:80%;
+            height:80%;
+            /*border:1px solid #841;*/
+        }
+        .imcp_container .Layer{
+            position: absolute;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .imcp_container .top{
+            top:0;
+            left:0;
+            width:100%;
+            height:10%;
+        }
+        .imcp_container .bottom{
+            bottom:0;
+            left:0;
+            width:100%;
+            height:10%;
+        }
+        .imcp_container .left{
+            top:10%;
+            left:0;
+            width:10%;
+            height:80%;
+        }
+        .imcp_container .right{
+            top:10%;
+            left:90%;
+            width:10%;
+            height:80%;
+        }
+        .imcp_content .ctrlBar{
+            opacity: 0.6;
+            display: block;
+            position: absolute;
+            bottom: 5px;
+            left:10%;
+            width: 80%;
+        }
+        .imcp_content .okClip{
+            position: absolute;
+            width:28px;
+            height:28px;
+            text-align: center;
+            line-height: 25px;
+            border-radius:50%;
+            padding:4px;
+            background-color:#ddd;
+            top:18px;
+            right:8px;
+            opacity: .5;
+        }
+        #showPicBtn{
+            position: absolute;
+            width:50px;
+            height:50px;
+            text-align: center;
+            line-height: 25px;
+            border-radius:50%;
+            padding:4px;
+            background-color:#ddd;
+            top:30px;
+            right:60px;
+        }
+        #showPicBtn img{
+            width:100%;
+            height:100%;
+        }
+        .imcp_content{
+            position: relative;
+        }
+        #example_id{
+            display: none;
+        }
+        .maskLyer{
+            position: fixed;
+            z-index: 1000;
+            top:0;
+            left:0;
+            background-color:rgba(0,0,0,0.6);
+        }
+        .maskLyer .uploadCont{
+            position: absolute;
+            top:250px;
+            height:60px;
+            width:100%;
+            text-align:center;
+        }
+        .maskLyer .uploadBtn{
+            margin:0 auto;
+            border-radius:30px;
+            width:180px;
+            height:60px;
+            line-height:60px;
+            text-align:center;
+            border:#eaeaea solid 1px;
+            color:#F2F2F2;
+            font-size:18px;
+            font-weight:bold;
+        }
+        .hover{
+            background-color:rgba(200,200,200,.5);
+        }
+    </style>
+</head>
+<body>
+<div class="imcp_content">
+    <div class="imcp_container">
+        <img id="aimm" src="" />
+        <div class="kuang"></div>
+        <div class="top Layer"></div>
+        <div class="right Layer"></div>
+        <div class="bottom Layer"></div>
+        <div class="left Layer"></div>
+    </div>
+    <div class="ctrlBar">
+        <input type="text" id="example_id" name="example_name" value="100" />
+    </div>
+    <!-- <input class="ctrlBar" type="range" min="0" max="200" step="1" value="100"/> -->
+    <div class="okClip">OK</div>
+    <!--<div id="showPicBtn"><img src="" /></div>-->
+</div>
+<div class="maskLyer">
+    <div class="uploadCont">
+        <div class="uploadBtn" tapmode="hover">点击选择图片</div>
+    </div>
+</div>
+</body>
+<script src="../../script/jquery-1.8.1.min.js"></script>
+<!--<script src="../../script/jquery-1.11.3.min.js"></script>-->
+<!--<script src="ion.rangeSlider.min.js"></script>-->
+<script src="../../script/ion.rangeSlider.min.js"></script>
+<!--<script type="text/javascript" src="alloyimage.1.2b.js"></script>-->
+<script type="text/javascript" src="../../script/alloyimage.js"></script>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript">
+
+    apiready=function(){
+//        checkLastLoad();
+        $(".maskLyer").css({"height":api.winHeight,"width":api.winWidth});
+        //计算屏幕的中心点
+        screenCenterX=Math.round(api.winWidth/2);
+        screenCenterY=Math.round(api.winHeight/2);
+
+        aimImgw=api.pageParam.toPX;
+        aimImgh=api.pageParam.toPY;
+
+        setLayPosi();
+
+    }
+
+    function checkLastLoad(){
+        if (lastFg==0){
+            lastFg=1;
+        }
+        if (lastFg==1){
+            lastFg=2;
+            setLayPosi();
+        }
+    }
+
+    var screenCenterX,screenCenterY;
+    var aimImgw,aimImgh;//目标图片的宽高，这是这个模块页面唯一的两个输入值，不能超出屏幕的宽高
+    var lastFg=0;
+
+    $(function(){
+        /*
+         *    范围滑动插件
+         *    https://github.com/IonDen/ion.rangeSlider
+         *
+         *    腾讯前端图片处理库
+         *    http://alloyteam.github.io/AlloyPhoto/docs.html
+         *
+         *   待完善，加上上传进度条，增加多点触控缩放
+         */
+//        checkLastLoad();                
+        $("#example_id").ionRangeSlider({
+            min:50,
+            max:200,
+            step:1,
+            hideText: true,
+            postfix:"%",
+            onChange: function(obj){        // function-callback, is called on every change
+                var vl=obj.input.val();
+                var ltvl=parseInt((100-vl)/2)+'%';
+                var percent=vl+"%";
+                $aimImg.css({
+                    width:percent,
+                    left:ltvl,
+                    top:ltvl
+                });
+            }
+        });
+        var winHeight=$(window).height();
+        $(".imcp_container").css({
+            height: winHeight+'px'
+        });
+        $("#example_id").show();
+        $aimImg=$(".imcp_container img");
+        $(".imcp_content .okClip").on('touchstart', function(event) {
+            api.showProgress({title: '努力上传中...',text: '先喝杯茶...'});
+            event.preventDefault();
+            /* Act on the event */
+            var $kuang=$(".imcp_container .kuang");
+            var kw=$kuang.width();
+            var kh=$kuang.height();
+            var kl=parseInt($kuang.css("left"));
+            var kt=parseInt($kuang.css("top"));
+            var iml=parseInt($aimImg.css("left"));
+            var imt=parseInt($aimImg.css("top"));
+            iml=iml?iml:0;
+            imt=imt?imt:0;
+            var clpl=kl-iml;
+            var clpt=kt-imt;
+            if (clpl<0 || clpt<0){
+                api.hideProgress();
+                api.alert({
+                    title: '操作无效',
+                    msg: '裁剪框无法完全覆盖图片',
+                    buttons:['确定']
+                },function(ret,err){
+                });
+                return;
+            }
+            var oriImg=new Image();
+            oriImg.src=aimImg.src;
+            clipIMg(aimImg,oriImg,clpl,clpt,kw,kh);
+        });
+
+        $(".maskLyer .uploadBtn").on('touchend',function(){//用户点击图片上传按钮
+            pickImg(function(file){
+                //读取到file对象后，将其中数据读出来，放到img对象中
+                var reader=new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload=function(){
+                    $("#aimm").attr("src",this.result);
+                    $(".maskLyer").hide();
+                }
+            });
+        });
+    });
+
+    //设置裁剪遮罩层的大小和位置
+    function setLayPosi(){
+        //设置界面上的显示框界面
+        if (aimImgw<=api.winWidth && aimImgh<=api.winHeight){
+            var lLeft=Math.round((api.winWidth-aimImgw)/2);
+            var lTop=Math.round((api.winHeight-aimImgh)/2);
+            $(".imcp_container .kuang").css({
+                "width":aimImgw+"px",
+                "height":aimImgh+"px",
+                "left":lLeft+"px",
+                "top":lTop+"px"
+            });
+            $(".imcp_container .top").css({
+                "width":api.winWidth+"px",
+                "height":lTop+"px",
+                "left":0+"px",
+                "top":0+"px"
+            });
+            $(".imcp_container .bottom").css({
+                "width":api.winWidth+"px",
+                "height":(lTop+aimImgh)+"px",
+                "left":0+"px",
+                "top":(lTop+aimImgh)+"px"
+            });
+            $(".imcp_container .left").css({
+                "width":lLeft+"px",
+                "height":aimImgh+"px",
+                "left":0+"px",
+                "top":lTop+"px"
+            });
+            $(".imcp_container .right").css({
+                "width":lLeft+"px",
+                "height":aimImgh+"px",
+                "left":(lLeft+aimImgw)+"px",
+                "top":lTop+"px"
+            });
+        }
+    }
+
+    //从本地选择图片,通过回调函数传回图片对象（一个）
+    function pickImg(callBack){
+        var fileup=$('<input type="file" accept="image/*" />');
+        fileup.on('change',function(event) {
+            callBack(this.files[0]);
+        });
+        fileup.click();
+    }
+
+    var temPicName;
+
+    //对一个图片进行截取，输入图片dom元素，和截图位置及大小,输出一个图片对象
+    function clipIMg(nImg,oImg,x,y,w,h){
+        var nmg = $AI(nImg);
+        var omg = $AI(oImg);
+        var ratex=omg.width/nmg.width;
+        var ratey=omg.height/nmg.height;
+        var sw=parseInt(w*ratex);
+        var sh=parseInt(h*ratey);
+        var sl=parseInt(x*ratex);
+        var st=parseInt(y*ratey);
+        var ai=omg.clip(sl,st,sw,sh);//等比例在原图上裁剪
+        ai=ai.scaleTo(aimImgw,aimImgh);//缩放到指定的宽、高
+        var base64Img=ai.save("jpg",1);
+        temPicName="tem1.jpg";
+//        base64ToImg(base64Img,function(){
+//            upFile(temPicName);
+//        });
+        ajaxBase64(base64Img,'jpg',function(ret){
+            //异步调用
+            var winName = api.pageParam.winHtml;
+            api.execScript({
+                name:winName,
+                frameName: winName+'_body',
+                script: 'setImgUrl('+JSON.stringify(ret)+')'
+            });
+            closeWin();
+        },function(){
+            api.hideProgress();
+        })
+
+    }
+
+
+
+
+
+    function base64ToImg(str,callBack){//传入base64格式的图片，转化为本地图片，返回本地路径
+        var trans = api.require('trans');
+        str = str.replace('data:image/jpeg;base64,', '');
+        trans.saveImage({
+            base64Str:str,
+            imgPath:"fs://",
+            imgName:temPicName
+        },function(ret,err){
+            if(ret.status) {//若成功，则调用回调函数
+                //showFileAttr(temPicName);
+                callBack();
+            }else{
+                api.alert({msg:err.msg});
+                api.hideProgress();
+            }
+        });
+    }
+
+    function showFileAttr(dir){
+        var fs = api.require('fs');
+        fs.getAttribute({
+            path: 'fs://'+dir
+        },function(ret,err){
+            if (ret.status) {
+                api.alert({msg:'文件属性:'+JSON.stringify(ret.attribute)});
+            }else{
+                api.alert({msg:err.msg});
+            }
+        });
+    }
+
+    var $aimImg;
+    var aimImg=document.querySelector("#aimm");
+    var obj=document.querySelector(".imcp_container");
+    var ix,iy;
+    obj.addEventListener('touchstart',function(event){
+        if (event.targetTouches.length == 1) {
+            event.preventDefault();
+            var touch = event.targetTouches[0];
+            //getComputedStyle函数可参考网址：http://blog.sina.com.cn/s/blog_89cd68470101i108.html
+            var ox=parseInt(getComputedStyle(this,false)["left"]);
+            ox=ox?ox:0;
+            var oy=parseInt(getComputedStyle(this,false)["top"]);
+            oy=oy?oy:0;
+            var cLeft=parseInt(getComputedStyle(aimImg,false)["left"]);
+            cLeft=cLeft?cLeft:0;
+            var cTop=parseInt(getComputedStyle(aimImg,false)["top"]);
+            cTop=cTop?cTop:0;
+            var sx=ox+cLeft;
+            var sy=oy+cTop;
+            ix=touch.pageX-parseInt(sx);
+            iy=touch.pageY-parseInt(sy);
+        }
+    },false);
+    obj.addEventListener('touchmove',function(event){
+        // 如果这个元素的位置内只有一个手指的话
+        if (event.targetTouches.length == 1) {
+            event.preventDefault();// 阻止浏览器默认事件，重要
+            var touch = event.targetTouches[0];
+            // 把元素放在手指所在的位置
+            var ax=parseInt(touch.pageX-ix);
+            var ay=parseInt(touch.pageY-iy);
+            var fLeft=parseInt(getComputedStyle(this,false)["left"]);
+            var fTop=parseInt(getComputedStyle(this,false)["top"]);
+            fLeft=fLeft?fLeft:0;
+            fTop=fTop?fTop:0;
+            var rx=ax-fLeft;
+            var ry=ay-fTop;
+            aimImg.style.left = rx+"px";
+            aimImg.style.top = ry+"px";
+        }
+    },false);
+</script>
+</html>

@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!--<link rel="stylesheet" type="text/css" href="../../css/api.css"/>-->
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+</head>
+<style>
+	*{margin: 0;padding: 0;}
+	html{
+	font-size: 10px;
+	overflow: hidden;
+	background: #ebebeb;;
+	height: 100%;
+	}
+	body{
+			height: 100%;
+	}
+	#shouji{
+		width: 100%;
+		height: 5.5rem;
+		margin-top: 1.5rem;
+		outline: none;
+		float: left;
+	}
+	#code{
+        width: 40%;
+        /*height: 5.5rem;*/
+        outline: none;
+        float: left;
+        margin-left: 16%;
+        text-align: left;
+        color:#333;
+        border-left:0px;border-top:0px;border-right:0px;border-bottom:1px;
+        font-size: 16px;
+        line-height: 25px;
+    }
+	#sms{
+		width: 36%;
+		float: right;
+		height: 3.6rem;
+		background: #ff9900;
+		text-align: center;
+		line-height: 3.6rem;
+		font-size: 1.2rem;
+		color: #ffffff;
+		margin-top: 5px;
+		margin-bottom: 5px;
+		margin-right: 4%;
+	}
+	#zhanghaomima{
+		background: #fff;
+		margin-top: 0.1rem;
+	}
+	#shoujihao{
+		width: 100%;
+		height: 55px;
+		background: url(../../icon/user/phone.png) 6.5% 20px no-repeat;
+		background-size:1.4rem 2.4rem;
+	}
+	#foot{
+		width: 100%;
+		height: 50px;
+		background: #75ca77;
+		text-align: center;
+		line-height: 50px;
+		font-size: 18px;
+		color: #fff;
+		margin-top: 250px;
+	}
+	.yzm{
+		position: relative;
+        overflow:hidden;
+        background: url(../../icon/user/num@icon.png) 6.5% 12px no-repeat;
+        background-size:2.1rem 2.3rem;
+	}
+	.xiantiao{
+		width:84%;background:#e8e8e8;height:1px;position:absolute;right:0;
+	}
+	.ipt1{
+        line-height: 25px; width:84%;float:right;font-size:16px;color:#333;outline:none;border-left:0px;border-top:0px;border-right:0px;border-bottom:0.01rem;text-align: left;margin-top: 10px;
+    }
+	  #input_password{
+        width: 252px;
+        margin: 5px auto;
+    }
+    .virbox{
+		overflow: hidden;
+        display:block;
+    }
+     .virbox span{
+        width:40px;
+        height:40px;
+        display:block;
+        border:1px solid #ccc;
+        float:left;
+        font-size: 1;
+        font-weight: 800;
+        border-right:0 none;
+        text-align:center;
+        line-height:40px;
+        font-family:"microsoft yahei";
+        font-weight:bold;
+    }
+    .virbox span:nth-child(6){
+        border:1px solid #ccc;
+    }
+    .realbox{
+        width:10px;
+        height:10px;
+        display:block;
+        position:fixed;
+        top:-30px;
+        left:-30px;
+    }
+    .mimashuru{
+        width: 100%;padding-top:1rem;height:10rem;background:#fff;margin-top:1rem;
+    }
+    input {
+        border-top: 1px solid #999;
+        border-bottom: 1px solid #999;
+        border-left: 1px solid #999;
+        width: 45px;
+        height: 45px;
+        outline:none;
+        font-family: inherit;
+        font-size: 28px;
+        font-weight: inherit;
+        text-align: center;
+        line-height: 45px;
+        color: #c2c2c2;
+        background: rgba(255,255,255,0);
+        }
+    #main {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        flex: 1;
+	    }
+     #wrap {
+        height: 100%;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-flex-flow: column;
+        flex-flow: column;
+    }
+</style>
+<body>
+	<div id="wrap">		
+	<div id="main">
+	<div style="background:#fff;position:relative;">
+		<div id="shoujihao">
+			<input type="text" id="tel" placeholder="手机号" value="" class="ipt1">
+		</div>
+		<div class="xiantiao"style=""></div>
+		<div id="zhanghaomima">	
+			<div class="yzm">
+				<input  type="text" id="code">
+				<span id="sms" onclick="sendCode()">获取验证码</span>
+			</div>	
+		</div>
+	</div>
+	<div class="mimashuru" style="">
+		<div id="input_password">   
+      	<div class='virbox' id="virbox">
+	        <span class="password"></span>
+	        <span class="password"></span>
+	        <span class="password"></span>
+	        <span class="password"></span>
+	        <span class="password"></span>
+	        <span class="password"></span>
+  		</div>	
+    </div>
+	</div>
+	<input type="number"   id="realbox" class="realbox" >
+	</div>	
+	<div id="foot" onclick="setPassword()">
+		保存密码
+	</div>	
+	</div>	
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/login.js"></script>
+<script>
+	// 完成首页初始化
+	apiready = function() {
+		initSmsTime();
+	};
+
+	function setPassword(){
+		var tel = $api.byId('tel').value;
+		var code = $api.byId('code').value;
+		var password = $api.byId('realbox').value;
+		if(!checkMobileNum(tel)){
+			toast("手机号码不正确");
+			return;
+		}
+
+		if(isBlack(code)){
+			toast("验证码不能为空");
+			return;
+		}
+
+		if(isBlack(password)){
+			toast("密码不能为空");
+			return;
+		}
+
+
+		var params = {
+			phone : tel,
+			authCode : code,
+			password:password
+		};
+
+		ajaxGetWithProgress(rewardSetPasswordUrl,params,function(ret){
+			if(isNotBlack(ret)&&ret.success){
+				toast("设置成功");
+				closeWin();
+			}
+		})
+	}
+
+	function sendCode(){
+		if(!sendFlag){
+			return;
+		}
+		var tel = $api.byId('tel').value;
+		if(!checkMobileNum(tel)){
+			toast("手机号码不正确");
+			return;
+		}
+
+		ajaxGet(rewardCreateAuthCodeUrl,{
+			phone : tel
+		},function(ret){
+			if(ret && ret.success == true){
+				sendFlag = false;
+				setTimeToCode();
+				$api.setStorage(Storage_Sms_Time,new Date().getTime());
+			} else {
+				var errorMsg="出错了，请稍后。";
+				if(ret&&ret.msg){
+					errorMsg=ret.msg;
+				}
+				api.toast({
+					msg : errorMsg
+				});
+			}
+		});
+	}
+
+
+	/***************验证码倒计时***************************/
+
+
+
+	var virbox = document.getElementById("virbox");
+	var realbox = document.getElementById("realbox");
+	var spanList = document.getElementsByClassName("password");
+	virbox.onclick=function(){
+		realbox.focus();
+		for(var i= 0;i<spanList.length;i++){
+			spanList[i].style.backgroundColor="#FFFECF"
+		}
+
+	};
+
+
+	realbox.onblur=function(){
+		for(var i= 0;i<spanList.length;i++){
+			spanList[i].style.backgroundColor="#ffffff"
+		}
+	};
+	//var realboxStart = 0;
+	realbox.onkeyup=function(){
+//		for(var i = 0;i<spanList.length;i++){
+//			spanList[i].innerHTML=""
+//		}
+		var realboxLength = Number(realbox.value.length);
+
+		if(realboxLength>6){
+			realbox.value = realbox.value.slice(0,6);
+			realboxLength = 6;
+		}
+		for(var i=0;i<6;i++){
+			//var words = realbox.value;
+			if(i<realboxLength){
+				if(spanList[i].innerHTML==''){
+					spanList[i].innerHTML='<img style="vertical-align: middle" src="../../icon/passeord-dot.png">';
+				}
+			}else{
+				spanList[i].innerHTML='';
+			}
+
+		}
+	};
+
+
+</script>
+	

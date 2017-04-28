@@ -1,0 +1,39 @@
+.messageButton {
+	position: absolute;
+    top: 14px;
+    right: 5.5%;
+}
+.selectButton{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 45px;
+	padding-top: 8px;
+	height: 36px;
+
+}
+
+.selectButton img{
+	width: 25px;
+	height: 25px;
+	margin: auto;
+}
+        
+.subMessageButton{
+	position: relative;
+    background: url("../icon/index/message@2x.png") no-repeat 0 0;
+    background-size: 17px 15.5px;
+    width: 17px;
+    height: 15.5px;
+}
+
+.num {
+	width: 4px;
+	height: 4px;
+	background-color: rgb(248,149,37);
+	border-radius:50px;
+	position:absolute;
+	top: -4px;
+	right: -4px;
+	display: none;
+}

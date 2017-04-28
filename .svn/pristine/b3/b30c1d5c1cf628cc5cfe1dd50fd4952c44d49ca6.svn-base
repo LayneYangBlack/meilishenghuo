@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>信息</title>
+
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link href="../../css/mui.picker.all.css" rel="stylesheet" />
+    <link href="../../css/mui.poppicker.css" rel="stylesheet" />
+    <style type="text/css">
+        html {
+            width: 100%;
+            height: 100%;
+        }
+        body {
+            background: #f1f2f3;
+            width: 100%;
+            min-height: 100%;
+        }
+        * {
+            /*去掉输入框的边框*/
+            outline: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .input{
+            border-bottom: solid 1px #ccc;
+            padding: 15px 20px 10px 0;color:#333 ;
+            font-size: 14px;;
+        }
+        .input input{
+            text-align: right;
+            float: right;
+            color: #9296a3;
+            width: 55%;
+        }
+        .item{
+            background-color: #ffffff;
+            padding: 0 10px;
+            color:#333;
+        }
+        ul li{
+            list-style: none;
+            float: left;
+            width: 18%;
+            font-size: 14px;
+            margin-top: 5px;
+            color: #333;
+        }
+        ul{
+            margin-left: 10px;
+        }
+        #interest p{
+            margin: 5px 10px;
+        }
+        #interest{
+            padding-bottom: 10px;
+        }
+        #interest p span{
+            font-size: 14px;
+        }
+        #interest .select_num{
+            font-size: 16px;
+            color: #ff9900
+        }
+        .right_box{
+            float: right;
+            padding-top: 20px;
+        }
+        .right_box img{
+            vertical-align: middle;
+        }
+        #main>p{
+            padding: 0 0 0 10px; color: #75ca77;
+        }
+        input,textarea {
+            border:0!important;
+            margin:0!important;
+            padding:0!important;
+            font-size:1em!important;
+            line-height:1em!important;
+            /*-webkit-appearance:none;*/
+            background-color:rgba(0, 0, 0, 0)!important;
+        }
+        .input1{font-size: 14px;}
+        .select-icon{
+            margin-top: 10px;width: 20px ;float: left;;padding-left: 5px;;
+        }
+        #icon{max-width: 64px;max-width:64px; margin-top: 2.5px;margin-bottom: 2.5px;}
+        .start{}
+        .face{max-width: 64px;max-height: 64px; }
+        .tijiao{text-align:center;line-height: 0.5rem;font-size: 0.17rem;}
+        .tijiao a{color: white;display: block;text-align: center;width: 50%;float: left;height: 3rem;font-size: 18px;line-height: 3rem;}
+        #info-star{width:100%; }
+        .start99{width: 100%;float: left;height: auto;display: block; line-height: 42px; color:#ff9900;background: #f1f2f3;}
+    </style>
+</head>
+<body id="body" style="display: none;" >
+<div id="main">
+    <div style="height: 40px;width: 100%;background: #f1f2f3;float: left;margin-bottom: 12px;">
+        <p class="finish" style="float: left;line-height: 40px;padding-left: 10px;color: #75ca77;padding-top: 3px;">+1星</p>
+        <img  class="finishImg select-icon" src="../../icon/selected.png">
+    </div>
+    <div class="item" id="head">
+        <div class="input"><span>手机号</span><input id="phone" type="number" placeholder="" value=""></div>
+        <div class="input"><span>ID</span><input type="number" id="userId" value=""></div>
+        <div id="interest"><p >我的兴趣<span>(已选<span class="select_num" >6</span>/8)</span></p>
+            <ul id="interestList">
+                <li>健身</li>
+                <li>美食</li>
+                <li>健身</li>
+                <li>美食</li>
+                <li>健身</li>
+                <li>美食</li>
+                <li>健身</li>
+                <li>美食</li>
+            </ul>
+            <img width="20px"  style="float: right;margin-right: 10px;"  src="../../icon/icon_right_normal.png">
+            <div style="clear: both;;"></div>
+        </div>
+
+    </div>
+    <div id="info-star">
+        <p class="start99" class="finish"><span style="padding-left: 10px;height: 42px;float: left;">+1星</span>
+
+            <a href="javascript:void(0)" style="display: block;width:60px;  height:46px;background:#75ca77;float: right;
+         color: white;  font-size: 16px;text-align: center;line-height: 46px;" onclick="openUpdateUserInfo()">修改</a>
+        </p>
+    </div>
+    <div class="item">
+        <div>
+            <span style="line-height: 40px;"></span>
+            <div class="right_box" style="padding-top: 0px; height:69px; ">
+                <img id="icon"  class="face" src="../../../youhuipai/image/person-blue.png">
+                <img  style="margin-right: 10px;" width="20px"  src="../../icon/icon_right_normal.png">
+            </div>
+        </div>
+        <div class="input"style="border: none;"></div>
+        <div class="input" ></div>
+        <div class="input" id="sexTab"><span>性别</span><input type="text" readonly id="sex"  placeholder="未填" style="margin-right: 50px;" readonly="readonly" ></div>
+        <div class="input"><span>昵称</span><input type="text" id="name"  readonly placeholder="未填" value=""></div>
+        <div class="input"><span>年龄</span><input type="number" id="age" readonly placeholder="未填" value=""></div>
+        <div class="input" id="educational"><span>学历</span><input type="text" readonly id="educationalResult" readonly="readonly" placeholder="未填" value=""></div>
+        <div class="input" id="profession"><span>职业</span><input type="text" readonly id="professionResult" placeholder="未填" readonly="readonly" value=""></div>
+        <div class="input" id="income"><span>月收入</span><input type="text" readonly id="incomeResult" placeholder="未填" readonly="readonly" value=""></div>
+        <div class="input" id="city"><span>籍贯</span><input type="text" readonly placeholder="未填"  id="cityResult" readonly="readonly"  value=""></div>
+        <div class="input" id="children"><span>有无8岁以下儿童</span><input readonly id="childrenResult"  readonly="readonly" type="text" placeholder="未填" value=""></div>
+        <div class="input" id="car"><span>有无购车</span><input type="text" readonly id="carResult" placeholder="未填" readonly="readonly" value=""></div>
+        <div class="input" id="house"><span>有无购房</span><input type="text" readonly id="houseResult" placeholder="未填" readonly="readonly" value=""></div>
+    </div>
+    <div style="height: 40px;width: 100%;background: #f1f2f3;float: left;margin-bottom: 12px;" id="idCard-star">
+        <p class="start finish" ><span style="margin-left: 10px;color:#ff9900; line-height: 42px;float: left;">+1星</span>
+
+    </div>
+    <div class="item" onclick="openIdAuth()">
+        <div class="input" style=" border-bottom:none;">
+            <span style="padding-top: 5px;;">身份证认证</span>
+            <div class="right_box" style="padding-top: 8px;padding-bottom: 15px; ">
+                <span id="idCard" style="color: #9296a3">未提交</span>
+                <img width="20px"   style="margin-right: -8px;margin-top: -2px;"  src="../../icon/icon_right_normal.png">
+            </div>
+        </div>
+    </div>
+    <div style="height: 40px;width: 100%;background: #f1f2f3;float: left;margin-bottom: 12px;" id="workCard-star">
+        <p style="float: left;line-height: 40px;padding-left: 10px;color: #ff9900;padding-top: 3px;" class="finish">+1星</p>
+
+    </div>
+    <div class="item" onclick="openWorkAuth()">
+        <div class="input1"style=" border-bottom:none;;" >
+                <span style="margin-bottom: 0.3rem;">工作证认证
+                    <br>
+                    <span style="font-size: 8px;color: #9A9A9A;margin-bottom: 5px;">名片、学生证、工作证均可。认证通过后具体信息不会公开</span>
+                </span>
+            <div class="right_box" style="margin-right: 18px;margin-top: -14px;">
+                <span id="workCard" style="color: #9296a3">未提交</span>
+                <img width="20px"   style="margin-right: -8px;margin-top: -2px;"  src="../../icon/icon_right_normal.png">
+            </div>
+        </div>
+    </div>
+    <div style="height: 40px;width: 100%;background: #f1f2f3;float: left;margin-bottom: 12px;" id="educationCard-star">
+        <p style="float: left;line-height: 40px;padding-left: 10px;color: #ff9900;padding-top: 3px;">+1星</p>
+
+    </div>
+    <div class="item" onclick="openEducationAuth()">
+        <div class="input1" style=" border-bottom:none;">
+                <span style="margin-bottom: 5px;">学历认证<br>
+                    <span style="font-size: 8px;color: #9A9A9A">学生证、学历证书均可。认证通过后具体信息不会公开</span>
+                </span>
+            <div class="right_box" style="margin-right: 18px;margin-top: -14px; display: block;">
+                <span style="color: #9296a3" id="educationCard">未提交</span>
+                <img width="20px"    style="margin-right: -8px;margin-top: -2px;" src="../../icon/icon_right_normal.png">
+            </div>
+        </div>
+    </div>
+</div>
+<div id='work_select' class="ui-alert"></div>
+<script type="text/javascript"  src="../../script/mui.min.js"></script>
+<script type="text/javascript"  src="../../script/mui.picker.all.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/city.data.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script id="scriptDiv" type="text/html">
+
+    <div class="input"><span>手机号</span><input id="phone" readonly type="text" placeholder="" value="<%=user.userPhone%>"></div>
+    <div class="input"><span>ID</span><input type="number" readonly id="userId" value="<%= user.id%>"></div>
+    <div id="interest" onclick="openUpdateInterestInfo()"><p >我的兴趣<span>(已选<span class="select_num" ><%= user.selectNum%></span>/<%= user.interestNum %>)</span></p>
+        <ul >
+            <% var interList = user.interList %>
+            <% for(var i= 0;i< interList.length; i++){%>
+                <li><%=interList[i]%></li>
+            <%}%>
+        </ul>
+        <img width="20px"  style="float: right;margin-right: 10px;"  src="../../icon/icon_right_normal.png">
+        <div style="clear: both;;"></div>
+    </div>
+</script>
+<script type="text/javascript">
+    var educationalData = null;
+    var cityData = null;
+    var income = null;
+    var educationId =null;
+    var cityId = null;
+    var incomeId = null;
+    var profession =null;
+    var professionId =null;
+    var hasEightAgeChild = null;
+    var hasCar = null;
+    var hasHouse = null;
+    var sexId = null;
+    var userInfo = null;
+    apiready = function () {
+        api.showProgress({title: '努力上传中...',text: '先喝杯茶...'});
+        //初始化值
+        //应该重新获取一下
+        userInfo =  api.pageParam.user;
+        ajaxGetWithProgress(userInfoUrl,{},function(ret){
+            if(isNotBlack(ret)&&isNotBlack(ret.id)){
+                userInfo = ret;
+                showValue(userInfo);
+            }else{
+                toast('网络不稳定')
+            }
+        });
+
+        document.getElementById('body').style.display="block";
+        api.hideProgress();
+    };
+
+    function openUpdateUserInfo(){
+        openNewWindow("updateUserInfo",'./updateUserInfo.html',{userInfo:userInfo});
+    }
+
+    function reloadHtml(){
+        apiready();
+    }
+
+    function openUpdateInterestInfo(){
+        openNewWindow("updateInterest",'./updateInterest.html',{userInfo:userInfo});
+    }
+
+    function showValue(userInfo){
+        var usP =userInfo.phone;
+        var userPhone =usP.substr(0,3)+"****"+usP.substr(7);
+        userInfo.userPhone= userPhone;
+
+        var infoStar = true;
+        var convert = {2:"无",1:"有",0:"未填"};
+        var convertSex = {1:"男",2:"女",0:"未填"};
+        var interest = userInfo.interestNames.split(" ");
+        userInfo.interList = interest;
+        userInfo.selectNum = interest.length;
+        var data = {user: userInfo};
+        var html = template('scriptDiv', data);
+        document.getElementById('head').innerHTML = html;
+        if(isNotBlack(userInfo.name)){
+            document.getElementById("name").value = userInfo.name;
+        }else{
+            infoStar = false;
+        }
+        if(userInfo.sex != 0){
+            document.getElementById("sex").value =convertSex[userInfo.sex];
+            sexId = userInfo.sex;
+        }else{
+            infoStar = false;
+        }
+
+        if(isNotBlack(userInfo.age)){
+            document.getElementById("age").value = userInfo.age;
+        }else{
+            infoStar = false;
+        }
+
+        if(isNotBlack(userInfo.icon)){
+            document.getElementById("icon").src = userInfo.icon;
+        }else{
+            infoStar = false;
+        }
+
+        document.getElementById('childrenResult').value = convert[userInfo.hasEightAgeChild];
+        hasEightAgeChild = userInfo.hasEightAgeChild;
+        if(userInfo.hasEightAgeChild == 0){
+            infoStar = false;
+        }
+
+
+        if(isNotBlack(userInfo.nativePlace)){
+            document.getElementById('cityResult').value = userInfo.nativePlace;
+            cityId = userInfo.nativePlace;
+        }else{
+            infoStar = false;
+        }
+
+        if(isNotBlack(userInfo.profession)){
+            document.getElementById('professionResult').value = userInfo.profession;
+            professionId = userInfo.professionId;
+
+        }else{
+            infoStar = false;
+        }
+
+        if(userInfo.educationId != 0){
+            document.getElementById('educationalResult').value = userInfo.education;
+            educationId = userInfo.education;
+        }else{
+            infoStar = false;
+        }
+
+        if(userInfo.hasCar == 0){
+            infoStar = false;
+        }
+
+        if(userInfo.hasHouse == 0){
+            infoStar = false;
+        }
+            document.getElementById('carResult').value = convert[userInfo.hasCar];
+            hasCar = userInfo.hasCar;
+
+            document.getElementById('houseResult').value = convert[userInfo.hasHouse];
+            hasHouse = userInfo.hasHouse;
+
+
+        if(isNotBlack(userInfo.income)){
+            document.getElementById('incomeResult').value = userInfo.income;
+            incomeId = userInfo.income;
+        }else{
+            infoStar = false;
+        }
+
+        if(infoStar){
+            var html = '<p class="start99" class="finish"><span style="padding-left: 10px;height: 42px;float: left; color:#75ca77;">+1星</span>' +
+                    ' <img  class="finishImg select-icon" src="../../icon/selected.png"> ' +
+                    '<a href="javascript:void(0)" style="display: block;width:60px;  height:46px;background:#75ca77;float: right;color: white;  font-size: 16px;text-align: center;line-height: 46px;" onclick="openUpdateUserInfo()">修改</a> </p>';
+            document.getElementById('info-star').innerHTML = html;
+        }
+        changeCheckStatus("idCard",userInfo.attestIdCard);
+        changeCheckStatus("workCard",userInfo.attestWorkCard);
+        changeCheckStatus("educationCard",userInfo.attestEducationCard);
+    }
+
+
+    function openUserWork(){
+        openNewWindow("userWork","userWork.html")
+    }
+function changeStatus(type){
+    var span =  document.getElementById(type);
+    span.style.color = "#fa8200";
+    span.innerHTML = "审核中";
+}
+
+
+    //显示审核状态
+    function changeCheckStatus (id,stutas){
+        var span = document.getElementById(id);
+
+        if(stutas == attest_ing ){
+            span.innerHTML = '审核中';
+            span.style.color="#fa8200";
+        }
+
+        if(stutas == attest_no ){
+            span.innerHTML = '未提交';
+        }
+
+        if(stutas == attest_access){
+            span.innerHTML = '审核通过';
+            span.style.color="#75ca77";
+            var html = ' <p style="float: left;line-height: 40px;padding-left: 10px;color: #75ca77;padding-top: 3px;">+1星</p>' +
+                    '<img class="finishImg select-icon" src="../../icon/selected.png">';
+            if(id=="idCard"){
+                html = ' <p class="start finish"><span style="margin-left: 10px;color:#75ca77; line-height: 42px;float: left;">+1星</span> ' +
+                '<img  class="finishImg select-icon" src="../../icon/selected.png"></p>';
+            }
+
+            document.getElementById(id+"-star").innerHTML = html;
+        }
+        if(stutas == attest_no_access){
+            span.innerHTML = '审核未通过';
+            span.style.color="red";
+        }
+    }
+
+    function openIdAuth(){
+        openNewWindow('idAuthentification','./idAuthentification.html');
+    }
+    function openWorkAuth(){
+        openNewWindow('workAuth','./workAuth.html');
+    }
+    function openEducationAuth(){
+        openNewWindow('educationAuth','./educationAuth.html');
+    }
+
+
+</script>
+</body>
+</html>

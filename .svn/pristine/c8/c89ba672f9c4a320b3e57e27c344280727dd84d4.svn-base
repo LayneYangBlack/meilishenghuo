@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>视频播放</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+    <style type="text/css">
+        #leftButton2{
+            position: absolute;
+            margin-top: 2px;
+            height: 42px;
+            z-index: 10;
+        }
+        #leftButton2 img{
+            width: 8px;
+            height: 14px;
+        }
+
+    </style>
+    </head>
+<body style="">
+<div id="topbar" class="topbar_info">
+    <div id="leftButton2" onclick="closeWin()">
+        <img src="../../icon/back@2x-b.png" >&nbsp;&nbsp;看视频赚积分
+    </div>
+    <div id="score"></div>
+    <div  id="rightButton" style="color: #ff9900">
+        15秒
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script>
+
+    apiready = function () {
+        var video = api.pageParam.video;
+        var dialogBox =  api.require('dialogBox');
+        ajaxGetWithProgress(userEarnScoreLoadUrl,{esid:video.id},function(ret){
+            if(isNotBlack(ret)){
+                video = ret;
+                document.getElementById('score').innerHTML = video.score;
+                content = JSON.parse(video.content);
+                document.getElementById('rightButton').innerHTML = content.videoTime;
+                initFrameInWin({video:ret});
+            }
+        });
+
+
+
+       // openFrame("videoPlay_body","./videoPlay_body.html", api.pageParam,0,0,{});
+        api.addEventListener({
+            name: 'keyback'
+        }, function (ret, err) {
+            showDialog(dialogBox,"提示","中途退出将不能获得积分哦！","取消",'退出',function(){
+                closeWin();
+            });
+        });
+
+    };
+</script>
+</html>

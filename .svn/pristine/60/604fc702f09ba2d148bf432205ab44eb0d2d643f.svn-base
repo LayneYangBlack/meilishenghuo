@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+    <style type="text/css">
+        .start{
+            color: #ff9900;
+            margin-left: 5px;
+        }
+
+        #hd{
+        	margin-top: 8px;
+            width: 80%;height: 3.5rem;
+            padding-left: 10%;
+            padding-right:10%;
+            font-size: 1rem;
+        }
+        #hd1{
+            float: left;
+            margin-top: 3%;
+            margin-left: 5%;
+        }
+        #hd2{
+            float: right;
+            margin-top: 3%;
+        }
+        #hd1-sp,#hd2-sp{
+            font-size: 1.2rem;color: #75ca77;
+        }
+        #hd1{
+            margin-right: 5%;
+        }
+        #ht{
+            width: 100%;height: 1.5rem;
+            font-size: 0.8rem;
+            color:#9296a3;
+            text-align:center;
+
+
+        }
+
+        #ht2{
+            width: 100%;height: 0.25rem;background: #c7ccc9;
+        }
+        #ht2 div{
+            height: 0.25rem;background: #75ca77;
+        }
+
+        #c0{
+            height: 3.5rem;width: 95%;padding-left:5%;
+            color:#333;font-size: 1.4rem;
+            line-height: 3.5rem;
+        }
+        #c0 div{
+            float: right;margin-right: 5%;color: #ff9900;
+        }
+        #content .cc{
+            border-top: 5px solid #f1f2f3;
+            padding-top: 1rem;padding-bottom: 0.7rem;
+            width: 100%;
+            line-height: 1.8rem;
+        }
+        #content .cc .aa1{
+            font-size: 1.3rem;color: #333;
+            margin-left: 3%;
+        }
+        #content .cc .aa5{
+            margin-left: 3%;
+            font-size: 1.1rem;
+            padding-right: 3%;;
+        }
+
+        #content .cc .aa2,#content .cc .aa3{
+            font-size: 0.3rem;
+            margin-left: 1%;
+        }
+        #content .cc .aa4{
+            float: right;margin-right: 3%;font-size: 1.4rem;
+            color: #ff9900;
+        }
+        #tihuannianfen{
+            position: absolute;color: #333;
+            border: 1px solid #9296a3;display: none;
+            width:60px;top:25px;
+            text-align: center;
+        }
+        #tihuannianfen span{
+            color: #333;
+            float:left;
+            width: 100%;
+            border-bottom: 1px solid #9296a3;
+        }
+        #c6,#c7{background: white;}
+        .style{float: left;width: 5rem; margin-top:0.5rem;height: 2rem;background: #fff; border: none;font-size: 0.8rem;}
+
+    </style>
+</head>
+<body>
+<div id="topbar" class="topbar_info">
+    <div id="leftButton" onclick="closeWin()">
+        <img src="../../icon/back@2x-b.png" >
+    </div>
+    <div>积分列表</div>
+</div>
+<div style="height: 136px; ;width: 100%;">
+    <div id="hd">
+        <div id="hd1">
+            <span>总积分</span>
+            <span id="hd1-sp">2,696</span>
+        </div>
+        <div id="hd2">
+            <span>积分等级</span>
+            <span id="hd2-sp">LV5</span>
+        </div>
+    </div>
+    <div id="ht">
+        升级到<span id="ht-sp1" >LV6</span>
+        还需要<span id="ht-sp2">365</span>积分　
+    </div>
+    <div style="width: 100%;height:3px;background: #ccc;position: relative;">
+    	 <div id="progress"></div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script>
+
+    apiready = function () {
+        var user = api.pageParam.user;
+        document.getElementById('hd1-sp').innerHTML = user.score;
+        // document.getElementById('score').innerHTML = user.score;
+        document.getElementById('hd2-sp').innerHTML = user.level;
+        document.getElementById('ht-sp1').innerHTML = (user.nextLevel);
+        document.getElementById('ht-sp2').innerHTML = user.requiredScore;
+        var percent = user.score/(user.score+user.requiredScore)*100;
+        var html = '<div style="background:#75ca77;width:'+percent+'%;height:3px;;"></div>';
+        document.getElementById("progress").innerHTML = html;
+        openFrame(api.winName + '_body','./' + api.winName + '_body.html',api.pageParam,135,0,{});
+
+    };
+</script>
+</html>

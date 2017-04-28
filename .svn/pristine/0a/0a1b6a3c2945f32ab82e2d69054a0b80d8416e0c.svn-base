@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <style>
+        html{padding:0px; margin:0px; background: #f1f2f3;font-size: 100%;}
+        body{margin:0px; padding:0px; background:#fff; color:#333; font-family:"微软雅黑", "黑体";}
+        div,form,img,ul,ol,li,dl,dt,dd,a{margin:0px; padding:0px; border:0px; font-size: 12px; list-style: none;text-decoration: none;}
+        .top{float: left;width: 100%;height:3rem;;margin-top: 10px;;}
+        .top_1{width: 100%;height: 3rem;;float: left;margin-top: 2rem; background: #fff;}
+        .top_1 span{width: 20%;float: left;display: block;height: 3rem;text-align: right;line-height: 3rem;font-size:1rem;;}
+        .top_1 input{width: 60%;float: left;height: 2.4rem;margin-top: 3px;text-align: left;text-indent: 1rem;border: none;;
+            background: #fff; }
+
+        .position a{width: 50%;height: 3rem;text-align: center;line-height: 3rem;background: green;
+            color: #fff;float: left;}
+        .position a:first-child{background: #fff;color: #333;}
+        .icon{width: 3rem;height: 4rem;background: url("../../icon/user/11.png")no-repeat;float: left;
+            display: block;background-size: 1.5rem 2rem;margin-top: .4rem;margin-left: 0.2rem;}
+        .icon1{width: 3rem;height: 3rem;background: url("../../icon/user/22.png")no-repeat;float: left;
+            display: block;background-size: 2rem 2rem;;margin-top: .4rem;}
+        .position{width: 100%;height: 3rem;position: fixed;left: 0;bottom: 0;}
+    </style>
+</head>
+<body>
+<div class="top">
+    <div class="top_1">
+        <span>姓名</span>
+        <input id='name' type="text" >
+        <i class="icon1"></i>
+    </div>
+    <div class="top_1">
+        <span>账号</span>
+        <input id="count" type="text" >
+        <i class="icon"></i>
+    </div>
+</div>
+<div class="position">
+    <a style="font-size: 18px;" onclick="returnHome()">取消</a>
+    <a style="font-size: 18px;" onclick="commit()">确定</a>
+</div>
+</body>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript">
+
+    function commit(){
+        var name = document.getElementById('name').value;
+        var count = document.getElementById('count').value;
+        if(isBlack(name)){
+            toast('姓名不能为空！');
+            return;
+        }
+
+        if(isBlack(count)){
+            toast('支付宝账号不能为空！');
+            return;
+        }
+
+        var params = {
+            alipayAccout:count,
+            alipayAccoutName:name
+
+        }
+        ajaxGetWithProgress(userUpdateAlipayAccoutUrl,params,function(ret){
+            if(isNotBlack(ret)&&ret.success){
+                toast("邦定成功！");
+                closeWin();
+            }else{
+                toast('绑定失败！稍后重试！');
+            }
+        })
+    }
+</script>
+</html>

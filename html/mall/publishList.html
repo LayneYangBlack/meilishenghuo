@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>发布优惠券汇总</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+    <style type="text/css">
+        .awards_num{
+            background-color: #020202;
+        }
+        html{font-size: 100px;}
+        .rightInfo{
+            height: 31px;
+            position: absolute;
+            top:6px;
+            right: 5px;
+            margin-right: 5px;
+            font-size: 12px;
+            line-height: 30px;
+            background-color: #020202;
+        }
+
+        .top{text-align: center; width: 100%;height: 40px; float: left; background:#75ca77 ; font-weight: 300;
+            font-size: 0.12rem;color: #fff;  border-bottom: 1px solid #eaeaea;   line-height: 40px;
+        }
+        #h1 span,#h2 span,#h3 span{
+            font-size: 0.17rem;}
+        #h1{margin-left:15px;float: left;}
+        #h3{float: right;margin-right: 15px;}
+    </style>
+</head>
+<body>
+<div id="topbar" class="topbar_info">
+    <div id="leftButton" onclick="closeWin()">
+        <img src="../../icon/back@2x-b.png" >
+    </div>
+    <div>发布优惠券汇总</div>
+</div>
+
+<div class="top">
+    <span id="h1">发布<span id="createActivityNum">12</span>次</span>
+        <!--<span id="h2">-->
+            <!--支付￥<span>26.980</span>-->
+            <!--元-->
+        <!--</span>-->
+    <!--<span id="h3">参与人数<span>27896</span></span>-->
+</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script>
+
+    apiready = function () {
+        var user = api.pageParam.user;
+        document.getElementById('createActivityNum').innerHTML = user.createActivityNum;
+
+
+        openFrame(api.winName + '_body','./' + api.winName + '_body.html',api.pageParam,84,0);
+    };
+
+</script>
+</html>

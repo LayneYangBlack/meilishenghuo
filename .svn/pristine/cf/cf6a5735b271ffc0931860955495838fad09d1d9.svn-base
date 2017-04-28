@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>用户设置</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+    <style type="text/css">
+        .main{width: 80%;margin:30px 10% 0 10%;text-align: left;}
+
+    </style>
+</head>
+<body >
+<div style="clear: both;margin-top: -30px;height: 50px;"></div>
+<div class="main">
+    <span style="text-align: center;width: 100%;margin-bottom: 20px;"></span><br/>
+    您的版本已为最新版本，感谢对我们的支持！
+
+
+    <span style="text-align: right;width: 100%;margin-top: 50px;">Copyright©1999-2016</span>
+    <span style="text-align: right;width: 100%;">优惠派 版权所有</span>
+    <a href="setting_body.html" style="width: 30%;margin: 50px 35% 0 35%;height: 30px;float: left; line-height: 30px;text-align: center;background:#75ca77;color: #fff;  " >返回</a>
+</div>
+
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"
+		  content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>HTML</title>
+	<style type="text/css">
+		body{
+			background:#eee;
+			position:relative;
+		}
+		.virbox{
+			display:block;
+		}
+		.virbox span{
+			width:28px;
+			height:24px;
+			display:block;
+			border:1px solid #ccc;
+			float:left;
+			border-right:0 none;
+			text-align:center;
+			line-height:24px;
+			font-family:"microsoft yahei";
+			font-weight:bold;
+		}
+		.virbox span:nth-child(6){
+			border:1px solid #ccc;
+		}
+		.realbox{
+			width:0;
+			height:0;
+			display:block;
+			position:fixed;
+			top:-30px;
+			left:-30px;
+			color: red;
+		}
+		i{display:none;}
+		button,input{
+			color: #333;
+		}
+	</style>
+</head>
+<body>
+
+
+<br><br>
+<input type="number" id="realbox"  class="realbox" maxlength="6">
+	<button onclick="showtext()">输出密码</button>
+<input type="file" accept="image/*;" capture="camera" >
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/pay.js"></script>
+
+<script type="text/javascript">
+	apiready = function (){
+		pay("alipay",{},"http://192.168.1.2:10004/pay/alipay/test","",function(ret,err) {
+
+
+		})
+	}
+
+
+</script>
+</html>

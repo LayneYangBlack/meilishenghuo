@@ -1,0 +1,550 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0, width=device-width"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>优惠派</title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/chat.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/commonWindow.css" />
+
+    <style>
+
+        html, body {
+            height: 100%
+        }
+
+        body {
+            background-color: #F4F5F5;
+            font-size: 14px;
+        }
+
+        /**页面高度**/
+        #wrap {
+            height: 100%;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow: column;
+            flex-flow: column;
+        }
+
+        /**页面高度铺满**/
+        #main {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+        }
+
+        /**========头部标签（开始）=====**/
+        #header {
+            background-color: #d84e43;
+            width: 100%;
+            height: 48px;
+            text-align: center;
+            font-size: 18px;
+            line-height: 48px;
+            border-bottom: 1px solid #F2F2F2;
+            color: #ffe2b1;
+        }
+
+        #header .header {
+            display: none;
+            position: relative;
+        }
+
+        #header .active {
+            display: block;
+        }
+        /**========头部标签（结束）=====**/
+
+
+
+
+        /**========头部group菜单（开始）=====**/
+        .btn_click{
+            background: #DADDE0;
+        }
+        .scrollbar {
+            font-size: 12px;
+            height: 48px;
+            width: 100%;
+            color: #9E9E9E;
+            background: #FFFFFF;
+            border-top: 1px solid #F2F2F2;
+            border-bottom: 1px solid #F1F2F3;
+            line-height: 48px;
+        }
+        .indexbar1 {
+            position: absolute;/*background: #0fc;*/
+            width: 33.3%;
+            height: 3px;
+            left: 0;
+            bottom: 0;
+            -webkit-transition: 300ms;
+            color: #eaeaea;
+        }
+        .redbox {
+            background: #75CA77;
+            width: 100%;
+            height: 3px;
+            position: relative;
+            left: auto;
+            right: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /**========头部group菜单（结束）=====**/
+
+
+        /**========底部菜单（开始）=====**/
+        #nav {
+            background-color: rgb(248,248,248);
+            /*border-top: 1px solid #DADDE0;*/
+            width: 100%;
+            text-align: center;
+            position: relative;
+            font-size: 10px;
+            height:50px;
+        }
+
+        #nav ul {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+        }
+
+        #nav ul li {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+        }
+
+        #nav li a {
+            -webkit-background-size:23px 23px !important;
+            background-size: 23px 23px !important;
+            color: #707070;
+            display: block;
+            padding-top: 34px;
+            line-height: 14px;
+            font-size: 10px;
+        }
+
+        #nav li.active a, #nav a.active {
+            color: #08BA06;
+        }
+        /**========底部菜单（结束）=====**/
+
+
+
+
+        /**========底部菜单各个按钮详细的菜单图片样式（开始）=====**/
+
+        #nav .home {
+            background: url(./icon/index/uhome.png) no-repeat center 10px;
+        }
+
+        #nav .home.active, #nav li.active .home {
+            background: url(./icon/index/uhome_active.png) no-repeat center 10px;
+        }
+
+        #nav .action {
+            background: url(./icon/index/score.png) no-repeat center 10px;
+        }
+
+        #nav .action.active, #nav li.active .action {
+            background: url(./icon/index/score_active.png) no-repeat center 10px;
+        }
+
+
+        #nav .user {
+            background: url(./icon/index/uuser.png) no-repeat center 10px;
+        }
+
+        #nav .user.active, #nav li.active .user {
+            background: url(./icon/index/uuser_active.png) no-repeat center 10px;
+        }
+
+        /**========底部菜单各个按钮详细的菜单图片样式（借宿）=====**/
+
+
+
+
+
+        #leftButton{
+            position: absolute;
+            margin-top: 2px;
+            width: 44px;
+            height: 42px;
+            z-index: 10;
+        }
+
+        #leftButton img{
+            width: 8px;
+            height: 14px;
+        }
+
+        .leftImage {
+            height: 19px;
+            line-height: 20px;
+            position: absolute;
+            top: 12px;
+            left: 10px;
+        }
+
+
+        .shopCart {
+            position: absolute;
+            top: 12px;
+            right: 14%;
+            /*height: 35px;
+            width: 35px;*/
+        }
+        .subShopCart{
+            position: relative;
+            background: url("./icon/index/cart@2x.png") no-repeat 0 0;
+            background-size: 20px 18.5px;
+            width: 20px;
+            height: 18.5px;
+        }
+
+        .searchMall {
+            border: 1px solid rgb(211,211,211);
+            width: 65%;
+            border-radius: 8px;
+            padding: 5px;
+            height: 16px;
+            font-size: 12px;
+            /*margin-left: 15px;*/
+            /*line-height: 20px;*/
+            left: 37px;
+            position: absolute;
+            top: 8px;
+        }
+
+
+        .rightInfo{
+            height: 31px;
+            min-width: 35px;
+            position: absolute;
+            top:6px;
+            right: 5px;
+            margin-right: 5px;
+            font-size: 12px;
+            line-height: 31px;
+            background-color: #020202;
+            color: #ffffff;
+            padding: 0 5px;
+        }
+    </style>
+</head>
+<body>
+            <div id="wrap">
+                <div id="header">
+                    <div class="home header">
+            <span>优惠派</span>
+            <div class="rightInfo" onclick="openLogin();" id="right" style="display: block">
+                登陆/注册
+            </div>
+            <ul class="scrollbar publicFlexRow" style="font-size: 14px;">
+                <li class="publicFlexRowBody"  tapmode="btn_click" onclick="switchFrameGroupIndex(0);">
+                    金豆多
+                </li>
+                <li class="publicFlexRowBody"  tapmode="btn_click" onclick="switchFrameGroupIndex(1);">
+                    份数多
+                </li>
+                <li class="publicFlexRowBody"  tapmode="btn_click" onclick="switchFrameGroupIndex(2);">
+                    时间新
+                </li>
+            </ul>
+            <div class="indexbar1" id="findRedBar">
+                <div class="redbox"></div>
+            </div>
+        </div>
+        <div class="action header">
+            <span>赚积分</span>
+        </div>
+
+        <div class="user header">
+            <span>我</span>
+        </div>
+
+    </div>
+    <div id="main">
+
+    </div>
+    <div id="nav">
+        <ul>
+            <li>
+                <a class="home" tapmode="active" onclick="openTab('home')">优惠派</a></li>
+            <li>
+                <a class="action" tapmode="active" onclick="openTab('action')">赚积分</a>
+            </li>
+            <li>
+                <a class="user" tapmode="active" onclick="openTab('user')">我</a>
+                <div id="userNoticeDiv" style="display:none;right:10%;width: 8px;height: 8px;background-color:red;position:absolute;border-radius:50px;top: 10px;"></div>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="./script/api.js"></script>
+<script type="text/javascript" src="./script/user.js"></script>
+<script type="text/javascript" src="./script/util.js"></script>
+<script type="text/javascript" src="./script/kv.js"></script>
+<script type="text/javascript" src="./script/apiCloud.js"></script>
+<script type="text/javascript" src="./script/public.js"></script>
+<script type="text/javascript" src="./script/template-native.js"></script>
+<script type="text/javascript" src="./script/data.js"></script>
+<script type="text/javascript" src="./script/init.js"></script>
+<script>
+
+    var user;
+    var tabs;
+    var window_width;
+    apiready = function () {
+        setLocationValue();
+        window_width = api.winWidth;
+        //配置tab选项卡 各个页面
+        tabs= {
+            home: {
+                isGroup: true,
+                group: {
+                    name: 'homeGroup',
+                    background:'#fff',
+                    scrollEnabled:true,
+                    rect : {
+                        x: 0,
+                        y: headHeight+55,
+                        w: 'auto',
+                        h: api.winHeight - headHeight - bottomHeight-55
+                    },
+                    index:0,
+                    preload:2,
+                    frames: [{
+                        name: 'ticketList1',
+                        url: './html/main/ticketList.html',
+                        pageParam:{type:1},
+                        bgColor: '#fff'
+                    },{
+                        name: 'ticketList2',
+                        url: './html/main/ticketList.html',
+                        pageParam:{type:2},
+                        bgColor: '#fff'
+                    },{
+                        name: 'ticketList3',
+                        url: './html/main/ticketList.html',
+                        pageParam:{type:3},
+                        bgColor: '#fff'
+                    }]
+                },
+                groupCallBack: function (ret) {
+                    switchFrameCallback(ret.index);
+                }
+            },
+            action: {
+                isGroup: false,
+                frame: {
+                    name: 'action',
+                    url: './html/user/gainScore_body.html',
+                    pageParam: {},
+                    rect: {
+                        x: 0,
+                        y: headHeight+4,
+                        w: 'auto',
+                        h: api.winHeight - headHeight - bottomHeight-4
+                    },
+                    bounces: false,
+                    opaque: false,
+                    //bgColor:'#EDEDED',
+                    bgColor: '#fff',
+                    allowEdit: true,
+                    vScrollBarEnabled: true,
+                    showProgress: false,
+                    hScrollBarEnabled: false,
+                    reload: false
+                }
+            },
+            user: {
+                isGroup: false,
+                frame: {
+                    name: 'user',
+                    url: './html/user/user_body.html',
+                    pageParam: {},
+                    rect:{
+                        x: 0,
+                        y: headHeight+4,
+                        w: 'auto',
+                        h: api.winHeight - headHeight - bottomHeight-4
+                    },
+                    bounces: false,
+                    opaque: false,
+                    bgColor: '#fff',
+                    allowEdit: true,
+                    vScrollBarEnabled: true,
+                    showProgress: false,
+                    hScrollBarEnabled: false,
+                    reload: true
+                }
+            }
+
+        };
+
+
+
+        systemInit();
+
+        //设置ios的头部信息颜色。
+        if(api.systemType == 'ios') {
+            api.setStatusBarStyle({
+                style: 'light'
+                //	style : 'dark'
+            });
+        }
+
+
+        //添加安卓退出按钮事件
+        api.addEventListener({
+            name: 'keyback'
+        }, function (ret, err) {
+            closeOnKeyBack();
+        });
+        var ajpush = api.require('ajpush');
+        ajpush.setListener(
+                function(ret) {
+                    if(isNotBlack(ret.extra) > 0){
+                        $api.setStorage('beanRed',true);
+                    }
+                    $api.setStorage('redPint',true)
+                    addRedPoint();
+                    api.execScript({
+                        name: rootWindowName,
+                        frameName: 'userInfo_body',
+                        script: 'changeRed();'
+                    });
+
+                    api.execScript({
+                        name: rootWindowName,
+                        frameName: 'mallDetail',
+                        script: 'changeRed("true");'
+                    });
+                    var title  = ret.title || " ";
+                    api.notification({
+                        notify: {
+                            title:'优惠派消息'+title ,              //标题，默认值为应用名称，只Android有效
+                            content:ret.content,             //内容，默认值为'有新消息'
+                            extra:'',                //传递给通知的数据，在通知被点击后，该数据将通过监听函数回调给网页
+                            updateCurrent: false    //是否覆盖更新已有的通知，取值范围true|false。只Android有效
+                        }
+                    }, function(ret, err) {
+
+                    });
+                }
+        );
+        var userInfo = getUserInfo();
+        if(isNotBlack(userInfo)&&isNotBlack(userInfo.phone)){
+            document.getElementById('right').style.display = "none";
+        }
+    };
+
+    var backButtonPress = 0;
+    function closeOnKeyBack() {
+        backButtonPress++;
+        if (backButtonPress > 1) {
+            closeApp();
+        } else {
+            api.toast({msg: '再按一次退出应用'});
+        }
+        setTimeout(function () {
+            backButtonPress = 0;
+        }, 1000);
+    }
+
+
+    function switchFrameGroupIndex(index){
+        api.setFrameGroupIndex({
+            name : "homeGroup",
+            index : index,
+            scroll : true
+        });
+
+    }
+
+    function removeRedPoint(){
+        document.getElementById('userNoticeDiv').style.display = 'none';
+        $api.setStorage('redPint',false)
+
+    }
+
+    function openLogin(){
+        openNewWindow("login",'./html/login/login.html');
+    }
+
+    function addRedPoint(){
+        document.getElementById('userNoticeDiv').style.display = 'block';
+    }
+
+    function switchFrameCallback(index){
+        var width = (window_width / 3) * index;
+        var spans=document.querySelector(".scrollbar").querySelectorAll("li");
+        $api.css(document.getElementById("findRedBar"), "-webkit-transform:translate(" + width + "px,0)");
+        for(var i=0;i<spans.length;i++){
+            if(i==index){
+                spans[i].style.color="#76CA78";
+            }else{
+                spans[i].style.color="";
+            }
+        }
+    }
+
+
+
+
+
+    function reloadIndex(){
+        systemInit(function(){
+            switchFrameGroupIndex(0);
+            try{
+                api.execScript({
+                    name: rootWindowName,
+                    frameName:'ticketList1',
+                    script: 'reloadHtml()'
+                });
+                api.execScript({
+                    name: rootWindowName,
+                    frameName:'ticketList2',
+                    script: 'reloadHtml()'
+                });
+                api.execScript({
+                    name: rootWindowName,
+                    frameName:'ticketList3',
+                    script: 'reloadHtml()'
+                });
+            }catch (err){
+
+            }
+            var userInfo = getUserInfo();
+            if(isNotBlack(userInfo)&&isNotBlack(userInfo.phone)){
+
+                document.getElementById("right").style.display = "none";
+            }else{
+                document.getElementById("right").style.display = "block";
+            }
+
+
+        });
+    }
+
+    function reloadOpenDetail(){
+        systemInit();
+        //openNewWindow("mallDetail","../mall/mallDetail.html",{},{slidBackEnabled:false});
+    }
+
+
+</script>
+</html>

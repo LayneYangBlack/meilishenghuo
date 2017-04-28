@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>设置</title>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="../../css/style.css" rel="stylesheet" type="text/css">
+    <style>
+        .item1{}
+        .item1 li{height: 0.5rem;width: 95%;border-bottom: 1px solid #f1f2f3;float: left;margin-left: 5%;}
+        .item1 li p{line-height: 0.5rem;float: left; font-size: 0.16rem;color:#333333;}
+        .next{background: url("../../icon/icon_right_normal.png");margin-top: 0.15rem;float: right;background-size:cover;
+        ;width: 0.15rem;height: 0.2rem; margin-right: 7.2%}
+    </style>
+
+    <style>
+        section {
+            float: right;
+            padding: 10px 0 0 60px;;
+            width:75px;
+           margin-right: 6%;
+        }
+
+        .checkbox::after, .checkbox::before {
+            font-family: FontAwesome;
+            font-feature-settings: normal;
+            font-kerning: auto;
+            font-language-override: normal;
+            font-stretch: normal;
+            font-style: normal;
+            font-synthesis: weight style;
+            font-variant: normal;
+            font-weight: normal;
+            text-rendering: auto;
+        }
+
+        .checkbox {
+            display: inline-block;
+            position: relative;
+        }
+
+        .checkbox input {
+            cursor: pointer;
+            height: 100%;
+            left: 0;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 5;
+
+        }
+        /*默认背景颜色*/
+        .model-3 .checkbox label{
+            background: #75ca77 none repeat scroll 0 0;
+            border: 1px solid #eee;
+            height: 30px;
+        }
+        .model-3 .checkbox label::after{
+            background: #fff none repeat scroll 0 0;
+            border: 1px solid #eee;
+            height: 30px;
+        }
+      /*按钮默认位置  和颜色*/
+        .model-3 .checkbox label::after {
+            background: #fff none repeat scroll 0 0;
+            height: 25px;
+            left: 36px;
+            top: 1.45px;
+            width: 25px;
+        }
+        .checkbox label::after {
+
+            border-radius: 100%;
+            /*box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);*/
+            content: "";
+            height: 30px;
+            left: 0;
+            position: absolute;
+            top: -2px;
+            transition: all 0.4s ease 0s;
+            width: 30px;
+            z-index: 2;
+        }
+
+        .checkbox label {
+            background:  #f1f2f3 repeat scroll 0 0;
+            border-radius: 46px;
+            display: inline-block;
+            height: 25px;
+            position: relative;
+            transition: all 0.4s ease 0s;
+            width: 65px;
+        }
+        .model-3 .checkbox input:checked + label::after {
+            background: #ccc none repeat scroll 0 0;
+            left: 1px;
+        }
+        .tijiao{text-align:center;line-height:50px;font-size: 18px;}
+        .tijiao a{color: white;display: block;text-align: center;}
+           a:hover, a:visited, a:link, a:active {text-decoration: none;color: #f1f2f3;}
+    </style>
+
+
+
+
+</head>
+<body id="boo" style="background: #f1f2f3;">
+<div class="wp_100 item1" id="nr9" style="float: left; background: #fff;margin-top: 0.15rem;">
+    <li ><p>手机短信通知</p>
+        <section class="model-3">
+            <div id="qq" class="checkbox">
+                <input  id="bj" onclick="cheng()" type="checkbox"/>
+                <label id="btn" ></label>
+            </div></section>
+
+    </li>
+  <a href="setting_help.html"> <li ><p>帮助说明</p><i class="next"></i><p style="float: right; padding-right: 6%;line-height: 0.5rem;"></p></li></a>
+    <a href="setting_tickling.html">  <li><p>意见建议</p><i class="next"></i><p style="float: right; padding-right: 6%;line-height: 0.5rem;"></p></li></a>
+   <a href="setting_version.html"> <li ><p>版本升级</p><i class="next"></i><p style="float: right; padding-right: 6%;line-height: 0.5rem;">当前版本1.0</p></li></a>
+
+
+    <div class="wp_100 tijiao" style="height: 0.5rem;background:#75ca77;float: left;position: fixed;bottom: 0;left: 0; " onclick="loginOut()">
+        <a href="#">退出登录</a>
+    </div>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/apiCloud.js"></script>
+    <script type="text/javascript" src="../../script/template-native.js"></script>
+    <script type="text/javascript" src="../../script/kv.js"></script>
+    <script type="text/javascript" src="../../script/user.js"></script>
+    <script type="text/javascript" src="../../script/data.js"></script>
+    <script type="text/javascript" src="../../script/util.js"></script>
+    <script type="text/javascript" src="../../script/public.js"></script>
+    <script>
+        var ss=0;
+           function cheng(){
+               if(ss==0){
+                   document.getElementById("btn").style.background="#fff";
+                   ss=1;
+               }else{
+                   document.getElementById("btn").style.background="#75ca77";
+                   ss=0;
+               }
+
+        }
+
+        function loginOut(){
+            var user = getUserInfo();
+            cleanDb(function(ret,err){
+                getVisitor(function(){
+                    if(isNotBlack(user.shopName)){
+                        api.execScript({
+                            name: rootWindowName,
+                            script: 'openTab("home")'
+                        });
+                    }else{
+                        try{
+                            api.execScript({
+                                name: rootWindowName,
+                                script: 'reloadIndex();'
+                            });
+                            api.execScript({
+                                name: rootWindowName,
+                                frameName: 'action',
+                                script: 'reloadData(0);'
+                            });
+                            api.execScript({
+                                name: rootWindowName,
+                                script: 'openTab("home")'
+                            });
+                        }catch (err){
+
+                        }
+                    }
+                    api.closeWin({
+                        name: 'mallDetail'
+                    });
+                    closeWin();
+                });
+            })
+
+        }
+
+
+
+        function getVisitor(callback){
+
+            api.ajax({
+                url: loginVisitorUrl,
+                method: 'post',
+                timeout: 60,
+                dataType: 'json',
+                returnAll: false,
+                headers: {
+                    "Accept-Encoding": "gzip",
+                    "version" : version,
+                    "type" :   1
+                },
+                data: {}
+            }, function (ret, err) {
+
+                if(isNotBlack(ret) && ret.token){
+                    user = ret;
+                    setUserInfo(user);
+                    callback();
+                }else{
+                    api.confirm({
+                        title: '当前网络或服务有问题',
+                        msg: '是否重试？',
+                        buttons:['确定', '取消']
+                    },function(ret,err){
+                        if(ret.buttonIndex == 1){
+                            getVisitor(callback);
+                        }else{
+                            closeApp();
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+
+</div>
+
+
+</body>
+</html>

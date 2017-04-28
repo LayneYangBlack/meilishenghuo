@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0, width=device-width"/>
+    <title>youhuipai</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #fff;
+            font-family: '';
+        }
+        ul{   list-style: none;   }
+
+        /*页面*/
+
+        /*小屏幕的手机*/
+        @media (max-width:360px){
+            .zhuan_title{
+                width: 113%;
+                display: block;
+            }
+        }
+        .mian{
+            width: 100%;height:100%;
+        }
+        .zhuan_list{
+            width: 100%;height:100%;
+            margin: 0;
+            overflow: hidden;
+            padding: 0;
+        }
+        .zhuan_list li {
+            float: left;
+            width:40%;
+            height: 10rem;
+            margin-top: 10%;
+            position: relative;
+            margin-left: 7%;
+        }
+        .zhuan_number{
+            width: 100%;
+            display: block;
+            text-align: center;
+            font-size:1.5rem;
+            color: #D5D5D5;
+            margin-bottom: 2%;
+        }
+        .zhuan_img{
+            position: relative;
+            width: 100%;
+            height: 6rem;
+            margin: 0 auto;
+        }
+        .zhuan_title{
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 100%;
+        }
+        .zhuan_title span{color: #5CDE5C;}
+        .zhuan_article{color: #9E9E9E;font-size: 12px;margin-top: 30%;padding:0 3%;}
+        .playbutton{
+            width: 26%;
+            height: 2.3rem;
+            position: absolute;
+            top: 3.75rem;
+            left: 37%;
+        }
+    </style>
+</head>
+<body id="body" style="display: none;">
+    <div class="main" >
+        <ul class="zhuan_list" id="main">
+            <!--<li>-->
+                <!--<span class="zhuan_number">1</span>-->
+                <!--<a href=""><img src="../../image/test/1.jpg" alt="" class="zhuan_img"></a>-->
+                <!--<span class="zhuan_title"><span>美食</span>.星巴克咖啡联想12qwd qweasd</span>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<span class="zhuan_number">2</span>-->
+                <!--<a href=""><img src="../../image/test/1.jpg" alt="" class="zhuan_img"></a>-->
+                <!--<span class="zhuan_title"><span>健身</span>.浩沙万柳店</span>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<span class="zhuan_number">3</span>-->
+                <!--<a href=""><img src="../../image/test/1.jpg" alt="" class="zhuan_img"></a>-->
+                <!--<span class="zhuan_title"><span>健身</span>.丽人女子健身中关...</span>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<span class="zhuan_number">4</span>-->
+                <!--<a href=""><img src="../../image/test/1.jpg" alt="" class="zhuan_img"></a>-->
+                <!--<span class="zhuan_title"><span>美食</span>.菜香根花园桥店...</span>-->
+            <!--</li>-->
+         <!--    <li>
+		        <span class="zhuan_number"><span>
+		        <a href=""><img src="../../image/c.jpg" alt="" class="zhuan_img"></a>
+		        <span class="zhuan_title"></span>
+		        <img class="playbutton" src="../../image/playButton.png" alt="" />
+    		</li> -->
+        </ul>
+        <article class="zhuan_article">
+            <p>说明：选择任意一张图片或视频，积分数将随机产生。看完后即可获得积分，没有次数限制哦。试试今天的运气吧！</p>
+        </article>
+    </div>
+</body>
+<script id="scriptDiv" type="text/html">
+  <% for (var i = 0; i < list.length; i ++) { %>
+    <li onclick="starEarnScore('<%=list[i].id%>')">
+        <span class="zhuan_number"><%=i+1%></span>
+        <a href="javaScript:void(0)"><img src="<%=list[i].cover%>" alt="" class="zhuan_img"></a>
+        <span class="zhuan_title"><%=list[i].title%></span>
+        <%if(list[i].showType == 2){%>
+        <img class="playbutton" src="../../image/playButton.png" alt="" />
+        <%}%>
+    </li>
+    <% } %>
+</script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript">
+    var uid;
+    var allResult = [];
+    var userInfo = null;
+    var url = defaultRandomEarnScoreUrl;
+    apiready = function () {
+        userInfo = getUserInfo();
+        if(isNotBlack(userInfo)&&isNotBlack(userInfo.phone)){
+            url = userRandomEarnScoreUrl;
+        }
+
+        api.setRefreshHeaderInfo({
+            visible: true,
+            bgColor: 'rgba(0,0,0,0)',
+            textColor: '#666',
+            textDown: '下拉刷新...',
+            textUp: '松开刷新...'
+        }, function (ret, err) {
+            ajaxGet(url, {}, function(ret,err){
+                if(isNotBlack(ret)){
+                    addDataToHtml(ret);
+                    document.getElementById('body').style.display = 'block'
+                }else{
+                    toast("暂无数据");
+                }
+                api.refreshHeaderLoadDone();
+
+            });
+        });
+        api.refreshHeaderLoading();
+    };
+
+
+    function addDataToHtml(results) {
+        if (results && results.length > 0) {
+            for(var i=0;i<results.length;i++){
+                allResult[results[i].id]=results[i];
+            }
+            var data = {list: results};
+            var html = template('scriptDiv', data);
+            document.getElementById('main').innerHTML = html;
+
+        }
+
+    }
+
+
+    function reloadData(type){
+        if(type == 1){
+           url = userRandomEarnScoreUrl;
+        }else{
+            url = defaultRandomEarnScoreUrl;
+        }
+        api.setRefreshHeaderInfo({
+            visible: true,
+            bgColor: 'rgba(0,0,0,0)',
+            textColor: '#666',
+            textDown: '下拉刷新...',
+            textUp: '松开刷新...'
+        }, function (ret, err) {
+            ajaxGet(url, {}, function(ret,err){
+                if(isNotBlack(ret)){
+                    addDataToHtml(ret);
+                    document.getElementById('body').style.display = 'block'
+                }else{
+                    toast("暂无数据");
+                }
+                api.refreshHeaderLoadDone();
+
+            });
+        });
+        api.refreshHeaderLoading();
+    }
+
+
+    function starEarnScore(esid) {
+        if(!checkUserLogin('../login/login.html')){
+            return;
+        }
+
+        if(allResult[esid].showType == 1){
+            if(isNotBlack(userInfo) && isNotBlack(userInfo.phone)){
+                ajaxGetWithProgress(userStartEarnScoreUrl,{esid:esid},function(ret){
+                    if(isNotBlack(ret) && ret.success){
+                        openNewWindow('photoView','../main/photoView.html',{score:allResult[esid]},{slidBackEnabled:false})
+                    }
+                })
+            }else{
+                openNewWindow('photoView','../main/photoView.html',{score:allResult[esid]},{slidBackEnabled:false})
+            }
+
+        }else{
+            openNewWindow('videoPlay','./videoPlay.html',{video:allResult[esid]},{slidBackEnabled:false});
+        }
+
+    }
+
+
+
+</script>
+</html>

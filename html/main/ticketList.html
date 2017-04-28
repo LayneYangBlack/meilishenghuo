@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>HTML</title>
+    <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background: #ebebeb;
+            width: 100%; /*height: 100%;*/
+            min-height: 100%;
+        }
+
+
+        .item {
+            margin: 10px 0px 0px;
+            /*border-bottom: 1px solid #EDEDED;*/
+            /*min-height: 85px;*/
+            /*height:8rem;*/
+            background: #FFF;
+            padding: 5px 10px;
+
+        }
+
+        .item:first-child {
+            margin: 0;;
+            /*border-bottom: 1px solid #EDEDED;*/
+            /*min-height: 85px;*/
+            /*height: 8rem;*/
+            background: #FFF;
+            border-top: 10px solid #eaeaea;
+
+        }
+
+        .itemOn {
+            background: #EDEDED;
+        }
+
+        .title{
+            font-size: 14px;
+            overflow : hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            font-weight: 600;
+            padding-top: 5px;
+            padding-left: 5px;;
+        }
+
+        .itemLeft{
+            width: 40%;
+            float: left;
+            margin-top: 8px;
+        }
+
+        .itemLeft img{
+            width: 100%;
+            margin-bottom: 5px;
+        margin-left: 5px;;
+        }
+
+        .name{
+            margin-top: -10px;
+            margin-right:20px ;
+            height: 34px;
+            font-size: 12px;
+            color: #9296a3;
+            line-height: 30px;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+
+        .itemRight{
+            width: 56%;
+            margin-top: 10px;
+            float: right;
+            position: relative;
+        }
+
+        .info_1{
+            height: 30px;
+            
+        }
+        .info_2{
+            height: 25px;
+            font-size:10px;
+            color: #9296a3;
+            /*line-height: 25px;*/
+            position: absolute;
+            bottom: 1px;
+            right: 0px;
+            text-align: right;
+            padding-right:5px ;
+
+        }
+
+        .tagButton{
+            padding: 2px 10px 2px 0px;
+            width: auto;
+            margin-right: 10px ;
+            color: #9296a3;
+            text-align: center;
+            font-size: 12px;
+            border-right: 1px solid #ccc;
+        }
+
+        .time{
+            color: #9296a3;
+            font-size: 12px;
+            line-height: 35px;
+        }
+
+        .tagButton1{
+            padding: 2px 10px 0px 0px;
+            margin-right: 5px ;
+            color: #9296a3;
+            width: auto;
+            text-align: center;
+            font-size: 12px;
+        }
+        .tagButton2{
+
+            color: #FA8200;
+            font-size: 18px;
+        }
+
+        .type{
+            color:  #75CA77;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div id="mainDiv">
+
+    <div id="main">
+        <div class="item clearfix" tapmode="itemOn" onclick="openTicketInfo(1);">
+            <div class="title">
+                星巴克水电费家里的事解放路会计分录圣诞节发牢骚的几率
+            </div>
+            <div class="itemLeft">
+                <img class="icon" src="../../image/test/1.jpg" onerror="this.src='../../image/user-photo.png'">
+            </div>
+            <div class="itemRight">
+
+                <div class="name">名字sdfasdfasd时间地方是豆</div>
+                <div class="info_1">
+                    <span class="tagButton"><span>360</span>米</span>
+                    <span class="tagButton1">剩余<span>35</span>份</span>
+                </div>
+                <div class="info_2">
+                    <span class="tagButton2"><span>360</span>金豆</span>/份
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="item clearfix" tapmode="itemOn" onclick="openTicketInfo(1);">
+            <div class="title">
+                星巴克水电费家里的事解放路会计分录圣诞节发牢骚的几率
+            </div>
+            <div class="itemLeft">
+                <img class="icon" src="../../image/test/1.jpg" onerror="this.src='../../image/user-photo.png'">
+            </div>
+            <div class="itemRight">
+
+                <div class="name"> 名字sdfasdfasd时间地方是豆</div>
+                <div class="info_1">
+                    <span class="tagButton"><span>360</span>米</span>
+                    <span class="tagButton1">剩余<span>35</span>份</span>
+                </div>
+                <div class="info_2">
+                    <span class="tagButton2"><span>360</span>金豆</span>/份
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+</div>
+
+
+
+</body>
+
+
+<script id="scriptDiv" type="text/html">
+    <% for (var i = 0; i < list.length; i ++) { %>
+    <%if(list[i].finish == 0){%>
+    <div class="item clearfix" tapmode="itemOn" onclick="openTicketInfo('<%=list[i].id%>');">
+        <div class="title">
+            <%=list[i].title%>
+        </div>
+        <div class="itemLeft">
+            <img class="icon" src="../../image/defaultCover@2x.png"  style="height:<%=photo.height%>px" data-echo="<%=list[i].cover%>" >
+
+        </div>
+        <div class="itemRight" style="height:<%=photo.height%>px">
+            <div class="name"> <%=list[i].shopName%></div>
+            <div class="info_1">
+
+                <span class="tagButton"> 剩余<span><%=list[i].remainNum%></span>份</span>
+                <%if(list[i].type = 1){%>
+                <span class="tagButton1"><span> <%=list[i].dist%>米</span></span>
+                <%}%>
+            </div>
+            <div class="info_2">
+                <span class="tagButton2"><span style="font-size: 18px;"><%=list[i].goldBean%></span>金豆</span>/份
+            </div>
+        </div>
+    </div>
+    <%}else if(list[i].finish == 1){%>
+    <div class="item clearfix" tapmode="itemOn" onclick="openTicketInfo('<%=list[i].id%>');">
+        <div class="title">
+            <%=list[i].title%>
+
+        </div>
+        <div class="itemLeft">
+            <img class="icon" src="../../image/defaultCover@2x.png" style="height:<%=photo.height%>px" data-echo="<%=list[i].cover%>">
+        </div>
+        <div class="itemRight" style="height:<%=photo.height%>px">
+
+            <div class="name">  <%=list[i].shopName%></div>
+            <div class="info_1">
+                <span style="font-size: 0.8rem;">您于<%=list[i].finishTime%>年抢单已完成</span>
+                <!--<span class="tagButton"><span>360</span>米</span>-->
+                <!--<span class="tagButton1">剩余<span>35</span>份</span>-->
+            </div>
+            <div class="info_2">
+                <span class="tagButton2"><span>已获奖</span></span>
+            </div>
+        </div>
+    </div>
+    <% } %>
+    <% } %>
+</script>
+
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script>
+
+    var uid;
+    var allResult={};
+    var dialogBox;
+    var user = null;
+    apiready = function () {
+
+        dialogBox = api.require('dialogBox');
+        var url=activityGoldBeanPagerUrl;
+        var localInfo = $api.getStorage("localInfo");
+        var type = api.pageParam.type;
+
+        //判断是不是登录用户
+        if(isNotBlack(getUserInfo().phone)){
+
+            switch (type){
+                case 1:
+                    url = activityGoldBeanPagerUrl;
+                    break;
+                case 2:
+                    url = activityRemainNumPagerUrl;
+                    break;
+                case 3:url= activityPublishTimePagerUrl;
+                    break;
+                default :url = activityGoldBeanPagerUrl;
+            }
+
+
+            ajaxGet(userInfoUrl,{},function(ret){
+                if(isNotBlack(ret)){
+                    user = ret;
+                }
+            })
+        }else{
+            switch (type){
+                case 1:
+                    url = defaultGoldBeanPagerUrl;
+                    break;
+                case 2:
+                    url =defaultRemainNumPagerUrl;
+                    break;
+                case 3:url=  defaultPublishTimePagerUrl;
+                    break;
+                default :url = activityGoldBeanPagerUrl;
+            }
+        }
+
+
+        var params = {};
+        var city = localInfo.city;
+        if(localInfo.province.indexOf("市")){
+            city = localInfo.district;
+        }
+        params.oneLevelArea = localInfo.province;
+        params.twoLevelArea = city;
+        params.lat = localInfo.lat;
+        params.lng = localInfo.lon;
+        new datalistModel(initInfo,url,params,10,5,100,true);
+        echoExt.init();
+
+    };
+
+
+
+    function reloadHtml(){
+        apiready();
+    }
+
+    function initInfo(results, append) {
+        if (results && results.length > 0) {
+
+            for(var i=0;i<results.length;i++){
+                allResult[results[i].id]=results[i];
+                if(results[i].finish == 1){
+                    results[i].finishTime = formatTimeToDate(results[i].finishTime);
+                }
+
+            }
+            var width = api.frameWidth*0.4;
+            var height = width/1.7;
+            var data = {list: results,photo:{width:width,height:height}};
+            var html1 = template('scriptDiv', data);
+            if (append) {
+                document.getElementById('main').innerHTML = document.getElementById('main').innerHTML + html1;
+            } else {
+                document.getElementById('main').innerHTML = html1;
+            }
+
+        }else if(results.length==0){
+            document.getElementById('main').innerHTML = '';
+        }
+    }
+
+
+    var starToBean = {0:0,1:20,2:50,3:100,4:150,5:10000000000};
+    function openTicketInfo(id){
+        //先去校验
+        if(!checkUserLogin()){
+            return;
+        }
+
+    	var ac = allResult[id];
+    	var beanNum = ac.goldBean;
+    	var star = user.star;
+        if(starToBean[star] >= beanNum){
+    		openNewWindow('ticketInfo','./ticketInfo.html',{activity:allResult[id]},{reload:true});
+            return;
+    	}
+        
+       	for(var i = 1;i <= 5; i++){
+       		if(starToBean[i] >= beanNum){
+       			showDialog(dialogBox,"提示","需个人资料"+i+"星以上","取消",'去完善',openUserInfo);
+                return;
+       		}
+       	}
+    }
+    function openUserInfo(){
+        var dialogBox = api.require('dialogBox');
+        dialogBox.close ({
+            dialogName: 'alert'
+        });
+        openNewWindow("userInfo","../user/userInfo.html",{user:getUserInfo()});
+    }
+
+
+    function showPhoto(){
+        openNewWindow("photoView","./photoView.html",{})
+    }
+
+
+</script>
+
+</html>

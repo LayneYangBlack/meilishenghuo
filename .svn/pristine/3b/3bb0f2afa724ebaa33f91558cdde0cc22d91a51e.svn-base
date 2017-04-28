@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>获奖用户列表</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/photoswipe.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/default-skin/default-skin.css"/>
+    <style type="text/css">
+        html {
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+        }
+
+        body {
+            background-color: #000000;
+            width: 100%; /*height: 100%;*/
+            height: 100%;
+        }
+        .rightInfo{
+            height: 31px;
+
+            position: absolute;
+            top:6px;
+            right: 5px;
+            margin-right: 5px;
+            font-size: 12px;
+            line-height: 31px;
+            color: #FA8302;
+            padding: 0 5px;
+        }
+
+        #topbar span {
+
+            padding-left: 3px;
+            font-size: 18px;
+        }
+
+        #leftButton2{
+            position: absolute;
+            margin-top: 2px;
+            height: 42px;
+            z-index: 10;
+        }
+        #leftButton2 img{
+            width: 8px;
+            height: 14px;
+        }
+        .rightInfo1{
+            height: 43px!important;
+            position: absolute!important;
+            top:0!important;
+            right: 0!important;
+            margin: 0!important;
+            font-size: 12px;
+            line-height: 44px!important;
+
+            color: #ff9900;
+            padding: 0 12px;
+        }
+    </style>
+</head>
+<body>
+<div id="topbar" class="topbar_info">
+    <div id="leftButton" onclick="closeWin()">
+        <img src="../../icon/back@2x-b.png" >
+    </div>
+    <div id="score" style="color: #ff9900">300</div>
+    <div class="rightInfo1" >
+        <span id="remain_time">3</span>秒
+    </div>
+</div>
+
+
+
+
+
+
+
+<button id="btn">Open PhotoSwipe</button>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element, as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+        <div class="pswp__container">
+            <!-- don't modify these 3 pswp__item elements, data is added later on -->
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div id="showNum" class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div id="counterNum" class="pswp__counter"></div>
+
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+</body>
+<script type="text/javascript" src="../../script/photo/photoswipe.js"></script>
+<script type="text/javascript" src="../../script/photo/photoswipe-ui-default.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script>
+    var api_use;
+    var score = null;
+    var content = null;
+    var timeInterval;
+    var dialogBox;
+    apiready = function () {
+
+        score =api.pageParam.score;
+        dialogBox = api.require('dialogBox');
+//        document.getElementById('score').innerHTML = score.score+"积分";
+        ajaxGetWithProgress(userEarnScoreLoadUrl,{esid:score.id},function(ret){
+            if(isNotBlack(ret)){
+                score = ret;
+                content = JSON.parse(score.content);
+                document.getElementById('score').innerHTML ="赚"+ score.score+"积分";
+                setTime();
+            }
+        });
+
+
+    };
+    var pws;
+    var interval = setInterval(function(){
+        if(isNotBlack(content)){
+            clearInterval(interval);
+            var openPhotoSwipe = function() {
+                var cover ;
+                var pswpElement = document.querySelectorAll('.pswp')[0];
+                // build items array
+                var items = [
+                    {
+                        src: score.cover,
+                        w: 986,
+                        h: 1024,
+                        title:content.content
+                        // if you skip it, there won't be any caption
+                    }
+                ];
+
+                // define options (if needed)
+                var options = {
+                    // history & focus options are disabled on CodePen
+                    history: true,
+                    focus: true,
+                    zoomEl: false,
+                    showAnimationDuration: 0,
+                    hideAnimationDuration: 0,
+                    tapToClose: false,
+                    shareEl: false,
+                    tapToToggleControls: false,
+                    closeOnVerticalDrag : false,
+                    closeOnScroll:true,
+                    loop:true
+                };
+
+                var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+                gallery.init();
+                pws = gallery;
+
+            };
+            openPhotoSwipe();
+            document.getElementById('counterNum').innerHTML ="1/"+content.imgList.length;
+            document.getElementById('showNum').className = "pswp__ui";
+            pws.listen('close', function() {
+            return false;});
+
+            pws.listen('preventDragEvent', function(e, isDown, preventObj) {
+                // e - original event
+                // isDown - true = drag start, false = drag release
+                // Line below will force e.preventDefault() on:
+                // touchstart/mousedown/pointerdown events
+                // as well as on:
+                // touchend/mouseup/pointerup events
+
+                if(!isDown){
+
+                    var flag = true;
+
+                    if(flag){
+                        pws.listen('afterChange', function() {
+                            var current = pws.getCurrentIndex();
+                            document.getElementById('counterNum').innerHTML =(current+1)+"/"+content.imgList.length
+                            if(index != current){
+                                flag = false;
+                                clearTime();
+                            }else{
+                                flag = false;
+                                setTime();
+                            }
+                        });
+                    }
+
+
+                }
+                preventObj.prevent = true;
+            });
+        }
+    },100);
+
+
+    var TIME  = 3;
+    function setTime(){
+        if(timeInterval!=null){
+            return;
+        }
+        var span = document.getElementById("remain_time");
+        timeInterval = setInterval(function(){
+            TIME = TIME- 1;
+            span.innerHTML = TIME;
+            if(TIME <= 0){
+                TIME = 3;
+                if(timeInterval!=null) {
+                    clearInterval(timeInterval);
+                    //跳转结果页面
+                    //请求服务器
+                    pushItem();
+                }
+
+
+            }
+
+        },1000);
+    }
+//清除定时
+
+    function clearTime(){
+        if(timeInterval!=null) {
+            clearInterval(timeInterval);
+            timeInterval = null;
+        }
+    }
+
+
+
+
+    var index = 0;
+    function pushItem(){
+        clearTime();
+        index++;
+        if(index >= content.imgList.length){
+            //todo 调用结果
+            ajaxGetWithProgress(userFinishEarnScoreUrl,{esid:score.id,score:score.score},function(ret){
+                if(isNotBlack(ret)){
+                    openNewWindow("gainScoreTips",'../user/gainScoreTips.html',{score:ret.score});
+                    setTime(closeWin(),1000);
+
+                }else{
+                    toast("当前网络不稳定");
+                }
+            });
+
+        }else{
+
+            pws.items.push({
+                src: content.imgList[index],
+                w:986,
+                h:1024,
+                title:content.content
+            });
+
+           // pws.invalidateCurrItems();
+            // updates the content of slides
+            pws.updateSize(true);
+            var current = pws.getCurrentIndex();
+            document.getElementById('counterNum').innerHTML =(current+1)+"/"+content.imgList.length
+        }
+    }
+
+
+
+
+
+
+
+</script>
+</html>

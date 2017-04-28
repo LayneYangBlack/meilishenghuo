@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+    <style type="text/css">
+        #leftButton2{
+            position: absolute;
+            margin-top: 2px;
+            height: 42px;
+            z-index: 10;
+        }
+        #leftButton2 img{
+            width: 8px;
+            height: 14px;
+        }
+
+    </style>
+    </head>
+<body style="">
+
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script>
+
+    apiready = function () {
+        //initFrameInWin(api.pageParam);
+        var dialogBox =  api.require('dialogBox');
+        openFrame("photoView_body","./photoView_body.html", api.pageParam,0,0,{});
+        //添加安卓退出按钮事件
+        api.addEventListener({
+            name: 'keyback'
+        }, function (ret, err) {
+            showDialog(dialogBox,"提示","中途退出将不能获得积分哦！","取消",'退出',function(){
+                closeWin();
+            });
+        });
+
+    };
+</script>
+</html>

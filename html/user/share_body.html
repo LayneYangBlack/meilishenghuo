@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绑定弹出</title>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="../../css/style.css" rel="stylesheet" type="text/css">
+    <style>
+        body{
+            background-color: rgba(241,242,243,0.3);
+        }
+        #bg_2{
+            display: block;  position: absolute;  top: 0%;  left: 0%;  width: 100%;  height: 100%;
+            background-color: black;  z-index: 1001;  -moz-opacity: 0.7;  opacity: .70;  filter: alpha(opacity=70);}
+        #show_2 {   position: absolute;  width: 100%;  bottom: 0px;   background-color: #f4f4f4;
+            z-index: 1002;  overflow: auto;height:auto; display: block; }
+        .item{height: 0.45rem;width: 100%;border-bottom: 1px solid #f1f2f3;float: right;background: white;}
+        .item p{line-height: 0.5rem;float: left; font-size: 0.15rem;margin-left: 0.2rem}
+        .next{background: url("../../icon/icon_right_normal.png");margin-top: 0.15rem;float: right;background-size:cover;
+        ;width: 0.15rem;height: 0.2rem; margin-right: 7.2%}
+        .iii img{width: 0.3rem;float: left;height: 0.3rem;margin-left: 0.2rem;margin-top: 0.1rem}
+        .lili{margin-top:0.1rem;}
+        .lili p:last-child{float: right;display: block;width: 0.68rem;height: 0.24rem;background: #ff9900;border-radius: 15px;
+            line-height: 0.24rem;font-size: 0.12rem;color: white;text-align: center;margin-top: 0.12rem; }
+        .lili p:first-child{float: left;padding-left: 6%; line-height: 0.5rem;}
+        .bottom{width: 100%;height: 50px;color:green;font-size: 18px;text-align: center;line-height: 50px;float: left;margin-top: 0.05rem;
+            background: white;}
+        .top_verticle{
+            padding-left: 3%;font-size: 0.14rem;padding-top: 3%;line-height: 0.2rem;
+            color: #999999;
+        }
+    </style>
+</head>
+<body>
+<div id="show_2">
+    <div style="width: 100%;height: 1.7rem;background: white;overflow: hidden;">
+        <p class="top_verticle">绑定用户金豆奖励说明<br>
+            1、分享除获得积分外，因你的分享而注册的个人将形成唯一绑定关系，他（她）如获得金豆，平台将给予你另外的金豆奖励；<br>
+            2、因你的分享而注册的商家，每次发布问答内容时，平台将依据活动总金豆数给予你一定金豆奖励。<br>
+            官人，有这么好的事，还不赶紧动...起...来！手慢就都被抢完了</p>
+    </div>
+    <div class="lili" onclick="shareToOther(1)"> <li class="item"><i class="iii"><img src="../../image/pyq.png"></i><p >分享到微信朋友圈</p><i class="next"></i>
+        <p>加500积分</p></li></div>
+    <div class="lili" onclick="shareToOther(2)"> <li class="item"><i class="iii"><img src="../../image/weixin.png"></i><p >分享给微信好友</p><i class="next"></i>
+        <p>加500积分</p></li></div>
+    <div class="lili" onclick="shareToOther(3)"><li class="item"> <i class="iii"><img src="../../image/Q_zone.png"></i><p >分享到QQ空间</p><i class="next"></i>
+        <p>加500积分</p></li></div>
+    <div class="lili" onclick="shareToOther(4)"><li class="item"> <i class="iii"><img src="../../image/qq.png"></i><p >分享给QQ好友</p><i class="next"></i>
+        <p>加500积分</p></li></div>
+    <div class="lili" onclick="shareToOther(5)"><li class="item"> <i class="iii"><img src="../../image/sinaweibo.png"></i><p >分享到新浪微博</p><i class="next"></i>
+        <p>加500积分</p></li></div>
+    <a  class="bottom" href="#" onclick="closeWin() ">取消</a>
+</div>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript">
+    var userInfo = null;
+    apiready = function () {
+        userInfo = api.pageParam.user;
+    }
+
+    //分享
+    function shareToOther(type){
+        shareMessageToOther(type,userInfo,function(ret){
+            if(isNotBlack(ret)&&ret.status){
+
+                if(type !=1){
+                    type =2;
+                }
+                ajaxGetWithProgress(userShareUrl,{type:type},function(ret){
+                    if(isNotBlack(ret)){
+                        api.execScript({
+                            frameName: 'userInfo_body',
+                            script: 'showTip()'
+                        });
+                        closeWin()
+                    }
+                });
+
+            }
+        })
+    }
+</script>
+
+</body>
+</html>

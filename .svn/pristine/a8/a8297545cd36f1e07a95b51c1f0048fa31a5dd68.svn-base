@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>身份证认证</title>
+
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link href="../../css/mui.picker.all.css" rel="stylesheet" />
+    <link href="../../css/mui.poppicker.css" rel="stylesheet" />
+    <link href="../../css/mui.min.css" rel="stylesheet" />
+    <style type="text/css">
+        html {
+            width: 100%;
+            height: 100%;
+        }
+        body {
+            background: #f1f2f3;
+            width: 100%;
+            min-height: 100%;
+        }
+        * {
+            /*去掉输入框的边框*/
+            outline: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .input{
+            border-bottom: solid 1px #eaeaea;
+            padding: 15px 20px 10px 0;color:#333 ;
+            font-size: 14px;;
+        }
+        .input input{
+            text-align: right;
+            float: right;
+            color: #9296a3;
+            width: 55%;
+			height: 20px;
+        }
+        .item{
+            background-color: #ffffff;
+            padding: 0 10px;
+            color:#333;
+        }
+        ul li{
+            list-style: none;
+            float: left;
+            width: 18%;
+            font-size: 14px;
+            margin-top: 5px;
+            color: #333;
+        }
+        ul{
+            margin-left: 10px;
+        }
+        #interest p{
+            margin: 5px 10px;
+        }
+        #interest{
+            padding-bottom: 10px;
+        }
+        #interest p span{
+            font-size: 14px;
+        }
+        #interest .select_num{
+            font-size: 16px;
+            color: #ff9900
+        }
+        .right_box{
+            float: right;
+            padding-top: 20px;
+        }
+        .right_box img{
+            vertical-align: middle;
+        }
+        #main>p{
+            padding: 0 0 0 10px; color: #75ca77;
+        }
+        input,textarea {
+            border:0!important;
+            margin:0!important;
+            padding:0!important;
+            font-size:1em!important;
+            line-height:1em!important;
+            /*-webkit-appearance:none;*/
+            background-color:rgba(0, 0, 0, 0)!important;
+        }
+        .input1{font-size: 14px;}
+        .select-icon{
+            margin-top: 10px;width: 20px ; margin-left: 5px;
+        }
+        #icon{max-width: 64px;max-width:64px; margin-top: 5px}
+        .start{}
+        .face{max-width: 64px;max-height: 64px;margin-top: 5px;}
+        .tijiao{text-align:center;line-height: 0.5rem;font-size: 0.17rem;}
+        .tijiao a{color: white;display: block;text-align: center;width: 50%;float: left;height: 3rem;font-size: 18px;line-height: 3rem;}
+    </style>
+    </head>
+<body id="body" style="display: none">
+<div style="width: 100%;height: 1px;background: #eaeaea;"></div>
+<div class="item" id="head">
+        <div class="input"><span>手机号</span><input id="phone" type="number" placeholder="" value=""></div>
+        <div class="input"><span>ID</span><input type="number" id="userId" value=""></div>
+        <div id="interest"><p >我的兴趣<span>(已选<span class="select_num" >6</span>/8)</span></p>
+            <ul id="interestList">
+                <li>健身</li>
+                <li>美食</li>
+                <li>健身</li>
+                <li>美食</li>
+                <li>健身</li>
+                <li>美食</li>
+                <li>健身</li>
+                <li>美食</li>
+            </ul>
+            <div style="clear: both;"></div>
+        </div>
+
+    </div>
+     <div style="width: 100%;height: 5px;background: #F1F2F3;"></div>
+<div class="item">
+    <div class="input" id="sexTab"><span>性别</span><input type="text" id="sex" placeholder="未填" style="margin-right: 50px;" readonly="readonly" ></div>
+    <div class="input"><span>昵称</span><input type="text" id="name" placeholder="未填" value=""></div>
+    <div class="input"><span>年龄</span><input type="number" id="age" placeholder="未填" value=""></div>
+    <div class="input" id="educational"><span>学历</span><input type="text" id="educationalResult" readonly="readonly" placeholder="未填" value=""></div>
+    <div class="input" id="profession"><span>职业</span><input type="text" id="professionResult" placeholder="未填" readonly="readonly" value=""></div>
+    <div class="input" id="income"><span>月收入</span><input type="text" id="incomeResult" placeholder="未填" readonly="readonly" value=""></div>
+    <div class="input" id="city"><span>籍贯</span><input type="text"  placeholder="未填"  id="cityResult" readonly="readonly"  value=""></div>
+    <div class="input" id="children"><span>有无8岁以下小孩</span><input id="childrenResult"  readonly="readonly" type="text" placeholder="未填" value=""></div>
+    <div class="input" id="car"><span>有无购车</span><input type="text" id="carResult" placeholder="未填" readonly="readonly" value=""></div>
+    <div class="input" id="house"><span>有无购房</span><input type="text" id="houseResult" placeholder="未填" readonly="readonly" value=""></div>
+</div>
+
+<div id='work_select' class="ui-alert"></div>
+<script type="text/javascript"  src="../../script/mui.min.js"></script>
+<script type="text/javascript"  src="../../script/mui.picker.all.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/city.data.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script id="scriptDiv" type="text/html">
+    <div class="input"><span>手机号</span><input id="phone" readonly type="text" placeholder="" value="<%= user.userPhone%>"></div>
+    <div class="input"><span>ID</span><input type="number" readonly id="userId" value="<%= user.id%>"></div>
+    <div id="interest"><p >我的兴趣<span>(已选<span class="select_num" ><%= user.selectNum%></span>/<%= user.interestNum %>)</span></p>
+        <ul >
+            <% var interList = user.interList %>
+            <% for(var i= 0;i< interList.length; i++){%>
+            <li><%=interList[i]%></li>
+            <%}%>
+        </ul>
+        <img width="20px"  style="float: right;margin-right: 10px;"  src="../../icon/icon_right_normal.png">
+        <div style="clear: both;;"></div>
+    </div>
+</script>
+<script type="text/javascript">
+    apiready = function () {
+        api.showProgress({title: '努力上传中...',text: '先喝杯茶...'});
+        //初始化值
+        //应该重新获取一下
+        var userInfo =  api.pageParam.user;
+        ajaxGetWithProgress(userInfoUrl,{uid:userInfo.id},function(ret){
+            if(isNotBlack(ret)&&isNotBlack(ret.id)){
+                userInfo = ret;
+                showValue(userInfo);
+            }else{
+                toast('网络不稳定')
+            }
+        });
+        document.getElementById('body').style.display="block";
+        api.hideProgress();
+    };
+
+    function showValue(userInfo){
+        var usP =userInfo.phone;
+        var userPhone =usP.substr(0,3)+"****"+usP.substr(7);
+        userInfo.userPhone= userPhone;
+        var convert = {2:"无",1:"有",0:""};
+        var convertSex = {1:"男",2:"女",0:""};
+        var interest = userInfo.interestNames.split(" ");
+        userInfo.interList = interest;
+        userInfo.selectNum = interest.length;
+        var data = {user: userInfo};
+        var html = template('scriptDiv', data);
+        document.getElementById('head').innerHTML = html;
+        if(isNotBlack(userInfo.name)){
+            document.getElementById("name").value = userInfo.name;
+        }
+        if(userInfo.sex != 0){
+            document.getElementById("sex").value =convertSex[userInfo.sex];
+        }
+
+        if(isNotBlack(userInfo.age)){
+            document.getElementById("age").value = userInfo.age;
+        }
+
+
+        document.getElementById('childrenResult').value = convert[userInfo.hasEightAgeChild];
+
+
+
+        if(isNotBlack(userInfo.nativePlace)){
+            document.getElementById('cityResult').value = userInfo.nativePlace;
+
+        }
+
+        if(isNotBlack(userInfo.profession)){
+            document.getElementById('professionResult').value = userInfo.profession;
+
+        }
+
+
+        if(userInfo.educationId != 0){
+            document.getElementById('educationalResult').value = userInfo.education;
+        }
+
+        document.getElementById('carResult').value = convert[userInfo.hasCar];
+
+        document.getElementById('houseResult').value = convert[userInfo.hasHouse];
+
+
+        if(isNotBlack(userInfo.income)){
+            document.getElementById('incomeResult').value = userInfo.income;
+        }
+
+        document.getElementById('body').style.display = 'block'
+        api.hideProgress();
+    }
+
+</script>
+</body>
+</html>

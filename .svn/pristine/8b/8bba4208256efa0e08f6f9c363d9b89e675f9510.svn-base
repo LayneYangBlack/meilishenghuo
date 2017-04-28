@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+    <style type="text/css">
+        html{
+            font-size: 20px;
+        }
+
+        #sht-h{
+            width: 94%;
+            background:#f1f2f3;
+            font-size: 0.65rem;
+            color:#999;
+            position: relative;
+            padding-left: 6%;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #ccc;
+            float: left;
+        }
+        #sht-h .h1,#sht-h .h2{
+            color:#ff9900;font-size: 0.8rem;
+        }
+        #con{
+            position: relative;
+            font-size: 0.7rem;
+        }
+        #sht-h .h1{
+            left:3.15rem;top: -0.75rem;
+        }
+        #sht-h .h2{
+            left: 1.1rem;top: -0.15rem;
+        }
+        #sht-con{
+            width: 100%;
+            padding-top: 0.5rem;
+        }
+        #sht-con .con{
+            margin-left: 5%;
+            font-size: 0.7rem;
+            position: relative;
+            padding:0.75rem 0.75rem 0.50rem 0;border-bottom: 1px solid #ccc;
+        }
+        #sht-con .con .con2{
+            color:#ff9900;top: 0.65rem;left: 20%;
+        }
+        #sht-con .con .con22{left: 25%}
+        #sht-con .con .con3{
+            position: absolute;top: 0.75rem;right: 10px;width: 20px;
+        }
+        #sht-con .con .con4{
+            float:right;color: #9296a3;font-size:0.7rem ;margin-right: 20px;
+        }
+        #sht-con .con .con4 input{
+            color: #9296a3;border: none;font-size:0.7rem ;
+        }
+        #sht-con .conn{
+            padding-bottom: 0rem;
+        }
+        #sht-con .con .con-t1{
+            margin-left: 5.00rem;font-size: 0.85rem;
+        }
+        #sht-con .con .con-t2{
+            font-weight: 300;
+            margin-top: 0.15rem;
+            margin-bottom: 0.05rem;
+            font-size: 0.5rem;color: #9296a3;margin-top: -2px;
+        }
+        #sht-con .conn1 .con2{
+            left:30%;
+        }
+        #sht-con .con .con4-t{
+            color:#9296a3;
+        }
+        #sht-con .foot .left{
+            float: left;
+            width: 50%;
+            height: 2.50rem;
+            text-align: center;
+            line-height: 2.50rem;
+            font-size: 18px;
+        }
+        #sht-con .foot .right{
+            float: left;
+            width: 50%;
+            height: 2.50rem;
+            text-align: center;
+            line-height: 2.50rem;
+            font-size: 18px;
+            background: #75ca77;
+            color: #fff;
+        }
+        .xintianjia{
+            width: 100%;margin-left:2%;
+        }
+        .awards_num{
+            background-color: #020202;
+
+        }
+        .rightInfo{
+            height: 1.55rem;
+            position: absolute;
+            top:0.3rem;
+            right: 0.25rem;
+            margin-right: 0.25rem;
+            font-size: 0.6rem;
+            line-height:1.55rem;
+            background-color: #020202;
+            color: #ffffff;
+            padding: 0 0.25rem;
+        }
+        .right_input{
+            text-align:right;margin-right:8%;border: none;height: 1rem;
+        }
+    </style>
+</head>
+
+<body  id="body">
+
+<div id="sht-h">
+    <span style="margin-left: 0.15rem">基本信息</span>
+    <span class="h1">*</span>
+    <span>（标</span>
+    <span class="h2">*</span>
+    <span>为必填项）</span>
+</div>
+<div id="sht-con">
+    <div class="con cona" style="margin-top: 40px;">
+        <div class="xintianjia">
+            <span>联系人姓名</span>
+            <span class="con2 con22">*</span>
+
+            <!--<span class="con4">-->
+            <input id="username" style="color:#9296a3;border:none;text-align:right;width: 60%;margin-right:8%;float: right;" type="text"/>
+            <!--</span>-->
+        </div>
+        <img class="con3" src="../../icon/icon_right_normal.png" alt="" />
+    </div>
+    <div class="con cona conn">
+        <div class="xintianjia">
+            <span>注册手机号</span>
+            <span class="con2 con22">*</span>
+            <!-- <span  class="con-t1"></span> -->
+            <span class="con4" id="phone">18600789687</span>
+            <div  class="con-t2">商家登录</div>
+        </div>
+    </div>
+    <div class="con">
+        <div class="xintianjia">
+            <sapn>所属行业</sapn>
+            <span class="con2">*</span>
+        <span class="con4" onclick="openBusiness()">
+        	<input  id="industry" class="right_input" value=""   type="text" placeholder="请选择"/>
+        </span>
+            <img class="con3" src="../../icon/icon_right_normal.png" alt="" />
+        </div>
+    </div>
+    <div class="con">
+        <div class="xintianjia">
+            <span>公司邮箱</span>
+            <span class="con2">*</span>
+	        <span class=con4>
+	        	<input id="mail" type="text"  class="right_input" placeholder="未填"/>
+	        </span>
+            <img class="con3" src="../../icon/icon_right_normal.png" alt="" />
+        </div>
+    </div>
+    <div class="con conn" onclick="openSelectMallPoint()">
+        <div class="xintianjia">
+            <span>公司地址</span>
+            <span class="con2">*</span>
+      	<span class="con4">
+      		<input id="address" type="text"  readonly class="right_input"placeholder="未填"/>
+      	</span>
+            <img class="con3" src="../../icon/icon_right_normal.png" alt="" />
+            <div class="con-t2">可在地图中标记</div>
+        </div>
+
+    </div>
+    <div class="con">
+        <div class="xintianjia">
+            <span>营业电话</span>
+         	<span class="con4">
+      		<input type="text" id="tel"  class="right_input" placeholder="未填"/>
+      	</span>
+            <img class="con3" src="../../icon/icon_right_normal.png" alt="" />
+        </div>
+    </div>
+    <div class="con">
+        <div class="xintianjia">
+            <span>公司网站</span>
+         	<span class="con4">
+      		<input type="text"  id="website"  class="right_input" placeholder="未填"/>
+      	</span>
+            <img class="con3" src="../../icon/icon_right_normal.png" alt="" />
+        </div>
+    </div>
+    <div class="con">
+        <div class="xintianjia" style="overflow: hidden;">
+            <span style="float: left;">公司微信公众号</span>
+            <input type="text"  id="weixin" style="color: #9296a3;border: none;width:50%;height: 1rem;color:#9296a3;text-align:right;margin-right:20px;float: right;" placeholder="未填"/>
+
+        </div>
+        <img class="con3" src="../../icon/icon_right_normal.png" alt="" />
+    </div>
+    <div class="con" style="border: none;padding-bottom: 15px;">
+        <div class="xintianjia">
+            <span>公司微博</span>
+        	 <span class="con4">
+      		<input type="text"  id="weibo"  class="right_input" placeholder="未填"/>
+      		 <img class="con3"src="../../icon/icon_right_normal.png" alt="" />
+      	</span>
+        </div>
+    </div>
+    <div style="margin-left: -15%;margin-top:-0.05rem;height: 1.3rem;width: 115%;background: #f2f3f5"></div>
+    <div class="con conn1" style="border: none;" onclick="openBusinessLicense()">
+        <div class="xintianjia">
+            <span>营业执照认证</span>
+            <span class="con2 con22">*</span>
+            <span id="businessLicense"  class="con4 con4-t" style="margin-right: 20px;">未认证</span>
+            <img class="con3" src="../../icon/icon_right_normal.png" alt="" />
+        </div>
+    </div>
+    <div style="margin-left: -15%;margin-top:-0.05rem;height: 1.3rem;width: 115%;background: #f2f3f5"></div>
+    <div class="con cona" style="border: none;" onclick="openLegalPerson()">
+        <div class="xintianjia">
+            <span>法人身份证</span>
+            <span class="con2 con22">*</span>
+            <span class="con4" id="legalPerson" style="margin-right: 20px;">未认证</span>
+            <img class="con3" src="../../icon/icon_right_normal.png" alt="" />
+        </div>
+    </div>
+    <div style="margin-left: -15%;margin-top:-0.05rem;height: 1.3rem;width: 115%;background: #f2f3f5"></div>
+    <div class="con cona" style="border: none;" onclick="openLicense()">
+        <div class="xintianjia">
+            <span>特许营业许可证</span>
+            <span class="con4" id="license" style="margin-right: 20px;">未认证</span>
+            <img class="con3" src="../../icon/icon_right_normal.png" alt="" />
+        </div>
+
+    </div>
+    <div style="margin-left: -15%;margin-top:-0.05rem;height: 1.3rem;width: 115%;background: #f2f3f5"></div>
+    <div class="foot">
+        <div class="left" onclick="closeWin()">取消</div>
+        <div class="right" onclick="commit()">提交审核</div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+
+<script>
+
+    var businessLicense = null;
+    var legalPerson = null;
+    var license = null;
+    var interestIds = null;
+
+    var shopInfo = null;
+    apiready = function(){
+        api.showProgress({title: '努力加载中...',text: '先喝杯茶...'});
+        var user = getUserInfo();
+        shopInfo = api.pageParam.shop;
+        if(isNotBlack(shopInfo)){
+            setShopInfo(shopInfo);
+        }else{
+            setShopInfo(user);
+        }
+        document.getElementById('body').style.display = 'block';
+        api.hideProgress();
+    };
+
+
+    function openSelectMallPoint(){
+        openNewWindow("selectMallPosition","./selectMallPosition.html");
+    }
+
+
+    function openBusiness(){
+        openNewWindow("industry","./industry.html");
+    }
+
+
+    function setShopInfo(data){
+        if(isNotBlack(data.name)){
+            document.getElementById("username").value=data.name;
+        }
+
+        if(isNotBlack(data.phone)){
+            document.getElementById("phone").innerHTML = data.phone;
+        }
+
+        if(isNotBlack(data.contactEmail)){
+            document.getElementById("mail").value = data.contactEmail;
+        }
+
+        if(isNotBlack(data.address)){
+            document.getElementById("address").value = data.address;
+            if(isNotBlack(data.coordinate)){
+                shopAddress = JSON.parse(data.coordinate);
+            }
+
+        }
+        if(isNotBlack(data.shopPhone)){
+            document.getElementById("tel").value=data.shopPhone;
+        }
+        if(isNotBlack(data.interestIds)){
+            document.getElementById("industry").value=data.interestNames;
+            interestIds = data.interestIds;
+        }
+
+        if(isNotBlack(data.website)){
+            document.getElementById("website").value=data.website;
+        }
+
+        if(isNotBlack(data.weixin)){
+            document.getElementById("weixin").value=data.weixin;
+        }
+
+        if(isNotBlack(data.weibo)){
+            document.getElementById("weibo").value = data.weibo ;
+        }
+
+        changeCheckStatus("legalPerson",data.attestLegalPersonIdCard);
+
+        if(data.attestLegalPersonIdCard > 0){
+            legalPerson = {};
+            legalPerson.legalPersonName = data.legalPersonName;
+            legalPerson.legalPersonIdCard = data.legalPersonIdCard;
+            legalPerson.legalPersonFrontIdCard = data.legalPersonFrontIdCard;
+            legalPerson.legalPersonBackIdCard = data.legalPersonBackIdCard;
+        }
+
+        changeCheckStatus("businessLicense",data.attestLicense);
+        if(data.attestLicense > 0){
+            businessLicense = {};
+            businessLicense.shopName = data.shopName;
+            businessLicense.chainStoreName = data.chainStoreName;
+            businessLicense.legalPersonFrontIdCard = data.license;
+            businessLicense.legalPersonBackIdCard = data.licenseCopy;
+        }
+        changeCheckStatus("license",data.attestSpecialLicense);
+
+        if(data.attestLicense > 0){
+            license = {};
+            license.specialLicenseName = data.specialLicenseName;
+            license.specialLicense = data.specialLicense;
+            license.specialLicenseCopy = data.specialLicenseCopy;
+        }
+
+    }
+
+    var shopAddress = null;
+    function showAddress(data){
+        shopAddress = data;
+        document.getElementById("address").value = data.address;
+
+    }
+
+
+    //显示审核状态
+    function changeCheckStatus (id,stutas){
+        var span = document.getElementById(id);
+
+        if(stutas == attest_ing ){
+            span.innerHTML = '审核中';
+            span.style.color="#ff9900";
+        }
+
+        if(stutas == attest_no ){
+            span.innerHTML = '未提交';
+            span.style.color= '#9296a3'
+        }
+
+        if(stutas == attest_access){
+            span.innerHTML = '审核通过';
+            span.style.color="#75ca77";
+        }
+
+        if(stutas == attest_no_access){
+            span.innerHTML = '审核未通过';
+            span.style.color="red";
+        }
+    }
+
+
+    function openLicense(){
+        openNewWindow('license','./license.html');
+    }
+    function openBusinessLicense(){
+        openNewWindow('businessLicense','./businessLicense.html');
+    }
+
+    function openLegalPerson(){
+        openNewWindow('legalPerson','./legalPerson.html');
+    }
+
+
+    function selectIndustry(data){
+        interestIds = data.ids;
+        var list = data.list;
+        var text = "";
+        for(var i = 0; i < list.length;i++){
+            if(list[i].parentId != 0){
+                text = text +list[i].name +" ";
+            }
+        }
+        document.getElementById("industry").value = text
+        ;
+    }
+
+    //会调改变参数
+    function changeStatus(data){
+        var type = data.type;
+        var span = document.getElementById(type);
+        span.innerHTML = '审核中';
+        span.style.color="#ff9900";
+        if(type == "businessLicense"){
+            businessLicense = data;
+            return;
+        }
+
+        if(type == "legalPerson"){
+            legalPerson = data;
+            return;
+        }
+
+        if(type == "licence"){
+            licence = data;
+            return;
+        }
+    }
+
+    var flag = true;
+    function commit(){
+
+        if(!flag){
+            return;
+        }
+        var user = getUserInfo();
+        var name = document.getElementById("username").value;
+        var mail = document.getElementById("mail").value;
+        var address = document.getElementById("address").value;
+        var tel = document.getElementById("tel").value;
+        var website = document.getElementById("website").value;
+        var weixin = document.getElementById("weixin").value;
+        var weibo = document.getElementById("weibo").value;
+
+        var parms = {};
+        //校验数据
+        if(isBlack(name)){
+            toast("姓名不能为空");
+            return;
+        }
+        parms.name=name;
+
+//        if(isBlack(phone)){
+//            toast("你还没有登陆");
+//            setTimeout(openNewWindow('login','../login/login.html'),1000);
+//            return;
+//        }
+
+        if(isBlack(interestIds)){
+            toast("请选择行业");
+            return
+        }
+
+        parms.interestIds=interestIds;
+
+        if(isBlack(mail)){
+            toast("公司邮箱不能为空");
+            return;
+        }
+        parms.contactEmail = mail;
+
+        if(isBlack(address)){
+            toast("公司地址不能为空");
+            return;
+        }
+
+        parms.address = address;
+        var longitude = shopAddress.lon || shopAddress.longitude;
+        var latitude = shopAddress.lat || shopAddress.latitude;
+        var coordinate = {longitude:longitude,latitude:latitude};
+        parms.coordinate = JSON.stringify(coordinate);
+
+        if(isBlack(businessLicense)){
+            toast("经营许可证未提交");
+            return;
+        }
+        for(var key in businessLicense){
+
+            parms[key] = businessLicense[key];
+        }
+        if(isBlack(legalPerson)){
+            toast("法人身份认证未提交");
+            return;
+        }
+        for(var key in legalPerson){
+            parms[key] = legalPerson[key];
+        }
+
+        if(isNotBlack(license)){
+            for(var key in license){
+                parms[key] = license[key];
+            }
+        }
+
+        if(isNotBlack(tel)){
+            parms.phone = tel;
+        }
+
+        if(isNotBlack(website)){
+            parms.website = website;
+        }
+        if(isNotBlack(weixin)){
+            parms.weixin = weixin;
+        }
+        if(isNotBlack(weibo)){
+            parms.weibo = weibo;
+        }
+
+        alert(JSON.stringify(parms));
+        flag = false;
+        ajaxGetWithProgress(shopSubmitCheckInfoUrl,parms,function(ret,err){
+            if(ret){
+                toast("提交成功！");
+                setTimeout(closeWin(),600);
+            }else{
+                toast("当前网络不稳定");
+            }
+        })
+    }
+
+</script>
+</body>
+</html>

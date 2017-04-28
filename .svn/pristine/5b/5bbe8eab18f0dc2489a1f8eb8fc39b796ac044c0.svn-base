@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>地区份额分配</title>
+    <link type="text/css" href="../../css/api.css">
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        .header {
+            width: 100%;
+            height: 5rem;
+            background-color: #999999;
+            line-height: 5rem;
+        }
+
+        .header_font {
+            color: #FFFFFF;
+            font-size: 1rem;
+            margin-right: 1rem;
+            margin-left: 1rem;
+        }
+
+        big {
+            font-size: 2rem;
+        }
+
+        .select_way {
+            width: 100%;
+            height: 4rem;
+            line-height: 4rem;
+            background-color: #FFFFFF;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .seleced {
+            color: #75CA77;
+        }
+
+        .button {
+            border: none;
+            margin-left:5%;
+            height: 1.5rem;
+            font-size: 1rem;
+            background-color: #FFFFFF;
+        }
+
+        .main_checkBox {
+            width: 100%;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            background-color: #FFFFFF;
+            text-align: center;
+        }
+
+        .seleced_option {
+            display: inline-block;
+            width: 6rem;
+            height: 3rem;
+            background-color: #eaeaea;
+            margin-left: 3px;
+            margin-right: 3px;
+            /*float: left;*/
+        }
+
+        .province {
+            display: block;
+            float: left;
+            width: 4rem;
+            height: 2.5rem;
+            padding-top: 0.5rem;
+            text-align: center;
+            background-color: #9A9A9A;
+        }
+
+        .province_selected {
+            color: #FFFFFF;
+            background-color: #ff9900;
+        }
+
+        .add_subtract {
+            display: block;
+            text-align: center;
+            color: #FFFFFF;
+            font-size: 0.8rem;
+            float: right;
+            width: 2rem;
+            height: 3rem;
+            line-height: 3rem;
+        }
+
+        .subtract_add {
+            background-color: #75CA77;
+        }
+
+        .num_add {
+            width: 40%;
+            height: 1.8rem;
+            border: 1px #eaeaea solid;
+            border-radius: 25px;
+            margin-left: 5%;
+            line-height: 1.8rem;
+            float: left;
+        }
+
+        .subtract {
+            display: block;
+            width: 1.8rem;
+            height: 1.8rem;
+            font-size: 1.2rem;
+            color: #000000;
+            font-weight: bolder;
+
+            float: left;
+        }
+
+        .add {
+            display: block;
+            width: 2rem;
+            height: 2rem;
+            font-size: 1.2rem;
+            color: #000000;
+            font-weight: bolder;
+            margin-left: 2rem;
+            float: right;
+
+        }
+
+        .number {
+            display: block;;
+            width: 2rem;
+            float: left;
+            color: #75CA77;
+            font-size: 1.2rem;
+            margin-left: 1rem;
+
+        }
+
+        .save {
+            font-size: 1.2rem;
+            width: 25%;
+            height: 1.8rem;
+            line-height: 1.8rem;
+            margin-left: 10%;
+            color: #75CA77;
+            border: 1px #eaeaea solid;
+            border-radius: 25px;
+            background-color: #FFFFFF;
+            float:left;
+            margin-right: 5%;
+        }
+
+        .area {
+            display: none;
+            width: 100%;
+            background-color: #FFFFFF;
+            margin: 0 auto;
+            list-style: none;
+            text-align: center;
+
+        }
+
+        .area_list {
+            width: 90%;
+            text-align: center;
+            padding: 0;
+            margin: 0 5% 0 5%;;
+            overflow: hidden;
+            padding-top: 1rem;
+        }
+
+        .area_list li {
+            display: block;
+            text-align:center;
+            width: 25%;
+            height: 2rem;
+            float: left;
+            font-size:0.8rem;;
+        }
+
+        .yellow {
+            text-align: center;
+            color: #FF9900;
+
+
+        }
+        .area_list li small{display: block;  width: 60%;float: left;text-align: left;vertical-align: middle;
+            margin: 0.6rem 0 0.4rem 0;   }
+
+        .area_list li span{display: block;overflow: hidden;height: 1rem;width: 40%;
+            margin: 0.5rem 0 0.5rem 0;        float:left;text-align: right;}
+
+        .button_cancel {
+            width: 50%;
+            background-color: #FFFFFF;
+            display: block;
+            text-align: center;
+            border: none;
+            height: 50px;
+            float: left;
+            bottom: 0;
+            position: fixed;
+            font-size: 18px;
+        }
+
+        .button_firm {
+        	 font-size: 18px;
+            width: 50%;
+            background-color: #80CD82;
+            display: block;
+            text-align: center;
+            border: none;
+            height: 50px;
+            position: fixed;
+            left: 50%;
+            bottom: 0;
+            color: #FFFFFF;
+        }
+
+        @media (min-width: 320px ) {
+            .seleced_option {
+                width: 5rem;
+                height: 2.5rem;
+                font-size: 0.8rem;
+                margin:  0 auto;
+
+            }
+            .divide{width: 33.3%; text-align: center;  height: 2.5rem;float: left;margin-bottom: 1rem;}
+
+            .province {
+                width: 3rem;
+                height: 2rem;
+
+            }
+            .province span{
+                display: block;
+                margin-top: -0.2rem;
+
+                overflow: hidden;;
+                width: 100%;height: 0.9rem;;
+            }
+            .province small{
+                display: block;
+                margin-top: -1rem;;
+            }
+            .seleced_option span:nth-child(2){
+                font-size: 1.5rem;;
+                line-height: 2.5rem;
+                color: #fff;
+            }
+            .add_subtract {
+                height: 2.5rem;
+            }
+            .number,.add{
+                margin: 0;
+            }
+        }
+        .add_box{
+            padding-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <span class="header_font">共计<big id="total">26589</big>份</span>
+    <span class="header_font">未分配<big id="remain">0</big>份</span>
+</div>
+<div class="select_way">
+    <button class="button seleced" tapmode="itemOn" onclick="selectedAll()">全选</button>
+    <button class="button " tapmode="itemOn" onclick="selectNoSelected()">反选</button>
+</div>
+<div class="select_way">
+    <button class="button"tapmode="itemOn" onclick="averageDistribute()">自动平均分配</button>
+</div>
+<div id="main">
+    <!--<div class="main_checkBox">-->
+        <!--<div class="divide">-->
+            <!--<div class="seleced_option" id="Add_1">-->
+                <!--<span class="province province_selected" data-area="1"><span>江苏</span><br/><small>200</small></span><span class="openSpan add_subtract" onclick="">+</span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="divide">-->
+            <!--<div class="seleced_option">-->
+                <!--<span class="province province_selected"  data-area="1"><span>江苏</span><br/><small>200</small></span><span class="openSpan add_subtract" onclick="">+</span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="divide">-->
+            <!--<div class="seleced_option">-->
+                <!--<span class="province province_selected"  data-area="1"><span>江苏</span><br/><small>200</small></span><span class="openSpan add_subtract" onclick="">+</span>-->
+            <!--</div>-->
+        <!--</div>-->
+
+    <!--</div>-->
+
+
+    <!--<div class="area">-->
+        <!--<div class="add_box clearfix">-->
+            <!--<div class="num_add">-->
+                <!--<span class="subtract" onclick="subBean(this)">－</span>-->
+                <!--<span class="number"  style=" margin-left: 1.5rem;">100</span>-->
+                <!--<span class="add" onclick="addBean(this)">＋</span>-->
+            <!--</div>-->
+            <!--<button class="save" onclick="append()">保存</button>-->
+        <!--</div>-->
+
+        <!--<ul class="area_list">-->
+            <!--<li class="yellow" data-city="<%=list[i].id%>"><span>黑龙江</span>-->
+                <!--<small>100</small>-->
+            <!--</li>-->
+            <!--<li class="yellow" data-city="<%=list[i].id%>"><span>哈尔滨</span>-->
+                <!--<small>100</small>-->
+            <!--</li>-->
+            <!--<li class="yellow" data-city="<%=list[i].id%>"><span>哈尔滨</span>-->
+                <!--<small>100</small>-->
+            <!--</li>-->
+            <!--<li class="yellow" data-city="<%=list[i].id%>"><span>哈尔滨</span>-->
+                <!--<small>100</small>-->
+            <!--</li>-->
+
+
+
+        <!--</ul>-->
+    <!--</div>-->
+
+
+</div>
+
+<div id="append"></div>
+
+<button class="button_cancel" value="取消" onclick="closeWin()">取消</button>
+<button class="button_firm"  onclick="commit()" value="确定">确定</button>
+<script type="text/javascript" src="../../script/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+
+<script id="scriptDiv" type="text/html">
+    <%for(var i=0;i< list.length;i++){%>
+    <%if( i % 3 == 0){%>
+    <div class="main_checkBox">
+    <%}%>
+        <div class="divide">
+            <div class="seleced_option" >
+                <span class="province province_selected" data-area="<%=list[i].id%>"><span><%=list[i].name%></span><br/><small>0</small></span><span class="openSpan add_subtract" data-area="<%=list[i].id%>">+</span>
+            </div>
+        </div>
+        <%if(i % 3 == 2 || i == list.length -1){%>
+    </div>
+
+    <div class="area">
+        <div class="add_box clearfix">
+            <div class="num_add">
+                <span class="subtract" onclick="subBean(this)">—</span>
+                <span class="number" style="margin-left: 1.5rem">0</span>
+                <span class="add" onclick="addBean(this)">+</span>
+            </div>
+        </div>
+
+        <ul class="area_list">
+
+        </ul>
+    </div>
+
+    <%}%>
+
+    <%}%>
+    <div style="height:3rem;float: left;width: 100%;"></div>
+</script>
+
+<script id="scriptDiv1" type="text/html">
+    <%for(var i = 0;i < list.length; i++){ %>
+
+        <li class="yellow" data-city="<%=list[i].id%>"><span><%=list[i].name%></span>
+            <small></small>
+        </li>
+
+    <%}%>
+</script>
+<script type="text/javascript">
+
+    var budget = null ;
+    var areaList = null;
+    var areaChildrenList = null;
+    var params = null;
+    var areaMap = null;
+    var childrenMap = null;
+    var areaParentList =null;
+    apiready = function(){
+        api.showProgress({title: '努力加载中...',text: '先喝杯茶...'});
+        budget = api.pageParam.budget;
+        document.getElementById("total").innerHTML = budget.totalNum;
+        document.getElementById("remain").innerHTML =  budget.totalNum;
+
+        ajaxGetWithProgress(areaLoadUrl,{}, function (ret,err) {
+            if(ret) {
+                areaList = new Array();
+                areaChildrenList ={};
+                childrenMap = {};
+                areaParentList ={};
+                for (var i = 0; i < ret.length; i++) {
+                    areaList.push(ret[i].parent);
+                    areaParentList[ret[i].parent.id] = ret[i].parent;
+                    areaChildrenList[ret[i].parent.id] = ret[i].subs;
+                    var children = ret[i].subs;
+                    for(var index = 0; index < children.length; index++){
+                        childrenMap[children[index].id] = children[index];
+                    }
+                }
+                var data = {list: areaList};
+                var html = template('scriptDiv', data);
+                $("#remain").html(0);
+                document.getElementById('main').innerHTML = html;
+                addCityEvent();
+                OpenCityListEvent();
+                addEvent();
+                averageDistribute();
+                getParams();
+            }
+        });
+        api.hideProgress();
+    };
+
+    //js动态加载数据
+    //获取总共数量
+
+    var provinceList = document.getElementsByClassName("province");
+    var area = document.getElementsByClassName("area");
+
+    //全选
+    function selectedAll() {
+        provinceList = provinceList || [];
+        for (var i = 0; i < provinceList.length; i++) {
+            provinceList[i].className = "province province_selected";
+        }
+        averageDistribute();
+    }
+
+    //反选
+    function selectNoSelected() {
+        provinceList = provinceList || [];
+        for (var i = 0; i < provinceList.length; i++) {
+            if (provinceList[i].className.indexOf("province_selected") == -1) {
+                provinceList[i].className += " province_selected";
+            } else {
+                provinceList[i].className = "province";
+            }
+        }
+        averageDistribute();
+    }
+
+    //增加金豆
+    function addBean(self){
+        //todo 判断是否还有金豆
+        var beanNum = parseInt($("#remain").html());
+        if(beanNum > 0){
+            var num = $(self).prev().html();
+            num++;
+            $("#remain").html(beanNum-1);
+            $(self).prev().html(num);
+            var area = $(self).parents(".area").prev(".main_checkBox").find(".subtract_add").parents(".seleced_option").find("small");
+            area.html(num);
+            var ul = $(self).parents(".area").find("ul");
+
+            averageCity(ul,num);
+            updateParams(ul);
+        }
+
+    }
+
+
+    function showDialog(){
+        var dialogBox = api.require('dialogBox');
+        dialogBox.alert ({
+            texts: {
+                title: '提示',
+                content:'你有没分配的金豆',
+                rightBtnTitle: '确定'
+            },
+            styles:{
+                bg: '#fff',
+                w: 300,
+                title:{
+                    marginT : 20,
+                    titleSize : 18,
+                    titleColor : '#76CA78'
+                },
+                content:{
+                    color: '#000',
+                    size: 16
+                },
+                right:{
+                    w: 300,
+                    h: 40,
+                    marginL: 0,
+                    marginB: 0,
+                    corner: 0,
+                    bg: '#76CA78',
+                    size: 16,
+                    color:'#ffffff'
+                }
+            }
+        },function(ret){
+            if (ret.eventType == 'right') {
+                var dialogBox = api.require('dialogBox');
+                dialogBox.close ({
+                    dialogName: 'alert'
+                });
+
+            }
+        });
+    }
+
+    function getParams(){
+        //获取所有选中的省份列表
+        //分配金豆给城市；
+        //组装数据；
+        areaMap = {};
+        var span = $(".province_selected");
+        for(var i = 0; i < span.length; i++ ){
+            var parentId = parseInt($(span[i]).attr("data-area"));
+            //获取分配的金豆；
+            var bean = parseInt($(span[i]).parent().find("small").text());
+            var subs = areaChildrenList[parentId];
+            var mod = bean%subs.length;
+            var avgBeanNum = parseInt(bean/subs.length);
+
+            for(var j = 0; j < subs.length;j++){
+                subs[j].beanNum = avgBeanNum;
+                if(mod!=0){
+                    subs[j].beanNum = avgBeanNum+1;
+                    mod--;
+                }
+                if(subs[j].beanNum != 0){
+                    areaMap[subs[j].id] = subs[j];
+                }
+
+            }
+        }
+
+
+    }
+
+    //更新城市
+    function updateParams(ul){
+        var selectLi  = $(ul).find('li');
+        for(var i = 0; i < selectLi.length;i++){
+            var cid = parseInt($(selectLi[i]).attr("data-city"));
+            var beanNum = parseInt($(selectLi[i]).find("small").html());
+            if($(selectLi[i]).hasClass('yellow') && beanNum != 0){
+                if(isBlack(areaMap[cid])){
+                    areaMap[cid] = childrenMap[cid];
+                }
+                areaMap[cid].beanNum = beanNum;
+            }else if(isNotBlack(areaMap[cid])){
+
+                delete areaMap[cid];
+            }
+        }
+    }
+
+
+
+    //减少金豆
+    function subBean(self){
+        //todo 判断是否还有金豆
+        var beanNum = $("#remain").html();
+
+            var num = $(self).next().html();
+            if (num > 0) {
+                num--;
+                $("#remain").html(parseInt(beanNum)+1);
+
+            } else {
+                return;
+            }
+
+            $(self).next().html(num);
+            var ul = $(self).parents(".area").find("ul");
+            var area = $(self).parents(".area").prev(".main_checkBox").find(".subtract_add").parents(".seleced_option").find("small");
+            area.html(num);
+            averageCity(ul, num);
+            updateParams(ul);
+
+
+    }
+    //添加选中事件；
+    function addEvent(){
+        $(".province").click(function(){
+            $(this).toggleClass("province_selected");
+            averageDistribute();
+            getParams();
+        });
+    }
+
+
+
+
+    //给展开添加一个点击事件
+   function OpenCityListEvent(){
+        $(".seleced_option").on('click','.openSpan',function () {
+            if($(this).parent().find(".province").hasClass("province_selected")){
+                var ul = $(this).parents(".main_checkBox").next().find(".area_list");
+                var span = $(this).parents(".main_checkBox").find(".openSpan");
+
+                if($(this).hasClass("subtract_add")){
+                    $(this).html("+");
+                    $(this).removeClass("subtract_add");
+                    $(this).parents(".main_checkBox").next().hide();
+                    return;
+                }else{
+                    span.attr("class","openSpan add_subtract");
+                    $(this).html("-");
+                    $(this).addClass("subtract_add");
+                    $(this).parents('.main_checkBox').next().show();
+                }
+                var parentId = parseInt($(this).attr("data-area"));
+                var data = {list: areaChildrenList[parentId]};
+                var html = template('scriptDiv1', data);
+                ul.html(html);
+                var beanNum = $(this).parent().find(".province small").html();
+                $(this).parents('.main_checkBox').next().find(".number").html(beanNum);
+                //平均分配
+                averageCity(ul,beanNum);
+                updateParams(ul);
+
+            }
+
+        });
+    }
+
+
+    //初始化没有选中的省份给初始化值0
+    function setNoSelectProvinceToInit(){
+        var provinceAll = $('.province');
+        for(var i = 0;i<provinceAll.length;i++){
+            if(!$(provinceAll[i]).hasClass('province_selected')){
+                $(provinceAll[i]).find("small").html(0);
+            }
+        }
+    }
+
+
+    function checkIsSelect(){
+        var provinceAll = $('.province');
+        var flag = false;
+        for(var i = 0;i<provinceAll.length;i++){
+            if($(provinceAll[i]).hasClass('province_selected')){
+                flag =true;
+                break;
+            }
+        }
+
+        if(!flag){
+            $("#remain").html(budget.totalNum);
+        }else{
+            $("#remain").html(0);
+        }
+    }
+
+    //初始化没有选中的城市给初始化值0
+    function setNoSelectCityToInit(ul){
+        var liAll = $(ul).find("li");
+        for(var i = 0; i < liAll.length; i++){
+            if(!$(liAll[i]).hasClass('yellow')){
+                $(liAll[i]).find("small").html(0);
+            }
+        }
+    }
+
+    //平均分配
+    function averageDistribute(){
+        var selected  = $(".province_selected");
+        setNoSelectProvinceToInit();
+        var provinceNum =  selected.length;
+        //数量
+        var num = selected.find("small");
+        var beanNum = $("#total").html();
+        var selectNum =parseInt(beanNum/provinceNum);
+        num.html(selectNum);
+        var mod = beanNum%provinceNum;
+        if(mod != 0){
+            for(var i = 0;i < selected.length; i++){
+                if(mod>0){
+                    $(selected[i]).find("small").html(selectNum+1);
+                    mod--;
+                }
+
+            }
+        }
+
+        checkIsSelect();
+        getParams();
+    }
+
+
+
+    function averageCity(ulNode,beanNum){
+        var li = $(ulNode).find("li[class='yellow']");
+        setNoSelectCityToInit(ulNode);
+        var selectNum = li.length;
+        var average = parseInt(beanNum/selectNum);
+        li.find("small").html(average);
+        var mod = beanNum%selectNum;
+        if(mod != 0){
+           for(var i = 0;i < li.length; i++){
+               if(mod>0){
+                   $(li[i]).find("small").html(average+1);
+                   mod--;
+               }
+
+           }
+        }
+    }
+
+
+    function addCityEvent(){
+        $(".area_list").on("click","li",function(){
+            $(this).toggleClass("yellow");
+            var ul = $(this).parent();
+            var number = $(this).parent().parent().find(".number").html();
+            averageCity(ul,number);
+            updateParams(ul);
+        });
+    }
+
+
+    function commit(){
+        //异步调用
+        var remain = document.getElementById("remain").innerHTML;
+        if(remain>0){
+            showDialog();
+            return;
+        }
+        var commitParams = {};
+        commitParams.areaMap = areaMap;
+        var parentList = {};
+        var selected = $("#main .province_selected");
+        for(var i= 0; i<selected.length;i++){
+            var province = areaParentList[parseInt($(selected[i]).attr("data-area"))];
+            province.beanNum = $(selected[i]).find("small").html();
+            parentList[province.id] = province;
+        }
+        commitParams.parent = parentList;
+        api.execScript({
+            name:'publishSelectCondition',
+            frameName: 'publishSelectCondition_body',
+            script: 'showAreaList('+JSON.stringify(commitParams)+')'
+        });
+        closeWin()
+    }
+
+
+</script>
+</body>
+</html>

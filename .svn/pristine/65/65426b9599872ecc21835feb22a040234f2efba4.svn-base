@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>HTML</title>
+    <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background: #EBEBEB;
+            width: 100%; /*height: 100%;*/
+            min-height: 100%;
+        }
+
+
+        .item {
+            margin: 5px 0px ;
+            /*border-bottom: 1px solid #EDEDED;*/
+            /*min-height: 85px;*/
+            height: auto;
+            background: #FFF;
+            padding: 15px 10px;
+
+        }
+
+        .item:first-child {
+            margin: 5px 0px ;
+            /*border-bottom: 1px solid #EDEDED;*/
+            /*min-height: 85px;*/
+            height: auto;
+            background: #FFF;
+            padding: 5px 10px;
+
+        }
+
+        .itemOn {
+            background: #EBEBEB;
+        }
+
+        .title{
+            font-size: 1em;
+            overflow : hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            font-weight: 500;
+            color: #75CA77;
+        }
+
+
+        .info_2{
+            height: 30px;
+            line-height: 30px;
+            float: right;
+            width: 45%;
+            color: #FA8200;
+            font-size: 1em;
+            text-align: right;
+
+        }
+
+
+
+        .time{
+            color: #9296a3;
+            font-size: 12px;
+            line-height: 30px;
+            height: 30px;
+            width: 45%;
+            float: left;
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+
+<div id="mainDiv">
+
+    <div id="main">
+        <!--<div class="item" tapmode="itemOn" onclick="openTicketInfo(1);">-->
+            <!--<div class="title">-->
+                <!--星巴克水电费家里的事解放路会计分录圣诞节发牢骚的几率-->
+            <!--</div>-->
+            <!--<div>-->
+                <!--<div class="time">2016-01-12</div>-->
+            <!--</div>-->
+
+            <!--<div style="clear: both"></div>-->
+        <!--</div>-->
+        <!--<div class="item" tapmode="itemOn" onclick="openTicketInfo(1);">-->
+            <!--<div class="title" style="color: #FA8200">-->
+                <!--星巴克水电费家里的事解放路会计分录圣诞节发牢骚的几率-->
+            <!--</div>-->
+            <!--<div>-->
+                <!--<div class="time">2016-01-12</div>-->
+            <!--</div>-->
+
+            <!--<div style="clear: both"></div>-->
+        <!--</div>-->
+
+
+        <!--<div class="item" tapmode="itemOn" onclick="openTicketInfo(1);">-->
+            <!--<div class="title" style="color: red">-->
+                <!--星巴克水电费家里的事解放路会计分录圣诞节发牢骚的几率-->
+                <!--<p style="color:#9296a3;font-size: 12px; ">原因：身份证已绑定182*****777</p>-->
+            <!--</div>-->
+            <!--<div >-->
+                <!--<div class="time">2016-01-12</div>-->
+            <!--</div>-->
+
+            <!--<div style="clear: both"></div>-->
+        <!--</div>-->
+
+    </div>
+
+
+</div>
+
+
+
+</body>
+
+
+
+<script id="scriptDiv" type="text/html">
+    <% for (var i = 0; i < list.length; i ++) { %>
+        <div class="item" tapmode="itemOn">
+            <div class="title" style="color: #FA8200">
+                <%=list[i].content%>
+            </div>
+            <div>
+                <div class="time"><%=list[i].time%></div>
+            </div>
+
+            <div style="clear: both"></div>
+        </div>
+    <% } %>
+</script>
+
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script>
+
+    var uid;
+    var allResult={};
+    var dialogBox;
+    apiready = function () {
+        var user = api.pageParam.user;
+        new datalistModel(addDataToHtml,userExpendGoldBeanPagerUrl,{uid:user.uid},10,5,100,true);
+    };
+
+    function addDataToHtml(results, append) {
+        if (results && results.length > 0) {
+            for(var i=0;i<results.length;i++){
+                allResult[results[i].id]=results[i];
+                results[i].time =formatTimeToDay(results[i].time);
+            }
+            var data = {list: results};
+            var html = template('scriptDiv', data);
+            if (append) {
+                var div = document.createElement("div");
+                div.innerHTML = html;
+                document.getElementById('main').appendChild(div);
+            } else {
+                document.getElementById('main').innerHTML = html;
+            }
+        }else if(results.length==0){
+            document.getElementById('main').innerHTML = '';
+        }
+
+    }
+
+</script>
+
+</html>

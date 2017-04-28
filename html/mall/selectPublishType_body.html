@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选择发布类型</title>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="../../css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body id="body" >
+
+<div style="width: 100%;margin-top: 0.6rem;">
+    <a href="javascript:openPublishBean()" style="display: block;width: 60%;margin:0 auto;height:1.05rem;background: #75CA77;font-size: 0.3rem;line-height: 1.05rem;
+            text-align: center;color: white; ">发布优惠券</a><p style="margin-left: 20%;font-size: 0.12rem;margin-top: 8px;color: #ADADAD;">金豆项目</p>
+</div>
+<div style="width: 100%;margin-top: 0.6rem;">
+    <a href="javascript:openPublishScore()" style="display: block;width: 60%;margin:0 auto;height:1.05rem;background: #FF9900;font-size: 0.3rem;line-height: 1.05rem;
+            text-align: center;color: white;">发布展位内容</a><p style="margin-left: 20%;font-size: 0.12rem;margin-top: 8px;color: #ADADAD;">积分项目</p>
+</div>
+
+</body>
+
+<script type="text/javascript"  src="../../script/mui.min.js"></script>
+<script type="text/javascript"  src="../../script/mui.picker.all.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        document.getElementById("body").style.display = 'block';
+    }
+    function openPublishBean(){
+        openNewWindow('publishBudget','./publishBudget.html',api.pageParam);
+    }
+
+    function openPublishScore(){
+        openNewWindow('publishScore','./publishScore.html');
+    }
+
+</script>
+</html>

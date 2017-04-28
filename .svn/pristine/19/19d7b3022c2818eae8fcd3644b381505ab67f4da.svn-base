@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>发布优惠活动</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            background: #ebebeb;
+            margin: 0;padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        #question{
+            position: fixed;
+            height: 50px;
+            text-align: center;
+            background-color: #ccc;
+            margin: 10px 0 0 0;
+            line-height: 50px;
+            font-size: 18px;
+            width: 100%;
+            color: #fff;
+            bottom: 0;
+        }
+        .item{
+            background-color: #ffffff;
+            padding: 0 10px;
+        }
+        .input{
+            /*height: 2.5rem;*/
+            border-bottom: solid 1px #eaeaea;
+            padding: 17px 10px 2px 5px;
+
+        }
+
+        .input li{
+            text-align: center;
+            float: left;
+            margin: 0 auto;
+			
+        }
+        .peple_number{
+            color: #FF9933;
+            font-size: 1rem;
+            float: right;
+        }
+        .item{
+            background-color: #ffffff;
+            padding: 0 10px;
+        }
+        .item_margin{
+            margin-top: 1rem;
+        }
+        ul li{
+            list-style: none;
+            font-size: 14px;
+        }
+
+        ul{
+            margin-left: -1rem;
+        }
+        #interest p{
+            margin: 5px 10px;
+
+        }
+        #interest{
+            padding-bottom: 10px;
+        }
+        #interest p span{
+            font-size: 14px;
+        }
+        #interest .select_num{
+            font-size: 16px;
+            color: #F7A449;
+        }
+        .right_box{
+            float: right;
+            padding-top: 5px;
+        }
+        .right_box img{
+            vertical-align: middle;
+        }
+        #main>p{
+            padding: 10px 0 5px 10px;
+        }
+        .right_span{
+            max-width: 60%;
+            float: right;
+            color: #9F9F9F;
+            padding-right: 1rem;
+        }
+        .icon{
+            width:20px;
+        }
+        .header_title{
+            font-size: 9px;
+            color:#9296a3;
+            margin-top: 2px;
+        }
+        .hr{
+            width:3rem;float:right;
+        }
+        .fgx{
+            width: 2.3rem;
+        }
+
+        /*小屏幕*/
+        @media(min-width:320px){
+            .fgx{
+                width:1rem
+            }
+
+        }
+
+        /*中屏幕*/
+        @media(min-width:400px){
+            .fgx{
+                width: 2.5rem;
+            }
+        }
+        /*大屏幕*/
+        @media only screen and (min-width:411px ) {
+            .fgx{
+                width:2rem;
+            }
+        }
+        .title_color{
+            color:#80CD82;
+        }
+        .icon_right{
+            width:1.2rem;
+            float:right;
+        }
+        .title_left{
+            float: left;
+        }
+        .title_right{
+            display: block;
+            float: right;
+            width: 61%;
+        }
+        .main_title{
+            height: 2.8rem;
+            line-height: 2.8rem;
+            color: #9F9F9F;
+            text-align:right;
+            padding-left: 0.8rem;
+            padding-right: 1.5rem;
+            font-size: 14px;
+        }
+        .result_left{
+            float: left;
+        }
+        #p_up_box1{
+            display: none;
+            width: 80%;
+            height: 10rem;
+            background-color: #FFFFFF;
+            border: none;
+            position: absolute;
+            top: 10%;
+            left: 10%;
+        }
+        #p_up_box2{
+            display: none;
+            width: 80%;
+            height: 10rem;
+            background-color: #FFFFFF;
+            border: none;
+            position: absolute;
+            top: 10%;
+            left: 10%;
+        }
+        .pop-up_title{
+            color:#80CD82;
+            font-size: 1.2rem;
+            display: block;
+            height:3rem;
+            line-height: 3rem;
+            text-align: center;
+        }
+        .pop-up_input{
+            border: none;
+            border-bottom: 1px solid #eaeaea;
+            height: 1.5rem;
+            font-size: 1.5rem;
+            width: 5rem;
+            color: #F7A449;
+            text-align: right;
+        }
+        .button_cancel{
+            width: 50%;
+            display: block;
+            text-align: center;
+            border: none;
+			background: #ebebeb;
+            height: 40px;
+            float: left;
+            position: absolute;
+            bottom: 0;
+        }
+        .button_firm{
+            width: 50%;
+            background-color: #80CD82;
+            display: block;
+            text-align: center;
+            border: none;
+            height: 40px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            color: #ffffff;
+        }
+        /*        遮罩层*/
+        #bg_1,#bg_2{
+            display: none;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: 1001;
+            -moz-opacity: 0.7;
+            opacity: .70;
+            filter: alpha(opacity=70);
+        }
+        #show_1,#show_2 {
+            display: none;
+            position: absolute;
+            top: 50px;
+            width: 100%;
+            height: 200px;
+            /*background-color: white;*/
+            z-index: 1002;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <div >
+        <img  style="width: 100%;" src="../../icon/progress.png"/>
+
+    </div>
+    <div class="item item_margin">
+        <div class="input" onclick="box1_Show()">
+            <span><span>预算</span></span><span class="peple_number" ><span id="money" ></span>元<img class="icon"  src="../../icon/icon_right_normal.png" style="float:right;"></span>
+            <div class="header_title">金额为5的倍数，最低200元</div>
+
+            
+        </div>
+
+        <div class="input" style="border: none;" onclick="box2_Show()">
+            <span><span>单份金豆数</span></span><span class="peple_number"><span id="beanNum" ></span>金豆/份<img class="icon"  src="../../icon/icon_right_normal.png" style="float:right;"></span>
+        	<div class="header_title">请输入5的倍数，最低20金豆/份</div>
+        </div>
+   			
+    </div>
+    <div id="tip">
+        <div class="main_title" style="margin-top: 15px;"><span class="result_left">银牌商家兑换比例</span><span  class="result"></span><small>(元:金豆)</small></div>
+        <div class="main_title"><span class="result_left">共获得</span><span class="result"></span><small>金豆</small></div>
+        <div class="main_title"><span class="result_left">单份金豆</span><span class="result"></span><small>金豆/份</small></div>
+        <div class="main_title"><span class="result_left">共计获得</span><span class="result"></span><small>份</small></div>
+    </div>
+
+    <!--遮罩层-->
+    <div id='bg_1'></div>
+    <!--第一个弹出框-->
+    <div id="show_1">
+
+        <div  id="p_up_box2" >
+            <span class="pop-up_title">请输入单份金豆数</span>
+            <div style="text-align: left;padding-left: 2rem;">
+                <span>单份金豆</span>
+                <input type="number" class="pop-up_input" id="beanNumPop" />金豆/份<br />
+                <span class="header_title">金额为5的倍数，最低20金豆/份</span>
+                <div >
+
+                </div>
+            </div>
+            <button class="button_cancel" tapmode="itemOn" id="cancel_2" value="取消" onclick="box2_Hide()">取消</button><button class="button_firm" tapmode="itemOn" onclick="confirmInput('beanNum')" 	 value="确定">确定</button>
+        </div>
+        <div  id="p_up_box1" >
+            <span class="pop-up_title">请输入预算金额</span>
+            <div style="text-align: left;padding-left: 2rem;">
+                <span>预算金额(￥)</span>
+                <input type="number" class="pop-up_input"  id="moneyPop" />元<br />
+                <span class="header_title">金额为5的倍数，最低200元</span>
+                <div >
+
+                </div>
+            </div>
+            <button class="button_cancel" tapmode="itemOn" id="cancel_1" value="取消" onclick="box1_Hide()">取消</button><button tapmode="itemOn" class="button_firm"  onclick="confirmInput('money')"	 value="确定">确定</button>
+        </div>
+    </div>
+
+    <!--底部按钮-->
+    <div id="question" tapmode="itemOn" onclick="openPublishBean()">
+        下一步
+    </div>
+</div>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript">
+
+    var flag = false;
+    var params = null;
+    function box1_Show(){
+
+        document.getElementById('p_up_box1').style.display="block";
+        document.getElementById('bg_1').style.display="block";
+        document.getElementById('show_1').style.display="block";
+    }
+    function box1_Hide(){
+
+        document.getElementById('p_up_box1').style.display="none";
+        setTimeout(function(){
+            document.getElementById('bg_1').style.display="none";
+            document.getElementById('show_1').style.display="none";
+        },500)
+
+    }
+    function box2_Show(){
+        document.getElementById('p_up_box2').style.display="block";
+        document.getElementById('bg_1').style.display="block";
+        document.getElementById('show_1').style.display="block";
+    }
+    function box2_Hide(){
+
+        document.getElementById('p_up_box2').style.display="none";
+        setTimeout(function(){
+            document.getElementById('bg_1').style.display="none";
+            document.getElementById('show_1').style.display="none";
+        },300)
+    }
+
+    function confirmInput(type){
+        var target = document.getElementById(type);
+        var src = document.getElementById(type+'Pop').value;
+        if(isNotBlack(src) && isNum(src)){
+            target.innerHTML = src;
+            changeFlag(false);
+            getValue();
+        }
+        box1_Hide();
+        box2_Hide();
+    }
+
+    document.getElementById("bg_1").addEventListener("touchmove",function(e){
+        e.preventDefault();
+    });
+    document.getElementById("show_1").addEventListener("touchmove",function(e){
+        e.preventDefault();
+    });
+
+    function openPublishScoreVedio(){
+        openNewWindow("publishScoreVideo","./publishScoreVideo.html")
+    }
+
+    function getValue(){
+        var budget = document.getElementById("money").innerHTML;
+        var goldBean = document.getElementById("beanNum").innerHTML;
+        if(isNotBlack(budget) && isNum(budget) && isNotBlack(goldBean) && isNum(goldBean)){
+            params = {};
+            params.budget =budget;
+            params.goldBean =goldBean;
+            ajaxGetWithProgress(activityCreateInfoUrl,params, function (ret,err) {
+                if(ret){
+                    var span = document.getElementById("tip").querySelectorAll(".result");
+                    span[0].innerText = "1:"+ret.ratio;
+                    span[1].innerText = ret.totalGoldBean;
+                    span[2].innerText = ret.goldBean;
+                    span[3].innerText = ret.totalNum;
+                    params = ret;
+                    changeFlag(true);
+                }
+
+            })
+        }
+    }
+
+
+    function changeFlag(status){
+        flag = status;
+        if(flag){
+            document.getElementById("question").style.backgroundColor = "#75ca77";
+        }else{
+            document.getElementById("question").style.backgroundColor = "#ccc";
+        }
+    }
+    function openPublishBean(){
+        if(flag){
+            openNewWindow('publishSelectCondition','./publishSelectCondition.html',{budget:params,user:api.pageParam.user});
+        }
+
+    }
+
+
+</script>
+</body>
+</html>

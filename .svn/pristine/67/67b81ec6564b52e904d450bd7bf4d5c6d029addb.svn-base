@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>活动详情</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+    <style type="text/css">
+        html {
+            width: 100%;
+        }
+        body {
+            background: #fff;
+            width: 100%; /*height: 100%;*/
+            min-height: 100%;
+            margin: 0;padding: 0;
+        }
+        * {
+            /*去掉输入框的边框*/
+            border:none;
+        }
+        .input{
+            height: 50px;
+            line-height: 50px;
+            border-bottom: solid 1px #eaeaea;
+            color: #333;
+            overflow: hidden;
+        }
+        .input input{
+            text-align: right;
+            color: #9A9A9A;
+        }
+        .peple_number{
+            color: #80CD82;
+            font-size: 1rem;
+            float: right;
+        }
+        .item{
+            background-color: #ffffff;
+            margin: 0 0 0 10px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        ul li{
+            list-style: none;
+            float: left;
+            width: 18%;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        ul{
+            margin-left: 10px;
+        }
+        #interest p{
+            margin: 5px 10px;
+        }
+        #interest{
+            padding-bottom: 10px;
+        }
+        #interest p span{
+            font-size: 14px;
+        }
+        #interest .select_num{
+            font-size: 16px;
+            color: #F7A449;
+        }
+        .right_box{
+            float: right;
+            padding-top: 5px;
+        }
+        .right_box img{
+            vertical-align: middle;
+        }
+        #main>p{
+            padding: 10px 0 5px 10px;
+        }
+        .right_span{
+            max-width: 60%;
+            float: right;
+            color: #9296a3;
+            padding-right: 1rem;
+            line-height: 50px;
+            height: 50px;
+            overflow: hidden;
+        }
+        .icon{
+            width:20px;
+            vertical-align: middle;
+            padding-right: 0.4rem;
+        }
+        .awards_num{
+            background-color: #020202;
+
+        }
+        .rightInfo{
+            height: 31px;
+
+            position: absolute;
+            top:6px;
+            right: 5px;
+            margin-right: 5px;
+            font-size: 12px;
+            line-height: 31px;
+            background-color: #020202;
+            color: #ffffff;
+            padding: 0 5px;
+        }
+        .aera_span{
+            max-width: 60%;
+            float: right;
+            color: #9296a3;
+            padding-right: 1rem;
+            line-height: 2rem;
+            height: 4rem;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            text-overflow: ellipsis;
+        }
+
+        #question{
+            position: fixed;
+            height: 50px;
+            color: #ffffff;
+            text-align: center;
+            background-color: #75ca77;
+            margin: 10px 0 0 0 ;
+            line-height: 50px;
+            font-size: 18px;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+
+
+    <!--<div class="item">-->
+        <!--<div class="input" onclick=""><span>参与人数</span><span class="peple_number"><%=list.joinUserNum%>人<img class="icon"  src="../../icon/icon_right_normal.png" ></span></div>-->
+        <!--<div class="input" onclick=""><span>已获奖人数</span><span class="peple_number"><%=list.winUserNum%><img class="icon"  src="../../icon/icon_right_normal.png" ></span></div>-->
+        <!--<div class="input" onclick=""><span>内容及题目</span><span class="peple_number"><img class="icon"  src="../../icon/icon_right_normal.png" ></span></div>-->
+
+    <!--</div>-->
+
+
+
+    <!--<div class="item">-->
+        <!--<div class="input"><span>共支付</span><span class="right_span"><%=list.budget%>元</span></div>-->
+        <!--<div class="input"><span>可支配金豆</span><span class="right_span"><%=list.totalNum%></span></div>-->
+        <!--<div class="input"><span>单份金豆</span><span class="right_span"><%=list.goldBean%>金豆/份</span></div>-->
+        <!--<div class="input"><span>总共/剩余份数</span><span class="right_span"><%=list.totalNum%></span></div>-->
+        <!--<div class="input"><span>发布时间</span><span class="right_span"><%=list.publishTime%></span></div>-->
+    <!--</div>-->
+    <!--<div class="item">-->
+        <!--<div class="input"><span>投放地区</span>-->
+            <!--<span class="aera_span">-->
+                <!--求稳求稳区委区为轻微求稳恶趣味求稳求稳求稳asdqwd asd qwdasdasdq wd-->
+            <!--</span>-->
+        <!--</div>-->
+        <!--<div class="input" ><span>职业</span><span class="right_span">-->
+
+           <!--</span></div>-->
+        <!--<div class="input"><span>月收入标准</span><span class="right_span"></span></div>-->
+        <!--<div class="input"><span>性别</span><span class="right_span"></span></div>-->
+        <!--<div class=" clearfix" style="line-height: 20px;text-align: left;color:#333;padding-top: 10px;padding-bottom: 10px"><span>人群兴趣</span>-->
+            <!--<span class="right_span">-->
+                 <!--<%var interest = list.interestList%>-->
+                <!--<%for(var i=0;i< interest.length;i++){%>-->
+                    <!--<span><%=interest[i]%></span>-->
+                <!--<%}%>-->
+                <!--</span>-->
+        <!--</div>-->
+    <!--</div>-->
+
+</div>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script id="scriptDiv" type="text/html">
+    <div class="item" style="margin-top: 0" >
+        <div class="input" onclick="openJoinActivityUser()"><span>参与人数</span><span class="peple_number"><%=list.joinUserNum%>人<img class="icon"  style="vertical-align: middle;" src="../../icon/icon_right_normal.png" ></span></div>
+        <div class="input" onclick="openAwardsActivityUser()"><span>已获奖人数</span><span class="peple_number"><%=list.winUserNum%>人<img class="icon"  src="../../icon/icon_right_normal.png" ></span></div>
+        <div class="input" style="border-bottom: 0;" onclick="openQuestion()"><span>内容及题目</span><span class="peple_number"><img class="icon"  src="../../icon/icon_right_normal.png" ></span></div>
+    	
+    </div>
+    <div style="width: 100%;height: 10px;background: #ebebeb;"></div>
+    <div class="item">
+        <div class="input"><span>共支付</span><span class="right_span"><%=list.budget%>元</span></div>
+        <div class="input"><span>可支配金豆</span><span class="right_span"><%=list.totalNum%></span></div>
+        <div class="input"><span>单份金豆</span><span class="right_span"><%=list.goldBean%>金豆/份</span></div>
+        <div class="input"><span>总共/剩余份数</span><span class="right_span"><%=list.totalNum%></span></div>
+        <div class="input" style="border-bottom: 0;"><span>发布时间</span><span class="right_span"><%=list.publishTime%></span></div>
+    </div>
+	<div style="width: 100%;height: 10px;background: #ebebeb;"></div>
+    <div class="item">
+        <%if (list.type == 1){%>
+        <div class="input"><span>投放地区</span>
+            <span class="aera_span">
+                  <%var areaList = list.areaList%>
+                <%for(var i=0;i< areaList.length; i++){%>
+                 <span><%=areaList.name%><small><%=areaList.remainNum%></small></span>
+                <%}%>
+            </span>
+        </div>
+        <%}%>
+        <div class="input" ><span>职业</span><span class="right_span">
+
+           </span></div>
+        <div class="input"><span>月收入标准</span><span class="right_span"></span></div>
+        <div class="input"><span>性别</span><span class="right_span"></span></div>
+        <div class=" clearfix" style="line-height: 20px;text-align: left;color:#333;padding-top: 10px;padding-bottom: 10px"><span>人群兴趣</span>
+            <span class="right_span">
+                 <%var interest = list.interestList%>
+                <%for(var i=0;i< interest.length;i++){%>
+                    <span><%=interest[i]%></span>
+                <%}%>
+                </span>
+        </div>
+    </div>
+
+    <%if (list.status == 1){%>
+    <div  id="question" tapmode="itemOn" onclick="openPay()">
+        审核通过,去支付
+    </div>
+    <%}%>
+</script>
+<script type="text/javascript">
+    var activity = null;
+    apiready = function(){
+        activity = api.pageParam.activity;
+        ajaxGetWithProgress(activityShopInfoUrl,{aid:activity.id},showInfo)
+    };
+
+    function showInfo(ret,err){
+        if(isNotBlack(ret)){
+            activity = ret;
+            ret.publishTime = formatTimeToDate(ret.publishTime);
+            var data = {list: ret};
+            var html1 = template('scriptDiv', data);
+            document.getElementById('main').innerHTML =html1;
+        }else{
+            toast("网络不给力");
+        }
+
+    }
+
+    function openQuestion(){
+        openNewWindow('activityContent','./activityContent.html',{activity:activity});
+    }
+
+    function openPay(){
+        openNewWindow("selectCountPay","./selectCountPay.html",{params:activity,payUrl:activityPayParamUrl,pidUrl:activityPaidUrl,detailType:"publishList",closeName:api.winName,payParams:{aid:activity.id}});
+
+
+    }
+    function updateState(){
+        document.getElementById('question').style.display ='none';
+    }
+
+    function openAwardsActivityUser(){
+        openNewWindow('awardsUser','../user/awardsUser.html',{activity:activity});
+    }
+    function openJoinActivityUser(){
+        openNewWindow('joinUser','../user/joinUser.html',{activity:activity});
+    }
+</script>
+</body>
+</html>

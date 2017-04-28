@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>计时答题</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+        <style type="text/css">
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background: #f1f2f3;
+            width: 100%; /*height: 100%;*/
+            min-height: 100%;
+        }
+        .time{
+           min-height: 60px;
+            background-color: #FF9900;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .name{
+            margin-left: 10px;
+            padding-top: 10px;
+            font-size: 14px;
+        }
+        #remain_time {
+            font-size: 50px;
+        }
+        .item{
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .subject{
+            font-size: 16px;
+            padding: 10px 0;
+            padding-left: 10px;
+            margin-top: 0px;
+        }
+
+        li {
+            background: #ffffff;
+
+        }
+
+        ul li{
+            list-style: none;
+            background-color: #ffffff;
+            margin: 30px 20px;
+            font-size: 16px;
+            text-align: center;
+            height:50px;;
+            line-height: 50px;
+            border-radius:5px;
+        }
+        ul li::after{
+            background-color: #ffffff;
+        }
+        ul li span{
+           float: left;
+            margin-left: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div class="time">
+            <div class="name">倒计时</div>
+            <div style="text-align: center"><span id="remain_time">10</span>秒</div>
+            <div style="height: 10px"></div>
+            <div class="item subject">
+                <span style="font-size: 30px">1</span>/2 全聚德的招牌菜叫什么名字？
+            </div>
+        </div>
+
+        <div>
+            <ul>
+                <li><span>A.</span>刷羊肉</li>
+                <li><span>B.</span> 火锅</li>
+                <li><span>C.</span>麻辣香锅</li>
+                <li><span>D.</span>北京烤鸭</li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script id="scriptDiv" type="text/html">
+    <div class="time">
+        <div class="name">倒计时</div>
+        <div style="text-align: center"><span id="remain_time">10</span>秒</div>
+        <div style="height: 10px"></div>
+        <div class="item subject">
+            <span style="font-size: 30px"><%=list.index%></span>/<%=list.max%> <%=list.content%>
+        </div>
+    </div>
+
+    <div>
+        <ul>
+            <li onclick="selectOption('A')"><span>A.</span><%=list.options.A%></li>
+            <li onclick="selectOption('B')"><span>B.</span> <%=list.options.B%></li>
+            <li onclick="selectOption('C')"><span>C.</span><%=list.options.C%></li>
+            <li onclick="selectOption('D')"><span>D.</span><%=list.options.D%></li>
+        </ul>
+    </div>
+</script>
+<script type="text/javascript">
+    var timeInterval = null ;
+    //是否进行即时操作的flag
+    var flag = true;
+    function setTime(){
+        var span = document.getElementById("remain_time");
+        var remainTime = 10;
+        timeInterval = setInterval(function(){
+            remainTime = remainTime- 1;
+            span.innerHTML = remainTime;
+            if(remainTime <= 0){
+                //跳转结果页面
+                //请求服务器
+               overTime();
+            }
+
+        },1000);
+    }
+
+
+    var activity = null;
+    var index = 0 ;
+    var question =null;
+    var sessionId = null;
+    apiready =function(){
+        activity = api.pageParam.activity;
+        sessionId  = api.pageParam.sessionId;
+        ajaxGetWithProgress(activityRandomQuestionsUrl,{aid:activity.id,sessionId:sessionId},function(ret){
+            if(isNotBlack(ret)){
+                question = ret;
+                setQuestionHtml();
+            }
+        })
+    };
+
+    function setQuestionHtml(){
+        if(index <= question.length-1){
+            question[index].index = index+1;
+            question[index].max = question.length;
+            question[index].options = JSON.parse(question[index].options);
+            var data = {list: question[index]};
+            var html1 = template('scriptDiv', data);
+            document.getElementById('main').innerHTML = html1;
+            index++;
+            setTime();
+        }else{
+            clearInterval(timeInterval);
+            timeInterval = null;
+            //todo 调回答正确接口
+            flag = false;
+            ajaxGetWithProgress(activityAnswerRightUrl,{aid:activity.id,areaId:activity.areaId,sessionId:sessionId},function(ret){
+                if(isNotBlack(ret)&&isBlack(ret.msg)){
+                    openNewWindow('questionResult','./questionResult.html',{result:ret,type:3,activity:activity},{reload:true});
+                }else{
+                    errShow(ret);
+                }
+            })
+        }
+
+    }
+
+    function selectOption(option){
+        if(option == question[index-1].rightOption){
+            setQuestionHtml();
+        }else{
+            clearInterval(timeInterval);
+            timeInterval = null;
+            flag = false;
+            var rightOption = question[index-1].rightOption+"、"+question[index-1].options[question[index-1].rightOption];
+            ajaxGetWithProgress(activityAnswerWrongUrl,{aid:activity.id,areaId:activity.areaId,qid:question[index-1].id,sessionId:sessionId},function(ret){
+                if(isNotBlack(ret)&&isBlack(ret.msg)){
+                    openNewWindow('questionResult','./questionResult.html',{result:ret,type:1,rightOption:rightOption,activity:activity},{reload:true});
+                }else{
+                    errShow(ret);
+                }
+            });
+        }
+    }
+
+    function overTime(){
+        clearInterval(timeInterval);
+        timeInterval = null;
+        if(flag){
+            flag =false;
+            ajaxGetWithProgress(activityAnswerOvertimeUrl,{aid:activity.id,areaId:activity.areaId,sessionId:sessionId},function(ret){
+                if(isNotBlack(ret)&&isBlack(ret.msg)){
+                    openNewWindow('questionResult','./questionResult.html',{result:ret,type:2,activity:activity},{reload:true});
+                }else{
+                    errShow(ret);
+                }
+            })
+        }
+    }
+
+
+
+    function errShow(ret){
+        var  dialogBox = api.require('dialogBox');
+        showDialog(dialogBox,"提示",ret.msg||"网络不给力",'取消','确定',function(){
+            api.closeWin({
+                name: 'ticketInfo'
+            });
+            api.execScript({
+                name: rootWindowName,
+                frameName:'ticketList1',
+                script: 'reloadHtml();'
+            });
+            api.execScript({
+                name: rootWindowName,
+                frameName:'ticketList2',
+                script: 'reloadHtml();'
+            });
+            api.execScript({
+                name: rootWindowName,
+                frameName:'ticketList3',
+                script: 'reloadHtml();'
+            });
+            closeWin();
+
+        })
+    }
+
+</script>
+</html>

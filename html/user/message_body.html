@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>消息中心</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style type="text/css">
+        html {
+            width: 100%;
+            height: 100%;
+        }
+        body {
+            background: #ebebeb;
+            width: 100%;
+            min-height: 100%;
+        }
+        .item{
+            background-color: #fff;
+            padding: 10px;
+            margin: 10px 0;
+            color: #333;
+        }
+        .item>div{
+            height: auto;
+            line-height: 20px;
+        }
+        .item p{
+            margin-top: 10px;
+            line-height: 20px;
+            margin-left: 13px;
+        }
+        .show{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <!--<div class="item">-->
+        <!--<div ><span style="height: 8px;width: 8px;  float: left; border-radius: 4px;background-color:#ff4242;margin: 6px 5px 0 5px"></span><span style="float:left;color: #76CA78">获得积分</span><span style="float:right;">2016-02-03 12:36</span></div>-->
+        <!--<div style="clear: both;"></div>-->
+        <!--<p>‘小宋’ 因你的分享注册成功，你获得200积分</p>-->
+    <!--</div>-->
+ <!--<div class="item">-->
+        <!--<div ><span style="height: 8px;width: 8px;  float: left; border-radius: 4px;background-color:#ff4242;margin: 6px 5px 0 5px"></span><span style="float:left;color: #76CA78">获得积分</span><span style="float:right;">2016-02-03 12:36</span></div>-->
+        <!--<div style="clear: both;"></div>-->
+        <!--<p>‘小宋’ 因你的分享注册成功，你获得200积分</p>-->
+    <!--</div>-->
+ <!--<div class="item">-->
+        <!--<div ><span style="height: 8px;width: 8px;  float: left; border-radius: 4px;background-color:#ff4242;margin: 6px 5px 0 5px"></span><span style="float:left;color: #76CA78">获得积分</span><span style="float:right;">2016-02-03 12:36</span></div>-->
+        <!--<div style="clear: both;"></div>-->
+        <!--<p>‘小宋’ 因你的分享注册成功，你获得200积分</p>-->
+    <!--</div>-->
+
+<!--</div>-->
+<!--<div class="item">-->
+    <!--<div ><span style="height: 8px;width: 8px;  float: left; border-radius: 4px;background-color:#ffffff;margin: 6px 5px 0 5px">-->
+
+    <!--</span><span style="float:left;color: #76CA78">头像审核</span><span style="float:right;">2016-02-03 12:36</span></div>-->
+    <!--<div style="clear: both;"></div>-->
+    <!--<p>头像审核通过</p>-->
+<!--</div>-->
+<!--<div class="item">-->
+    <!--<div ><span style="height: 8px;width: 8px;  float: left; border-radius: 4px;background-color:#ff4242;margin: 6px 5px 0 5px">-->
+
+    <!--</span><span style="float:left;color: #76CA78">获得金豆</span><span style="float:right;">2016-02-03 12:36</span></div>-->
+    <!--<div style="clear: both;"></div>-->
+    <!--<p>你分享绑定用户'北京哈哈哈哈公司'发布推广活动，获得360金豆</p>-->
+    <!--<div style="clear: both;"></div>-->
+<!--</div>-->
+
+</div>
+
+<script id="scriptDiv" type="text/html">
+    <% for (var i = 0; i < list.length; i ++) { %>
+
+    <div class="item" onclick="openDetail('<%=list[i].id%>')">
+        <!--display:<%=message[list[i].id]%>;-->
+        <div ><span id="radius-<%=list[i].id%>" class="redPoint" style=" visibility: <%=message[list[i].id]%>;   height: 8px;width: 8px;  float: left; border-radius: 4px;background-color:#ff4242;margin: 6px 5px 0 0px">
+
+    </span><span style="float:left;color: #76CA78"><%=list[i].title%></span><span style="float:right;"><%=list[i].ctime%></span></div>
+        <div style="clear: both;"></div>
+        <p><%=list[i].content%></p>
+        <div style="clear: both;"></div>
+    </div>
+    <% } %>
+</script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript">
+    var allResult = [];
+    var messageList = null;
+    var openHtml = null;
+    apiready = function () {
+        openHtml = api.pageParam.openHtml;
+        new datalistModel(addDataToHtml,userMessagePagerUrl,{},10,5,100,true);
+        messageList = $api.getStorage('message');
+        if(typeof (messageList) == 'undefined'){
+            messageList = {};
+        }
+    };
+
+    function addDataToHtml(results, append) {
+        var message = {};
+        for(var i=0;i<results.length;i++){
+            allResult[results[i].id]=results[i];
+            results[i].ctime = formatTimeToDate(results[i].ctime);
+            if(isBlack(messageList[results[i].id])){
+                message[results[i].id] = 'visible';
+            }else{
+                message[results[i].id] = 'hidden';
+            }
+        }
+
+        if (results && results.length > 0) {
+            var data = {list: results,message:message};
+            var html = template('scriptDiv', data);
+            if (append) {
+                var div = document.createElement("div");
+                div.innerHTML = html;
+                document.getElementById('main').appendChild(div);
+            } else {
+                document.getElementById('main').innerHTML = html;
+            }
+        }else if(results.length==0){
+            document.getElementById('main').innerHTML = '';
+        }
+    }
+
+
+    function openDetail(id){
+        var obj = allResult[id];
+        document.getElementById('radius-'+id).style.visibility = "hidden";
+        messageList[id] = id;
+        $api.setStorage('message',messageList);
+        if(obj.type ==0){
+            return;
+        }
+        if(obj.type == 1){
+            openNewWindow("activityDetail","../mall/activityDetail.html",{activity:{id:obj.thirdId}});
+            return;
+        }
+
+        if(obj.type == 2){
+            openNewWindow("scoreDetail","../mall/scoreDetail.html",{score:{id:obj.thirdId}});
+            return;
+        }
+
+    }
+
+
+
+    function removeRed(){
+        var redFlag = true;
+        var redPointArr =  document.getElementById('main').querySelectorAll(".redPoint");
+        for(var i = 0;i<redPointArr.length;i++){
+            if(redPointArr[i].style.visibility == 'visible'){
+                redFlag = false;
+            }
+        }
+        try{
+            if(redFlag){
+                api.execScript({
+                    frameName: openHtml,
+                    script: 'changeRed()'
+                });
+            }
+        }catch(err){
+
+        }
+    }
+</script>
+</body>
+</html>

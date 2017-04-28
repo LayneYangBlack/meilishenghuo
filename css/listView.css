@@ -1,0 +1,82 @@
+/*列表页面*/
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: #FFFFFF;
+    width: 100%; /*height: 100%;*/
+}
+
+
+.item {
+    position: relative;
+    border-bottom: 1px solid #DADDE0;
+    padding: 10px 0 5px 0;
+}
+
+.itemOn {
+    background: #DADDE0;
+}
+
+.icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 50px;
+    height: 50px;
+}
+.nextIcon{
+    position: absolute;
+    top: 25px;
+    right: 10px;
+    width: 8px;
+    height: 16px;
+}
+
+
+.name {
+    margin: 0px  0 0 70px;
+    height: 25px;
+    line-height: 25px;
+    padding-right:30px ;
+    font-weight:bold;
+    /**以下三行表示超出文本用省略号代替**/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.info {
+    margin: 5px  0 5px 70px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 12px;
+    padding-right:30px ;
+    /*color: #A7A7AB;*/
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+.nextBottomIcon{
+    position: absolute;
+    top: 35px;
+    right: 10px;
+    width: 10px;
+    height: 20px;
+}
+.rightSmallInfo{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 60px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 11px;
+    color: #A7A7AB;
+    text-align: right;
+}

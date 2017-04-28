@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选择距离范围</title>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="../../css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+        body,html{
+         background-color: #f1f2f3;
+        }
+        .item{height: 33%;width: 100%;border-bottom: 1px solid #f1f2f3; background-color:#ffffff;float: left;}
+        .item p{line-height: 5rem;float: left; font-size: 0.75rem;}
+        .next{background: url("../../icon/icon_right_normal.png");margin-top: 0.65rem;float: right;background-size:cover;
+        ;width: 0.75rem;height: 1rem; margin-right: 15px;}
+        .tijiao{text-align:center;line-height: 50px;font-size: 0.9rem;}
+        .tijiao a{color: white;display: block;text-align: center;width: 50%;float: left;height: 50px;}
+        .awards_num{  background-color: #020202;  }
+        html{font-size: 20px;}
+        .rightInfo{  position: absolute;  top:0.3rem;  right: 0.25rem;  margin-right: 0.25rem;
+            font-size: 0.6rem;  line-height: 1.55rem;  background-color: #020202;  color: #ffffff;  padding: 0 0.25rem;
+        }
+        #allmap{width: 100%;height: 300px;;overflow: hidden;margin:0;font-family:"微软雅黑";float:left;}
+        #r-result{width:100%;;height:300px;;float:left;overflow:auto;}
+        #menuBar {position: absolute;left: -48%;width: 50%; top: 30.5%;float: left; z-index: 10;}
+        #glider {position: absolute;left: 98%;top: 0px; width: 10%;height: 300px; color: black;}
+        .glideText {font-size: 18px;color: #E2E2E2;text-decoration: none; font-family: Verdana, Arial, Helvetica, sans-serif;}
+        #glidetextLink{width: 100%;height: 300px;color:white;display: block;background: url("../../image/map.png")no-repeat;}
+        #input_val{float: right;width: 30%; text-align: right; line-height:2rem;display: block;font-size: 0.75rem;}
+        .unit{float: right; display: block; line-height: 2rem; text-align: right;font-size: 0.75rem;}
+
+        #bg_1{
+            display: none;
+            position: fixed;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: 1001;
+            -moz-opacity: 0.7;
+            opacity: .70;
+            filter: alpha(opacity=70);
+        }
+        #show_1{
+            position: fixed;
+            top: 60px;
+            width: 100%;
+            height: 200px;
+            z-index: 1002;
+            overflow: auto;
+            display: none;
+        }
+
+        #options{
+            display:block;
+            width: 100%;
+            height: 22rem;
+            background-color: #CCCCCC;
+            position: absolute;
+            bottom: 0;
+            text-align: center;
+        }
+        #pop-up_input{
+            display: block;
+            width: 80%;
+            height: 10rem;
+            background-color: #FFFFFF;
+            border: none;
+            position: absolute;
+            top: 0;
+            left: 10%;
+            text-align: center;
+        }
+        .title{
+            display: block;
+            height: 3rem;
+            line-height: 3.2rem;
+            color: #76CA78;
+            font-size: 1.2rem;
+            background-color: #FFFFFF;
+        }
+        .input_title{
+            border: none;
+            font-size: 0.8rem;
+            font-weight: bolder;
+            border-bottom: 1px solid #CCCCCC;
+            width: 60%;
+        }
+        .button_cancel{
+            width: 50%;
+            background-color: #FFFFFF;
+            display: block;
+            text-align: center;
+            border: none;
+            border-top: 1px #CCCCCC solid;
+            font-size: 14px;
+            height: 2rem;
+            float: left;
+            position: absolute;
+            bottom: 0;
+        }
+        .button_firm{
+            width: 50%;
+            background-color: #80CD82;
+            display: block;
+            text-align: center;
+            border: none;
+            height: 2rem;
+            position: absolute;
+            bottom: 0;
+            font-size:14px;
+            left: 50%;
+            color: #FFFFFF;
+        }
+        .border_bot{
+            border-bottom: 1px solid #CCCCCC;
+        }
+        .input{
+            height: 2rem;
+            padding: 15px 10px 10px 0;
+            font-size: 0.8rem;
+            background-color: #FFFFFF;
+        }
+        .option{
+            font-size: 1rem;
+            text-align: right;;
+            /*clear: right;*/
+        }
+        .option_left{
+            float: left;
+            margin-left: 1rem;
+        }
+        .input span:first-child{
+
+            font-size: 1rem;
+
+        }
+        #position{position: fixed;bottom: 0;left: 0;width: 100%;}
+        #position button{
+            border-top: 1px solid #ccc;;
+        }
+       #seat{float: right;width: 150px;  line-height: 1rem;padding-bottom: 0.3rem; padding-top:0.7rem;display: block;text-align: right;padding-right: 6%;}
+    </style>
+</head>
+<body>
+
+<div style="height:10%;">
+    <li class="item" style="height:35%;"><p style="float: left;padding-left: 6%; line-height: 2.5rem;display: block;
+   width: 5rem;">商家地址</p></i>
+        <p id="seat" onclick="boxShow()"  >请在地图上点选</p>
+        <div style="width: 100%;float: left;height:15px;margin-top: -0.5rem;color: #9296a3; text-indent:6%;font-size: 0.2rem; ">可移动、放大、缩小地图</div>
+    </li>
+
+</div>
+
+<div class="wp_100 tijiao" style="height: 50px;line-height:50px;background:#75ca77;float: left; position: fixed;bottom: 0;left: 0;font-size: 18px;">
+    <a href="#" style="background:white;color: #333;" onchange="returnPrev()">取消</a><a href="#" onclick="commit()">确定</a>
+</div>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/bMapUtils.js"></script>
+
+<script type="text/javascript">
+    var apiMap = null;
+    var radius = 1000;
+    var apiLocal = null;
+    var user = null;
+    var localInfo = null;
+    apiready = function(){
+        api.showProgress({title: '努力加载中...',text: '先喝杯茶...'});
+        var width = api.frameWidth;
+        var height = api.frameHeight*0.79;
+        var top = api.frameHeight*0.08;
+        var local = $api.getStorage("localInfo");
+        localInfo = local;
+        user = api.pageParam.user;
+        var map = api.require('bMap');
+        apiMap = map;
+        apiLocal = local;
+            map.open({
+                rect: {
+                    x: 0,
+                    y: top + 22,
+                    w: width,
+                    h: height
+                },
+                center: {
+                    lon: local.lon,
+                    lat: local.lat
+                },
+                zoomLevel: 12,
+                showUserLocation: true,
+                fixedOn: api.frameName,
+                fixed: false
+            }, function (ret) {
+                if (ret.status) {
+                    map.showUserLocation({
+                        isShow: true,
+                        trackingMode: 'none'
+                    });
+
+                    addEve(map)
+                }
+            });
+            api.openFrame({
+                name: 'mapIcon',
+                url: './mapIcon.html',
+                rect: {
+                    x: (api.winWidth) / 2-15,
+                    y: ((api.frameHeight) * 0.79) / 2+top+22+15,
+                    w: 30,
+                    h: 30
+                },
+                pageParam: {
+                    name: 'test'
+                },
+                bounces: false,
+                bgColor: 'rgba(0,0,0,0 )',
+                vScrollBarEnabled: true,
+                hScrollBarEnabled: true
+            });
+        api.hideProgress();
+    };
+
+
+    function commit(){
+        var address = document.getElementById("seat").innerHTML;
+        var params = {};
+        params.address = address;
+        params.lon = apiLocal.lon;
+        params.lat = apiLocal.lat;
+        params.radius = radius/1000;
+        //异步调用
+        api.execScript({
+            name:'mallInfo',
+            frameName: 'mallInfo_body',
+            script: 'showAddress('+JSON.stringify(params)+')'
+        });
+        closeWin();
+    }
+
+
+    function confirmInput(){
+        var text = document.getElementById('text-input').value;
+        if(isBlack(localInfo)){
+            localInfo = {city:'北京'}
+        }
+        apiMap.searchInCity({
+            city:localInfo.city,
+            keyword: text,
+            pageIndex: 0,
+            pageCapacity: 20
+        },function(ret, err){
+
+            if(ret.status){
+                var data = setMapPointList(ret.results);
+                var allResultList = {};
+                for(var i = 0;i< data.length;i++){
+                    allResultList[data[i].id] = data[i];
+                }
+                apiMap.setCenter({
+                    coords: {
+                        lon: data[0].lon,
+                        lat:  data[0].lat
+                    },
+                    animation:true
+                });
+                apiMap.addAnnotations({
+                    annotations: data,
+                    draggable: true
+                }, function(ret){
+                    if(ret){
+                        document.getElementById('seat').innerHTML = allResultList[ret.id].address;
+                        apiLocal =  allResultList[ret.id];
+                        apiMap.setCenter({
+                            coords: {
+                                lon: apiLocal.lon,
+                                lat:  apiLocal.lat
+                            },
+                            animation:false
+                        });
+                    }
+                });
+            }else{
+                switch (err.code){
+                    case 1:toast("检索词有岐义");
+                    case 2:toast("检索地址有岐义");
+                    case 3:toast("没有找到检索结果");
+                    case 4:toast("搜索关键词错误");
+                    case 5:toast("网络连接错误");
+                    case 6:toast("网络连接超时");
+                }
+            }
+        });
+        document.getElementById('seat').innerHTML = text;
+        boxHide();
+    }
+
+
+    function returnPrev(){
+        closeWin();
+    }
+</script>
+</body>
+</html>

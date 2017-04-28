@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>出题</title>
+    <link type="text/css" href="../../css/api.css">
+    <style type="text/css">
+        html,body{
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background: #ebebeb;
+        }
+        .item{
+            background-color: #fff;
+            padding: 0rem 1rem;
+            color: #333;
+        }
+        .item_margin{
+            margin-top: 1rem;
+        }
+        .border_bot{
+            border-bottom: solid 1px #eaeaea;
+        }.input{
+             height: 2rem;
+             /*border-bottom: solid 1px #F2F3F5;*/
+             padding: 15px 10px 10px 0;
+         }
+        .input input{
+            text-align: right;
+
+        }
+        .icon_right{
+            width:1.2rem;
+            float:right;
+        }
+        .option{
+            font-size: 1rem;
+            float: right;
+        }
+        .answer{
+            color:#FA8200;
+        }
+        .topic{
+            color:#80CD82;
+            font-size: 1.2rem;
+        }
+        .main_title{
+            font-size: 1rem;
+            display: block;
+            width: 80%;
+            float: right;
+            color: #333;
+        }
+        .prompt{
+            display: block;
+            width: 100%;
+            height: 3rem;
+            line-height: 3rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #9296a3;
+        }
+        .button_one,.button_two{
+            width: 30%;
+            height:50px;
+            border: none;
+            font-size: 18px;
+            border-right: 1px solid #eaeaea;
+            background-color: #fff;
+            float: left;
+            color: #333;
+        }
+        .button_three{
+            width: 40%;
+            height: 50px;
+            border: none;
+            font-size: 18px;
+            background-color: #75ca77;
+            color: #fff;
+        }
+        .awards_num{
+            background-color: #020202;
+
+        }
+        .rightInfo{
+            height: 31px;
+
+            position: absolute;
+            top:6px;
+            right: 5px;
+            margin-right: 5px;
+            font-size: 12px;
+            line-height: 31px;
+            background-color: #020202;
+            color: #ffffff;
+            padding: 0 5px;
+        }
+        #bg_1{
+            display: block;
+            position: fixed;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: 1001;
+            -moz-opacity: 0.7;
+            opacity: .70;
+            filter: alpha(opacity=70);
+            display: none;
+        }
+        #show_1{
+            position: fixed;
+            top: 60px;
+            width: 100%;
+            height: 200px;
+            z-index: 1002;
+            overflow: auto;
+            display: none;
+        }
+        #show_2{
+            position: fixed;
+            height: 60%;
+            width: 100%;
+            z-index: 1002;
+            overflow: auto;
+            bottom: 0px;
+            display: none;
+        }
+        #options{
+            display:block;
+            width: 100%;
+            height: 22rem;
+            background-color: #ebebeb ;
+            position: absolute;
+            bottom: 0;
+            text-align: center;
+        }
+        #pop-up_input{
+            display: block;
+            width: 80%;
+            height: 11rem;
+            background-color: #FFFFFF;
+            border: none;
+            position: absolute;
+            top: 0;
+            left: 10%;
+            text-align: center;
+        }
+        .title{
+            display: block;
+            height: 3rem;
+            line-height: 3.2rem;
+            color: #76CA78;
+            font-size: 1.2rem;
+            background-color: #FFFFFF;
+        }
+        .input_title{
+            border: none;
+            font-size: 16px;
+            /*font-weight: bolder;*/
+            border-bottom: 1px solid #eaeaea;
+            width: 80%;
+        }
+        .button_cancel{
+            width: 50%;
+            background-color: #ebebeb;
+            display: block;
+            text-align: center;
+            border: none;
+            height: 40px;
+            font-size: 16px;
+            float: left;
+            position: absolute;
+            bottom: 0;
+        }
+        .button_firm{
+            width: 50%;
+            background-color: #80CD82;
+            display: block;
+            text-align: center;
+            border: none;
+            height: 40px;
+            font-size: 16px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            color: #FFFFFF;
+        }
+        .border_bot{
+            border-bottom: 1px solid #eaeaea;
+        }
+        .input{
+            height: 2rem;
+            padding: 15px 10px 10px 0;
+            font-size: 1.4rem;
+            background-color: #FFFFFF;
+        }
+        .option{
+            font-size: 1rem;
+            text-align: right;;
+            /*clear: right;*/
+        }
+        .option_left{
+            float: left;
+            margin-left: 1rem;
+        }
+        .input span:first-child{
+
+            font-size: 1rem;
+
+        }
+        #position{position: fixed;bottom: 0;left: 0;width: 100%;}
+        #position button{
+            border-top: 1px solid #eaeaea;;
+        }
+		textarea{
+			outline: none;
+		}
+    </style>
+</head>
+<body>
+<div id="bg_1"></div>
+<div id="show_1">
+    <div id="pop-up_input">
+        <span class="title" id="showTitle">请输入标题</span>
+        <!--<input type="text" name="" id="" value="" class="input_title" />-->
+        <textarea id="text-input"   rows="2" cols="30" class="input_title" maxlength="30"></textarea><br />
+        <!-- <small style="position: absolute;color:#CCCCCC;right:.7rem;font-size: 0.1rem;"><span id="in_num">30</span>/30</small> -->
+        <button class="button_cancel" id="cancel_1" value="取消" onclick="boxHide()">取消</button>
+        <button class="button_firm"  onclick="confirmInput()" value="确定">确定</button>
+    </div>
+</div>
+<div id="show_2">
+    <div id="options">
+        <span class="title border_bot">请选择正确答案</span>
+        <div class="input border_bot" id="op_one" onclick="selectResult(this,'A')"><span class="option_left">A、</span><span class="option options">杨宝禄</span></div>
+        <div class="input border_bot" id="op_one_02" onclick="selectResult(this,'B')"><span class="option_left">B、</span><span class="option options">杨德仁</span></div>
+        <div class="input border_bot" id="op_one_03" onclick="selectResult(this,'C')"><span class="option_left">C、</span><span class="option options">杨全仁</span></div>
+        <div class="input " id="op_one_04" onclick="selectResult(this,'D')"><span class="option_left">D、</span><span class="option options">张菊德</span></div>
+        <button class="button_cancel" onclick="hideResultBox()" style="color: #76CA78;width: 100%;height:50px;margin-top: 5px;font-size: 18px;">取消</button>
+    </div>
+</div>
+<div id="main">
+    <div>
+        <img style="width: 100%;" src="../../icon/progress_3.png">
+    </div>
+    <div id="question">
+        <div class="item item_margin" id="item-1">
+            <div class="input border_bot" onclick="setTitleValue('title_1')">
+                <span class="topic">题目1</span>
+                <span class="main_title" id="title_1"></span>
+            </div>
+            <div class="input border_bot" onclick="setSelectValue('select_A_1')">
+                <span>A、</span>
+                <span class="option"><span  class="result" id="select_A_1" ></span><img class="icon_right" src="../../icon/icon_right_normal.png"/></span>
+            </div>
+            <div class="input border_bot"  onclick="setSelectValue('select_B_1')"><span>B、</span><span  class="option"><span  class="result" id="select_B_1"></span><img class="icon_right"  src="../../icon/icon_right_normal.png" ></span></div>
+            <div class="input border_bot"  onclick="setSelectValue('select_C_1')"><span>C、</span><span  class="option"><span  class="result" id="select_C_1"></span><img class="icon_right"  src="../../icon/icon_right_normal.png" ></span></div>
+            <div class="input border_bot"  onclick="setSelectValue('select_D_1')"><span>D、</span><span  class="option"><span  class="result" id="select_D_1"></span><img class="icon_right"  src="../../icon/icon_right_normal.png" ></span></div>
+            <div class="input" onclick="setResult('item-1','select_result_1')"><span>答案</span><span class="option answer"><span id="select_result_1" class="selectAnswer"></span><img class="icon_right"  src="../../icon/icon_right_normal.png" ></span></div>
+        </div>
+    </div>
+    <span class="prompt">
+    	温馨提示：官人，最多只能出3道题哦~
+    </span>
+    <div id="position">
+    <button class="button_one" onclick="addQuestion()">再出题</button>
+    <button class="button_two" onclick="openPreview()">预览</button>
+    <button class="button_three" onclick="commit()">确认提交</button>
+        </div>
+</div>
+<script type="text/javascript"  src="../../script/mui.min.js"></script>
+<script type="text/javascript"  src="../../script/mui.picker.all.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script id="scriptDiv" type="text/html">
+    <div class="item item_margin" id="item-<%=list%>">
+        <div class="input border_bot" onclick="setTitleValue('title_<%=list%>')">
+            <span class="topic">题目<%=list%></span>
+            <span class="main_title" id="title_<%=list%>"></span>
+        </div>
+        <div class="input border_bot" onclick="setSelectValue('select_A_<%=list%>')">
+            <span>A、</span>
+            <span class="option"><span class="result" id="select_A_<%=list%>"></span><img class="icon_right" src="../../icon/icon_right_normal.png"/></span>
+        </div>
+        <div class="input border_bot" onclick="setSelectValue('select_B_<%=list%>')"><span>B、</span><span  class="option"><span class="result"  id="select_B_<%=list%>"></span><img class="icon_right"  src="../../icon/icon_right_normal.png" ></span></div>
+        <div class="input border_bot" onclick="setSelectValue('select_C_<%=list%>')"><span>C、</span><span class="option"><span class="result"  id="select_C_<%=list%>"></span><img class="icon_right"  src="../../icon/icon_right_normal.png" ></span></div>
+        <div class="input border_bot" onclick="setSelectValue('select_D_<%=list%>')"><span>D、</span><span  class="option"><span class="result"  id="select_D_<%=list%>"></span><img class="icon_right"  src="../../icon/icon_right_normal.png" ></span></div>
+        <div class="input " onclick="setResult('item-<%=list%>','select_result_<%=list%>')"><span>答案</span><span class="option answer"><span id="select_result_<%=list%>" class="selectAnswer"></span><img class="icon_right"  src="../../icon/icon_right_normal.png" ></span></div>
+    </div>
+</script>
+<script type="text/javascript">
+    var index = 1;
+    var resultType = null;
+    var params = null;
+    function addQuestion(){
+        if(index>=3){
+            return;
+        }
+        index++;
+        var data = {list: index};
+        var html = template('scriptDiv', data);
+        document.getElementById('question').innerHTML =document.getElementById('question').innerHTML+html;
+    }
+    var dialogBox = null;
+    apiready = function(){
+        api.showProgress({title: '努力加载中...',text: '先喝杯茶...'});
+        params = api.pageParam.params;
+        dialogBox = api.require('dialogBox');
+        api.hideProgress();
+    };
+
+    function setTitleValue(type){
+        resultType = type;
+        document.getElementById('showTitle').innerHTML = '请输入标题';
+        boxShow();
+    }
+
+    function setSelectValue(type){
+        resultType = type;
+        document.getElementById('showTitle').innerHTML = '请输入选项';
+        boxShow();
+    }
+
+    function confirmInput(){
+        var text = document.getElementById('text-input').value;
+        document.getElementById(resultType).innerHTML = text;
+        boxHide();
+    }
+
+
+    function boxHide(){
+        document.getElementById("bg_1").style.display="none";
+        document.getElementById("show_1").style.display="none";
+        document.getElementById('text-input').value = "";
+    }
+
+    function boxShow(){
+        document.getElementById("bg_1").style.display="block";
+        document.getElementById("show_1").style.display="block";
+        document.getElementById('text-input').value = document.getElementById(resultType).innerHTML;
+    }
+
+    function commit(){
+        var convert = {0:"A",1:"B",2:"C",3:"D"};
+        var questionList = new Array();
+        var item = document.getElementById("question").querySelectorAll(".item");
+
+        for(var i = 0; i<item.length;i++){
+            var span = item[i].querySelectorAll('.result');
+            var obj = {};
+            var content = item[i].querySelector('.main_title').innerHTML;
+            obj.content = content;
+            var options = {};
+            for(var j=0;j<span.length;j++){
+
+                options[convert[j]]=span[j].innerHTML;
+            }
+            obj.options = JSON.stringify(options);
+            var result = item[i].querySelector(".selectAnswer").getAttribute("resultOption");
+            obj.rightOption=result;
+            questionList.push(obj);
+        }
+        params.questionsJson = JSON.stringify(questionList);
+        ajaxGetWithProgress(activityCreateUrl,params,function(ret){
+            if(ret&&ret.success){
+
+                showDialog()
+            }
+        })
+
+    }
+
+
+    function showDialog(){
+
+        dialogBox.alert ({
+            texts: {
+                title: '提示',
+                content:'提交成功！我们将在48小时内审核完胜，请耐心等待',
+                rightBtnTitle: '确定'
+            },
+            styles:{
+                bg: '#fff',
+                w: 300,
+                title:{
+                    marginT : 20,
+                    titleSize : 18,
+                    titleColor : '#76CA78'
+                },
+                content:{
+                    color: '#000',
+                    size: 16
+                },
+                right:{
+                    w: 300,
+                    h: 40,
+                    marginL: 0,
+                    marginB: 0,
+                    corner: 0,
+                    bg: '#76CA78',
+                    size: 18,
+                    color:'#ffffff'
+                }
+            }
+        },function(ret){
+            if (ret.eventType == 'right') {
+                var dialogBox = api.require('dialogBox');
+                dialogBox.close ({
+                    dialogName: 'alert'
+                });
+
+                openNewWindow('mallDetail','./mallDetail.html',{},{slidBackEnabled:false});
+                api.closeWin({
+                    name: 'publishBean'
+                });
+                api.closeWin({
+                    name: 'publishBudget'
+                });
+                api.closeWin({
+                    name: 'publishSelectCondition'
+                });
+                api.closeWin({
+                    name: 'selectPublishType'
+                });
+                api.execScript({
+                    name: 'mallDetail',
+                    frameName:'mallDetail.body',
+                    script: 'window.location.reload();'
+                });
+                closeWin();
+            }
+        });
+    }
+
+
+    function hideResultBox(){
+        document.getElementById("bg_1").style.display="none";
+        document.getElementById("show_2").style.display="none";
+    }
+
+    function showResultBox(){
+        document.getElementById("bg_1").style.display="block";
+        document.getElementById("show_2").style.display="block";
+    }
+
+    function setResult(self,type){
+        resultType = type;
+        var result = document.getElementById(self).querySelectorAll('.result');
+        var option = document.getElementById('options').querySelectorAll('.option');
+        for(var i = 0;i<option.length;i++) {
+            if(isBlack(result[i].innerHTML)){
+                toast("你有没有输入选项");
+                return;
+            }
+            option[i].innerHTML = result[i].innerHTML;
+        }
+        showResultBox()
+    }
+
+    function selectResult(self,option){
+        var span = self.querySelector(".option");
+
+        var result = option+"、"+span.innerHTML;
+
+        var resultOption = document.getElementById(resultType);
+        resultOption.setAttribute("resultOption",option);
+        resultOption.innerHTML = result;
+        hideResultBox();
+    }
+
+
+    function openPreview(){
+        var previewParams = params;
+        var convert = {0:"A",1:"B",2:"C",3:"D"};
+        var questionList = new Array();
+        var item = document.getElementById("question").querySelectorAll(".item");
+
+        for(var i = 0; i<item.length;i++){
+            var span = item[i].querySelectorAll('.result');
+            var obj = {};
+            var content = item[i].querySelector('.main_title').innerHTML;
+            obj.content = content;
+            var options = {};
+            for(var j=0;j<span.length;j++){
+
+                options[convert[j]]=span[j].innerHTML;
+            }
+            obj.options = JSON.stringify(options);
+            var result = item[i].querySelector(".selectAnswer").getAttribute("resultOption");
+            obj.rightOption=result;
+            questionList.push(obj);
+        }
+        previewParams.questions =questionList;
+        openNewWindow("preview","./preview.html",previewParams);
+    }
+</script>
+</body>
+</html>

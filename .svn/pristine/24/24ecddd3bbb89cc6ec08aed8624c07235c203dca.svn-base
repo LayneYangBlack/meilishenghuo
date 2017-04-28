@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>我的金豆</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+    <style type="text/css">
+        #head{
+            text-align: center;
+            width: 100%;
+            height: 80px;
+            font-size: 20px;
+            line-height: 60px;
+            color: #fff;
+            clear: both;
+        }
+
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background: #f1f2f3;
+            width: 100%; /*height: 100%;*/
+            max-height: 100%;
+        }
+
+        .left_box{
+            float: left;
+            width:33%;
+        }
+        .left_box>div:first-child{
+            height: 60px;
+            background-color:#ff9900 ;
+        }
+        .left_box>div:last-child{
+            height: 20px;
+            font-size: 14px;
+            line-height: 20px;
+            background-color:#fa8200 ;
+        }
+
+        ul li{
+            float: left;
+            width: 25%;
+            text-align: center;
+            font-size: 12px;
+            line-height: 20px;
+            height: 50px;
+            padding-top: 10px;
+        }
+
+       li>div:last-child{
+             height: 20px;
+             font-size: 18px;
+             line-height: 25px;
+         }
+        #menu{
+            background-color: #fff;
+            clear: both;
+            margin-top: 10px;
+            height: 60px;
+        }
+
+
+        .indexbar1 {
+            position: absolute;/*background: #0fc;*/
+            width: 25%;
+            height: 2px;
+            left: 0;
+            -webkit-transition: 300ms;
+            color: #383838;
+        }
+        .redbox {
+            background: #75ca77;
+            width: 100%;
+            height: 2px;
+            position: relative;
+            left: auto;
+            right: auto;
+            margin-left: auto;
+            margin-right: auto;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+<div id="topbar" class="topbar_info">
+    <div id="leftButton" onclick="closeWin()">
+        <img src="../../icon/back@2x-b.png" >
+    </div>
+    <div>我的金豆</div>
+
+</div>
+<div>
+<div id="head">
+    <div class="left_box">
+        <div id="remainGoldBean">22,889</div>
+        <div>当前金豆</div>
+    </div>
+    <div class="left_box" style="border-left: solid #ffffff;border-right: solid  #ffffff; border-width:1px ">
+        <div id="totalGoldBean">22,889</div>
+        <div>累计获得金豆</div>
+    </div>
+    <div class="left_box">
+        <div id="expendGoldBean">-5555</div>
+        <div>已兑换金豆</div>
+    </div>
+</div>
+<div id="menu">
+    <ul class="scrollbar publicFlexRow">
+        <li onclick="switchFrameGroupIndex(0)">
+            <div>本人获得</div>
+            <div id="winGoldBean">3232</div>
+        </li>
+        <li onclick="switchFrameGroupIndex(1)">
+            <div>分享绑定个人</div>
+            <div id="sharePersonGoldBean">3232</div>
+        </li> <li onclick="switchFrameGroupIndex(2)">
+        <div>分享绑定商家</div>
+        <div id="shareShopGoldBean">3232</div>
+    </li> <li onclick="switchFrameGroupIndex(3)">
+        <div>已兑换</div>
+        <div id="expendGoldBeanInfo">3232</div>
+    </li>
+
+    </ul>
+    <div class="indexbar1" id="findRedBar">
+        <div class="redbox"></div>
+    </div>
+    <div style="clear: both;"></div>
+
+</div>
+</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script>
+    var window_width;
+    apiready = function(){
+        window_width = api.winWidth;
+        var user = api.pageParam.user;
+        setBeanNum(user);
+        api.openFrameGroup ({
+            name: 'userBeanGroup',
+            background:'#fff',
+            scrollEnabled:true,
+            rect : {
+                x : 0,
+                y : 196,
+                w : 'auto',
+                h : api.winHeight - 196
+            },
+            index:0,
+            frames: [{
+                name: 'bean_get',
+                url: 'bean_get.html',
+                pageParam:{type:0,user:user},
+                bgColor: '#fff'
+            },{
+                name: 'bean_share_user',
+                url: 'bean_share_user.html',
+                pageParam:{type:1,user:user},
+                bgColor: '#fff'
+            },{
+                name: 'bean_share_mall',
+                url: 'bean_share_mall.html',
+                pageParam:{type:2,user:user},
+                bgColor: '#fff'
+            },{
+                name: 'bean_consume',
+                url: 'bean_consume.html',
+                pageParam:{type:3,user:user},
+                bgColor: '#fff'
+                }
+            ]
+        }, function(ret, err){
+            switchFrameCallback(ret.index);
+        });
+    };
+
+
+    function setBeanNum(user){
+        document.getElementById('remainGoldBean').innerHTML = user.remainGoldBean;
+        var total = parseInt(user.winGoldBean)+parseInt(user.sharePersonGoldBean)+parseInt(user.shareShopGoldBean);
+        document.getElementById('totalGoldBean').innerHTML = total;
+        document.getElementById('expendGoldBean').innerHTML = user.expendGoldBean;
+        document.getElementById('winGoldBean').innerHTML = user.winGoldBean;
+        document.getElementById('sharePersonGoldBean').innerHTML = user.sharePersonGoldBean;
+        document.getElementById('shareShopGoldBean').innerHTML = user.shareShopGoldBean;
+        document.getElementById('expendGoldBeanInfo').innerHTML = user.expendGoldBean;
+    }
+
+
+    function switchFrameGroupIndex(index){
+        _index=index;
+        api.setFrameGroupIndex({
+            name : "userBeanGroup",
+            index : index,
+            scroll : true
+        });
+    }
+    function switchFrameCallback(index){
+        var width = (window_width / 4) * index;
+        var spans=document.querySelector(".scrollbar").querySelectorAll("li");
+        $api.css(document.getElementById("findRedBar"), "-webkit-transform:translate(" + width + "px,0)");
+        for(var i=0;i<spans.length;i++){
+            if(i==index){
+                spans[i].style.color="#76CA78";
+            }else{
+                spans[i].style.color="";
+            }
+        }
+    }
+</script>
+</html>

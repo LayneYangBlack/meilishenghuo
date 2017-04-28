@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发布活动</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+</head>
+<style>
+    *{margin:0;padding: 0;}
+    html{
+        font-size: 20px;
+        height: 100%;
+    }
+    .fb img{
+        width:100%;
+    }
+    body{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .fbhuise{
+        width: 99.5%;
+        height: 10px;
+        background: #ebebeb;
+        /*border: 0.08rem solid #dbdbdc;*/
+    }
+    .fbcon1{
+        width: 94.44%;
+        margin-left: 5.5%;
+        overflow: hidden;
+        font-size:0.65rem;
+        height: 50px;
+        line-height: 50px;;
+        border-bottom: 1px solid #eaeaea;
+        position: relative;
+    }
+    .fbcon1h3{
+        float: left;
+        color:#333;
+    }
+    .fbcon1span{
+        float: right;
+        width: 70.5%;
+        margin-right: 35px;
+        color: #666;
+        outline: none;
+        text-align: right;
+        line-height: 50px;;
+    }
+    .fbcon2{
+        width: 94.44%;
+        padding: 0.6rem 0 0.3rem 0;
+        font-size: 0.75rem;
+        margin-left: 5.5%;
+        border-bottom: 1px solid #eaeaea;
+        position: relative;
+    }
+    .fbcon2_1{
+        float: left;
+        font-size: 0.7rem;
+    }
+    .fbcon2_2{
+        font-size: 0.6rem;
+        float: right;
+        margin-right: 10.83%;
+        color: #666;
+        padding-top: .3rem;;
+    }
+    .fbcon2_3{
+        font-size: 0.5rem;
+        color: #ccc;
+
+    }
+    .fbcon3 span{
+        font-size: 0.7rem;
+        float: left;
+        margin-top: 1rem;
+        margin-left: 0.05rem;;
+
+    }
+    .fbcon3img{
+        font-size: 0.85rem;
+        float: right;
+        padding-right: 10.83%;
+        width: 30%;
+        height:3rem;
+        margin-top: -1%;;
+    }
+    .fbcon3{
+        width: 94.44%;
+        margin-left: 5.5%;
+        padding: 0.5rem 0 3.3rem 0;
+        position: relative;
+    }
+    #fbcon5{
+        width: 94.44%;
+        padding: 0.5rem 0 2rem 5.5%;
+        font-size: 1.1rem;
+        /*margin-left: 5.5%;*/
+        border-bottom: 1px solid #eaeaea;
+    }
+    #fbcon5 span{
+        float:left;
+        font-size: 0.8rem;
+        line-height: 1.5rem;
+        margin-left: .1rem;
+    }
+
+    .fbcon6{
+        width: 100%;
+        padding: 0.35rem 0 0.5rem  5.5%;
+        font-size: 0.6rem;
+    }
+    .fbcon7{
+        width: 100%;
+    }
+    .fbcon7 img{
+        width: 90%;
+        margin: 0.35rem 5% 0 5%;
+    }
+    .fbfoot{
+        overflow: hidden;
+        font-size: 18px;
+        text-align: center;
+        bottom: 0px;
+        width: 100%;
+        margin-top: 5px;
+        margin-bottom: 45px;
+    }
+    
+    .fbfoot2{
+        float: left;
+        width: 39.5%;
+        background: #75ca77;
+        color: #fff;
+		height: 50px;
+		line-height: 50px;
+        text-align: center;
+        font-size: 16px;;
+
+    }
+    .fbjiantou{
+        position: absolute;
+        right: 10px;
+        top: 0.7rem;
+        width: 20px;
+    }
+    .fbjiantou1{
+        position: absolute;
+        right: 10px;
+        top: 1.2rem;
+        width: 20px;
+
+    }
+
+    .handle .add span {
+        position: relative;
+        display: inline-block;
+        font-size: 14px;
+        color: #333;
+      height: 50px;width: 30%;float: left;
+
+      }
+    .handle .add span:first-child{
+        border-right: 1px solid #ebebeb;
+
+    }
+    .handle {
+
+        bottom: 0;
+        left: 0;
+        z-index: 999;
+        width: 100%;
+        background-color: #ffffff;
+        border: solid #e5e5e5;
+        border-width: 1px 0;
+    }
+
+    .paragraph textarea {
+        width: 100%;
+        height: 4.5rem;
+        font-size: 1rem;
+        color: #444444;
+        line-height: 1.5;
+        resize: none;
+    }
+
+    .paragraph {
+        position: relative;
+        margin: 1.125rem 0 0;
+        padding: 0.5625rem 1.25rem 0.5rem 1rem;
+        background-color: #ffffff;
+        overflow: hidden;
+    }
+    .imagebox{width: 80%;
+
+        padding: 0.5625rem 10% 0.5rem 10%;
+
+    }
+    .imagebox img{
+        width: 100%;
+        padding: 0.5625rem 0 0.5rem 0;
+    }
+    .normal{border: 1px solid #eaeaea;font-size:10px;}
+    .top{flex: 0 0 auto}
+    .conter{flex: 1 0 auto}
+    .handle{flex: 0 0 auto}
+    .btnclose{position: absolute;right:1rem;top: 0.2rem;display: block;background:url("../../icon/close.png")no-repeat ;width: 16px;height: 16px;opacity: 1;
+                  border-radius: 6px;z-index: 666;}
+    .btnclose1{position: absolute;right:7%;top: 0.5rem;display: block;background:url("../../icon/close.png")no-repeat ;width: 16px;height: 16px;opacity: 1;
+        border-radius: 6px;z-index: 666;}
+
+    .imgDiv{width: 100%;float: left;height:80%;background: blue;}
+
+
+
+
+</style>
+<body>
+<div class="top">
+<div class="fb">
+    <img  src="../../icon/mall/banner3.png" alt="" />
+</div>
+<div class="fbhuise"></div>
+
+
+</div>
+
+
+    <div class="conter">
+<div class="fbcon1">
+    <div class="fbcon1h3">标题</div>
+    <input class="fbcon1span" type="" name="" id="title1" value="" />
+    <img class="fbjiantou"  src="../../icon/icon_right_normal.png" alt="" />
+</div>
+<div class="fbcon2">
+    <div style="overflow: hidden;">
+        <span class="fbcon2_1">公司信息显示设置</span>
+        <span class="fbcon2_2">默认不显示</span>
+        <img class="fbjiantou" src="../../icon/icon_right_normal.png" alt="" />
+    </div>
+    <span class="fbcon2_3">&nbsp公司电话、地址、网址等</span>
+</div>
+<div class="fbcon3" onclick="getImgUrl()">
+    <span>首页封面照设置</span>
+    <img class="fbcon3img" src="" id="icon"  alt=""  onerror="this.src='../../image/user-photo.png'" />
+    <img class="fbjiantou1" src="../../icon/icon_right_normal.png" alt="" />
+</div>
+<div class="fbhuise"></div>
+<div id="fbcon5">
+    <span>内容</span>
+</div>
+<div id="content" style="flex: 1;">
+    <div class="paragraph" data-bind="content" data-type="text">
+        <textarea  class="normal" placeholder="请输入正文内容" style="font-size: 14px;"></textarea>
+    </div>
+
+</div>
+
+</div>
+
+
+
+
+<div class="handle" >
+    <div class="add">
+        <span onclick="addText()" style="line-height: 50px;text-align: center;">添加文字</span>
+        <i class="split"></i>
+        <span style="text-align: center;line-height: 50px;position: relative;overflow: hidden;"><a style="display: block;position: absolute;left: 30%;top: 0;">添加图片</a><input  type="file" id="file" name="file" accept="image/jpeg,image/png,image/bmp" multiple="multiple" style="opacity: 0;   display:inline;width:100%;margin-left:30%;"></span>
+        <div class="fbfoot2" onclick="next()">下一步</div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/jquery-1.8.1.min.js"></script>
+<script id="textDiv" type="text/html">
+    <div class="paragraph" data-bind="content" data-type="text"  style="position: relative;">
+        <textarea  class="normal"   placeholder="请输入正文内容" style="font-size: 14px;"></textarea>
+        <a href="javascript:void(0)"  class="btnclose"  onclick="closethis(this)"></a>
+    </div>
+</script>
+<script id="imgDiv" type="text/html" >
+    <div class="imagebox" data-bind="content" data-type="image" style="position: relative;" >
+        <img src="<%=src%>">
+        <a href="javascript:void(0)"  class="btnclose1"  onclick="closethis(this)"></a>
+    </div>
+</script>
+
+<script type="text/javascript">
+
+    function closethis(self){
+        self.parentNode.remove()
+    }
+
+    var cover = null;
+    var params = null;
+    apiready = function (){
+        api.showProgress({title: '努力加载中...',text: '先喝杯茶...'});
+        params = api.pageParam.params;
+        api.hideProgress();
+    };
+
+    function getImgUrl(){
+//        openNewWindow("uploadImg","../mall/uploadImg.html",{toPX:230,toPY:180,toNm:'imgName',winHtml:api.winName});
+        updateImageClip(255,150,'../main/imgClip.html');
+    }
+
+    /**
+     * 上下裁剪图片
+     *
+     * c:屏幕百分比（计算宽度）
+     * m:补白（计算宽度）
+     * src:图片原始路径 (计算高度)
+     * p:百分比（计算高度和补白）
+     */
+    function getMargin(c,m,src,p) {
+        m = m || 0;
+        var width = Math.round((api.frameWidth )*p);
+        var imgRealHeight = getWidthAndHeightByImageSrc(src, width).h;
+        if (imgRealHeight > (width * p)) {
+            return (0 - Math.round((imgRealHeight - width) / 2));
+        } else {
+            return 0;
+        }
+    }
+
+    function setImgUrl(data){
+        document.getElementById('icon').src = data;
+        cover = data;
+    }
+
+
+    function addText(){
+
+        var html = template('textDiv', {});
+        $("#content").append(html);
+    }
+
+    function addImg(ret){
+
+//        var src = compressImg(ret.ok);
+        var data = {src:ret.ok};
+        var html = template('imgDiv', data);
+        $("#content").append(html);
+    }
+
+
+//    function compressImg(src){
+//        var imgStr = src.substring(0,src.lastIndexOf("."))+"_"+api.frameWidth;
+//        var suffix = src.substring(src.lastIndexOf("."));
+//        return imgStr+suffix;
+//    }
+
+
+    function _uploadImg(path,suffix,callback) {
+        api.showProgress({title: '上传图片', text: '先喝杯茶...'});
+        ajaxGetWithProgress(uploadImageBase64Url,{file: path, suffix: suffix}, function (ret, err) {
+            if (isNotBlack(ret)&&isNotBlack(ret.ok)) {
+                if (isFunction(callback)) {
+                    callback(ret, path);
+                    api.hideProgress();
+                }
+            }})
+    }
+
+    window.onload = function() {
+        var input = document.getElementById("file");
+        input.addEventListener('change', readFile, false);
+
+        function readFile() {
+            for (var i = 0; i < this.files.length; i++) {
+                if (!input['value'].match(/.jpg|.gif|.png|.bmp/i)) {//判断上传文件格式
+                    return alert("上传的图片格式不正确，请重新选择")
+                }
+                var suffix = this.files[i].name.substring(this.files[i].name.lastIndexOf(".")+1);
+                var reader = new FileReader();
+                reader.readAsDataURL(this.files[i]);
+
+                reader.onload = function (e) {
+                    _uploadImg(this.result,suffix,addImg);
+                }
+            }
+        }
+    }
+
+
+    function commit(){
+
+        openNewWindow('publishSelectCondition','./publishSelectCondition.html',params)
+    }
+
+
+    function next(){
+        var title = document.getElementById("title1").value;
+        var $txt = $("#content").find("div");
+        var content = "";
+        for(var i = 0;i<$txt.length;i++){
+            var type = $($txt[i]).attr("data-type");
+            if(type == "text"){
+                content = content + $($txt[i]).find('textarea').val();
+            }else if(type=='image'){
+                content = content +  $($txt[i]).html();
+            }
+        }
+        if(isBlack(content)){
+            toast('你还没有输入内容');
+            return;
+        }
+
+        if(isBlack(title)){
+            toast("标题不能为空！");
+            return;
+        }
+        params.title = title;
+
+        var html =  encodeURIComponent(content);
+        params.content = html;
+
+        if(isBlack(cover)){
+            toast("你还没有上传封面照片！");
+            return;
+        }
+        params.cover = cover;
+        openNewWindow("editQuestion","./editQuestion.html",{params:params})
+    }
+</script>
+</html>

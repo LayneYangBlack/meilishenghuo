@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+    <style type="text/css">
+        html {
+            width: 100%;
+            height: 100%;
+        }
+        body {
+            background: #fff;
+            width: 100%; 
+            min-height: 100%;
+        }
+        #item{
+            background-color: #fff;
+            padding: 10px 5px;
+            height: 90px;
+        }
+        #item div{
+            display: inline-block;
+            vertical-align: top;
+        }
+        #item div:first-child{
+            width: 30%;
+        }
+        #item div:last-child{
+            width: 60%;
+        }
+       #item ul li{
+            font-size: 16px;
+            line-height: 25px;
+            color: #333;
+        }
+       #item li span{
+            font-size: 14px;
+        }
+
+        #menu ul li{
+            float: left;
+            width: 33.3%;
+            text-align: center;
+            font-size: 16px;
+            line-height: 30px;
+            height: 30px;
+        }
+        #menu{
+            background-color: #ffffff;
+            clear: both;
+            margin-top: 10px;
+            height: 30px;
+            position: relative;
+        }
+        .indexbar1 {
+            position: absolute;/*background: #0fc;*/
+            width: 33.3%;
+            height: 2px;
+            left: 0;
+            top: 35px;
+            -webkit-transition: 300ms;
+            color: #383838;
+        }
+        .redbox {
+            background:#75ca77;
+            width: 80%;
+            height: 2px;
+            position: relative;
+            left: auto;
+            right: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .pic{
+            float: left;
+            width: 25%;
+            margin-left: 2%;
+            height: 70px;
+        }
+        .pic img{
+            width: 100%;
+            height: 90px;
+
+            margin-bottom: 0px;}
+    </style>
+</head>
+<body>
+<div id="topbar" class="topbar_info">
+    <div id="leftButton" onclick="closeWin()">
+        <img src="../../icon/back@2x-b.png" >
+    </div>
+    <div>个人详情</div>
+</div>
+<div id="main">
+    <div id="item">
+        <div class="pic" >
+            <img class="icon" src="../../image/test/1.jpg" onerror="this.src='../../image/user-photo.png'">
+        </div>
+        <div style="color: #9296a3;margin-left: 5%;">
+            <ul style="margin-left: 5%">
+                <li style="font-size: 16px;color: #9296a3;">
+                    飞翔的加菲猫 LV3 <img style="vertical-align: top" width="12px" src="../../icon/user/@2female.png">
+                </li>
+                <li style="font-size: 12px;margin-top: 5px;color: #9296a3;">
+                    <span>本科</span>　<span>医生</span>　<span>已婚</span>　<span>中层领导</span>
+                </li>
+                <li style="font-size: 12px;margin-top: 10px;color: #9296a3;">
+                    <span>湖南邵阳</span>　<span>1820.12Km</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+    <div id="menu">
+    	<div style="width: 100%;height: 5px;background: #f1f2f3;"></div>
+        <ul class="scrollbar publicFlexRow">
+            <li onclick="switchFrameGroupIndex(0)">
+                <div>获得金豆</div>
+            </li>
+            <li onclick="switchFrameGroupIndex(1)">
+                <div>获得积分</div>
+            </li> <li onclick="switchFrameGroupIndex(2)">
+            <div>个人信息</div>
+            </li>
+        </ul>
+        <div class="indexbar1" id="findRedBar">
+            <div class="redbox"></div>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script id="scriptDiv" type="text/html">
+    <div id="item">
+        <div class="pic" >
+            <img  class="icon" src="<%=list.icon%>" onerror="this.src='../../image/user-photo.png'">
+        </div>
+        <div style="color: #9296a3; margin-left: 5%;" >
+            <ul>
+                <li style="font-size: 15px;color: #9296a3;">
+                    <%=list.name%>　LV<%=list.level%> <img style="vertical-align: top" width="12px" src="<%=list.sexIcon%>">
+                </li>
+                <li style="font-size: 12px;margin-top: 5px;color: #9296a3;">
+                    <span><%=list.education%></span>　<span><%=list.profession%></span>　
+                </li>
+                <li style="font-size: 12px;color: #9296a3;">
+                    <span><%=list.nativePlace%> </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</script>
+<script>
+    var window_width;
+    apiready = function(){
+        window_width = api.winWidth;
+        var user = api.pageParam.user;
+        api.openFrameGroup ({
+            name: 'userDetailGroup',
+            background:'#fff',
+            scrollEnabled:true,
+            rect : {
+                x : 0,
+                y : 200,
+                w : 'auto',
+                h : api.winHeight - 200
+            },
+            index:0,
+            frames: [{
+                name: 'bean_get',
+                url: 'bean_get.html',
+                bgColor: '#fff',
+                pageParam:{type:0,user:user}
+            },{
+                name: 'score_get',
+                url: 'score_get.html',
+                bgColor: '#fff',
+                pageParam:{type:1,user:user}
+            },{
+                name: 'frendInfo_body',
+                url: 'frendInfo_body.html',
+                bgColor: '#fff',
+                pageParam:{type:2,user:user}
+            }
+            ]
+        }, function(ret, err){
+            switchFrameCallback(ret.index);
+        });
+        addDataToHtml(user);
+    };
+    function addDataToHtml(user) {
+        if(user.sex == 1){
+            user.sexIcon = "../../icon/user/@2male.png"
+        }else if(user.sex == 2){
+            user.sexIcon = "../../icon/user/@2female.png"
+        }
+        var data = {list:user};
+        var html = template('scriptDiv', data);
+        document.getElementById('main').innerHTML = html;
+    }
+    function switchFrameGroupIndex(index){
+        _index=index;
+        api.setFrameGroupIndex({
+            name : "userDetailGroup",
+            index : index,
+            scroll : true
+        });
+    }
+    function switchFrameCallback(index){
+        var width = (window_width / 3) * index;
+        var spans=document.querySelector(".scrollbar").querySelectorAll("li");
+        $api.css(document.getElementById("findRedBar"), "-webkit-transform:translate(" + width + "px,0)");
+        for(var i=0;i<spans.length;i++){
+            if(i==index){
+                spans[i].style.color="#76CA78";
+            }else{
+                spans[i].style.color="";
+            }
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>行业</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style type="text/css">
+        .title{
+            font-size: 16px;
+            color: #9296a3;
+            height: 30px;
+            line-height: 30px;
+            border-bottom: solid 0.5px #cccccc;
+            padding-top: 10px;
+            padding-left: 10px;
+        }
+        .title span{
+            font-size: 18px;
+            color: #FF9900;
+        }
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+
+            width: 100%; /*height: 100%;*/
+            min-height: 100%;
+        }
+
+        ul li{
+            float: left;
+            width: 20.3%;
+            margin: 10px 2%;
+            text-align: center;
+            border: solid 1px #ccc;
+            border-radius: 20px;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        /* 多選框 */
+        li input[type="checkbox"] {
+            display: none;
+        }
+        li input[type="checkbox"] + label {
+            display: inline-block;
+            cursor: pointer;
+        }
+
+
+        h4{
+            margin-left: 10px;
+            color: #9296a3;
+            font-weight: normal;
+            font-size: 14px;
+        }
+        .item{
+            margin: 10px 0;
+        }
+
+
+        #question{
+            position: fixed;
+            height: 50px;
+            color: #ffffff;
+            text-align: center;
+            background-color: #75ca77;
+            margin: 10px 0 0 0 ;
+            line-height: 50px;
+            font-size: 18px;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div class="title">行业选择<span id="select_num">0</span>/3项</div>
+
+    </div>
+    <div  id="question" tapmode="itemOn" onclick="submitInterest()">
+        确定
+    </div>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/template-native.js"></script>
+    <script type="text/javascript" src="../../script/kv.js"></script>
+    <script type="text/javascript" src="../../script/user.js"></script>
+    <script type="text/javascript" src="../../script/data.js"></script>
+    <script type="text/javascript" src="../../script/util.js"></script>
+    <script type="text/javascript" src="../../script/apiCloud.js"></script>
+    <script type="text/javascript" src="../../script/public.js"></script>
+    <script type="text/javascript" src="../../script/echo.min.js"></script>
+
+    <script id="scriptDiv" type="text/html">
+        <% for(var i=0;i< list.length; i++) {%>
+        <div class="item">
+            <h4><%= list[i].parent.name %></h4>
+            <% var subs = list[i].subs %>
+            <div class="clearfix">
+                <ul data-id="<%= list[i].parent.id %>" >
+                    <% for(var j= 0; j< subs.length; j++){%>
+                    <li><input type="checkbox" id="leisure_<%= subs[j].id %>" name="interst" data-id="<%= subs[j].id %>">
+                        <label  for="leisure_<%= subs[j].id %>"><%= subs[j].name%></label></li>
+                    <%}%>
+                </ul>
+            </div>
+        </div>
+     <%}%>
+    </script>
+    <script type="text/javascript">
+        var dialogBox;
+        var user = getUserInfo();
+        var maxNum = industryNum;
+        var resultList = {};
+        function selectEvent(){
+            var select_num = 0;
+            function selectedLi(el){
+                var check = el.checked;
+                var label = el.parentElement;
+                if(check){
+                    select_num++;
+                    if(select_num > maxNum){
+                        el.checked=false;
+                        select_num--;
+                        showDialog();
+                        return;
+                    }
+                    label.style.backgroundColor="#76CA78";
+                    label.style.color="#ffffff";
+                }else{
+                    select_num--;
+                    label.style.backgroundColor="#ffffff";
+                    label.style.color="#000000";
+                }
+                document.getElementById('select_num').innerHTML=select_num;
+
+            }
+            var input = document.getElementsByTagName("input");
+            for(var i=0;i<input.length;i++){
+                input[i].onclick=function(){
+                    selectedLi(this);
+                }
+            }
+        }
+
+
+        apiready = function () {
+            api.showProgress({title: '努力加载中...',text: '先喝杯茶...'});
+            dialogBox = api.require('dialogBox');
+            ajaxGet(userInterestUrl,{},function(ret,err){
+                if(ret){
+                    setDateToHtml(ret);
+                    selectEvent();
+                }
+            });
+            api.hideProgress();
+        };
+
+        function setDateToHtml(list){
+            if (list && list.length > 0) {
+                for(var i = 0; i < list.length; i++){
+                    resultList[list[i].parent.id] = list[i].parent;
+                    var subs = list[i].subs;
+                    for(var j = 0;j<subs.length; j++){
+                        resultList[subs[j].id] = subs[j];
+                    }
+                }
+                var data = {list: list};
+                var html = template('scriptDiv', data);
+                if (true) {
+                    document.getElementById('main').innerHTML = document.getElementById('main').innerHTML + html;
+                } else {
+                    document.getElementById('main').innerHTML = html;
+                }
+
+            }else if(results.length==0){
+                document.getElementById('main').innerHTML = '';
+            }
+        }
+
+        function showDialog(){
+
+            dialogBox.alert ({
+                texts: {
+                    title: '提示',
+                    content:'所选兴趣项已达上限。提高积分等级，可增加选择兴趣类别数量',
+                    rightBtnTitle: '确定'
+                },
+                styles:{
+                    bg: '#fff',
+                    w: 300,
+                    title:{
+                        marginT : 20,
+                        titleSize : 18,
+                        titleColor : '#76CA78'
+                    },
+                    content:{
+                        color: '#000',
+                        size: 16
+                    },
+                    right:{
+                        w: 300,
+                        h: 40,
+                        marginL: 0,
+                        marginB: 0,
+                        corner: 0,
+                        bg: '#76CA78',
+                        size: 16,
+                        color:'#ffffff'
+                    }
+                }
+            },function(ret){
+                if (ret.eventType == 'right') {
+                    var dialogBox = api.require('dialogBox');
+                    dialogBox.close ({
+                        dialogName: 'alert'
+                    });
+
+                }
+            });
+        }
+
+        function submitInterest(){
+            //校验
+            var interestIds = new Array;
+            var input = document.getElementsByTagName("input");
+            for(var i = 0;i<input.length;i++){
+                if(input[i].checked){
+                    interestIds.push(input[i].getAttribute("data-id"));
+                }
+            }
+
+            var ids ="";
+            for(var i = 0; i < interestIds.length; i++){
+                ids = ids+interestIds[i];
+                if(i != interestIds.length - 1){
+                    ids = ids + ",";
+                }
+            }
+            var params = {};
+            params.ids = ids;
+            var arr = [];
+            if(interestIds.length >= 0){
+                for(var i = 0;i<interestIds.length;i++){
+                    arr.push(resultList[interestIds[i]]);
+                }
+                params.list = arr;
+                var type = api.pageParam.type;
+                //异步调用
+                api.execScript({
+                    name:type,
+                    frameName: type+'_body',
+                    script: 'showInterest('+JSON.stringify(params)+')'
+                });
+                closeWin();
+            }else{
+                toast("至少选择一个行业");
+                return;
+            }
+
+        }
+    </script>
+</body>
+</html>

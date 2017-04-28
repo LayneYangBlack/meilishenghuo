@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>计时答题</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+    <style type="text/css">
+        .title{
+            font-size: 16px;
+            color: #9296a3;
+            height: 30px;
+            line-height: 30px;
+           /* border-bottom: solid 0.5px #cccccc;*/
+            padding-top: 10px;
+            padding-left: 10px;
+        }
+        .title span{
+        /*    font-size: 18px;*/
+            color: #FF9900;
+        }
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+
+            width: 100%; /*height: 100%;*/
+            min-height: 100%;
+        }
+
+        ul li{
+            float: left;
+            width: 20.3%;
+            margin: 10px 2%;
+            text-align: center;
+            border: solid 1px #ccc;
+            border-radius: 20px;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        /* 多選框 */
+        li input[type="checkbox"] {
+            display: none;
+        }
+        li input[type="checkbox"] + label {
+            display: inline-block;
+            cursor: pointer;
+        }
+
+
+        h4{
+            margin-left: 10px;
+            color: #9296a3;
+            font-weight: normal;
+            font-size: 14px;
+        }
+        .item{
+            margin: 10px 0;
+        }
+
+
+        #question{
+            position: fixed;
+            height: 50px;
+            color: #ffffff;
+            text-align: center;
+            background-color: #75ca77;
+            margin: 10px 0 0 0 ;
+            line-height: 50px;
+            font-size: 18px;
+            width: 100%;
+            bottom: 0;
+        }
+        #bg{
+        	display: none;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: 1001;
+            -moz-opacity: 0.7;
+            opacity: .70;
+            filter: alpha(opacity=70);
+        }
+        #show{
+        	display: none;
+            position: absolute;
+            top: 50px;
+            width: 100%;
+            height: 200px;
+            /*background-color: white;*/
+            z-index: 1002;
+            overflow: auto;
+        }
+        #pop-up_input{
+        	width: 80%;
+        	height: 10rem;
+        	background-color: #FFFFFF;
+        	border: none;
+        	position: absolute;
+        	top: 10%;
+        	left: 10%;
+        	text-align: center;
+        }
+        .title{
+        	display: block;
+		    height: 3rem;
+		    line-height: 3rem;
+		    color: #76CA78;
+		    font-size: 1.5rem;
+        }
+        .content{
+        	font-size: 1rem;
+        }
+        .button_firm{
+        	display: block;
+        	width: 100%;
+        	height: 3rem;
+        	font-size: 1.5rem;
+        	background-color: #76CA78;
+        	color: #FFFFFF;
+        	border: none;
+        	position: absolute;
+        	bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="topbar" class="topbar_info">
+        <div id="leftButton" ">
+            <img src="../../icon/back@2x-b.png" >
+        </div>
+        <div>注册</div>
+    </div>
+    <div id="main">
+        <div class="title">我的兴趣<span id="select_num">0</span>/9项</div>
+        <div class="item">
+            <h4>休闲娱乐</h4>
+            <div>
+                <ul>
+                    <li><input type="checkbox" id="leisure_1" name="interst">
+                        <label  for="leisure_1">喝咖啡</label></li>
+                    <li><input   onclick="selectedLi('leisure_2')"type="checkbox" id="leisure_2" name="interst">
+                        <label for="leisure_2">扑克</label></li>
+                    <li><input type="checkbox" id="leisure_3" name="interst">
+                        <label for="leisure_3">读书</label></li>
+                    <li><input type="checkbox" id="leisure_4" name="interst">
+                        <label for="leisure_4">风筝</label></li>
+                    <li><input type="checkbox" id="leisure_5" name="interst">
+                        <label for="leisure_5">桌游</label></li>
+                    <li><input type="checkbox" id="leisure_6" name="interst">
+                        <label for="leisure_6">唱歌</label></li>
+                    <li><input type="checkbox" id="leisure_7" name="interst">
+                        <label for="leisure_7">美食</label></li>
+                    <li><input type="checkbox" id="leisure_8" name="interst">
+                        <label for="leisure_8">HTML5</label></li>
+                </ul>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+        <div class="item">
+            <h4>休闲娱乐</h4>
+            <div>
+                <ul>
+                    <li><input type="checkbox" id="education1" name="interst">
+                        <label for="education1">喝咖啡</label></li>
+                    <li><input type="checkbox" id="education2" name="interst">
+                        <label for="education2">扑克</label></li>
+                    <li><input type="checkbox" id="education3" name="interst">
+                        <label for="education3">读书</label></li>
+                    <li><input type="checkbox" id="education4" name="interst">
+                        <label for="education4">风筝</label></li>
+                    <li><input type="checkbox" id="education5" name="interst">
+                        <label for="education5">桌游</label></li>
+                    <li><input type="checkbox" id="education6" name="interst">
+                        <label for="education6">唱歌</label></li>
+                    <li><input type="checkbox" id="education7" name="interst">
+                        <label for="education7">美食</label></li>
+                    <li><input type="checkbox" id="education8" name="interst">
+                        <label for="education8">HTML5</label></li>
+                </ul>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+
+        <div class="item">
+            <h4>休闲娱乐</h4>
+            <div>
+                <ul>
+                    <li><input type="checkbox" id="sport1" name="interst">
+                        <label for="sport1">喝咖啡</label></li>
+                    <li><input type="checkbox" id="sport2" name="interst">
+                        <label for="sport2">扑克</label></li>
+                    <li><input type="checkbox" id="sport3" name="interst">
+                        <label for="sport3">读书</label></li>
+                    <li><input type="checkbox" id="sport4" name="interst">
+                        <label for="sport4">风筝</label></li>
+                    <li><input type="checkbox" id="sport5" name="interst">
+                        <label for="sport5">桌游</label></li>
+                    <li><input type="checkbox" id="sport6" name="interst">
+                        <label for="sport6">唱歌</label></li>
+                    <li><input type="checkbox" id="sport7" name="interst">
+                        <label for="sport7">美食</label></li>
+                    <li><input type="checkbox" id="sport8" name="interst">
+                        <label for="sport8">HTML5</label></li>
+                </ul>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+        <div  id="question" tapmode="itemOn" onclick="">
+            注册并登陆
+        </div>
+    </div>
+    
+    <!--弹出框-->
+    <div id="bg"></div>
+		<div id="show">
+			<div id="pop-up_input">
+				<span class="title">提示</span>
+				<span class="content">所选兴趣项已达上限。提高积分等级，可增加选择兴趣类别数量</span>
+				<button class="button_firm" onclick="box_Hide()">确定</button>
+			</div>
+		</div>
+		<script type="text/javascript">
+			document.getElementById("bg").addEventListener("touchmove",function(e){
+        e.preventDefault();
+   });
+    	document.getElementById("show").addEventListener("touchmove",function(e){
+        e.preventDefault();
+    });
+    	function box_Hide(){
+  			document.getElementById('bg').style.display="none";
+  			document.getElementById('show').style.display="none";
+  			
+//			document.getElementById('pop-up_input').style.display="none";
+  		}
+//  <script type="text/javascript" src="../../script/api.js"> </script>
+    <script type="text/javascript" src="../../script/template-native.js"></script>
+    <script type="text/javascript" src="../../script/kv.js"></script>
+    <script type="text/javascript" src="../../script/user.js"></script>
+    <script type="text/javascript" src="../../script/data.js"></script>
+    <script type="text/javascript" src="../../script/util.js"></script>
+    <script type="text/javascript" src="../../script/apiCloud.js"></script>
+    <script type="text/javascript" src="../../script/public.js"></script>
+    <script type="text/javascript" src="../../script/echo.min.js"></script>
+    <script type="text/javascript">
+        var select_num= 0;
+        var dialogBox;
+        function selectedLi(el){
+            var check = el.checked;
+            var label = el.parentElement;
+            if(check){
+                select_num++;
+                if(select_num>9){
+                    el.checked=false;
+                    select_num--;
+                    showDialog();
+                    return;
+                }
+                label.style.backgroundColor="#76CA78";
+                label.style.color="#ffffff";
+            }else{
+                select_num--;
+                label.style.backgroundColor="#ffffff";
+                label.style.color="#000000";
+            }
+            document.getElementById('select_num').innerHTML=select_num;
+
+        }
+        var input = document.getElementsByTagName("input");
+        for(var i=0;i<input.length;i++){
+            input[i].onclick=function(){
+                selectedLi(this);
+            }
+        }
+
+        apiready = function () {
+             api.showProgress({title: '努力加载中...',text: '先喝杯茶...'});
+            dialogBox = api.require('dialogBox');
+             api.hideProgress();
+        };
+
+
+        function showDialog(){
+
+//          dialogBox.alert ({
+//              texts: {
+//                  title: '提示',
+//                  content:'所选兴趣项已达上限。提高积分等级，可增加选择兴趣类别数量',
+//                  rightBtnTitle: '确定'
+//              },
+//              styles:{
+//                  bg: '#fff',
+//                  w: 300,
+//                  title:{
+//                      marginT : 20,
+//                      titleSize : 18,
+//                      titleColor : '#76CA78'
+//                  },
+//                  content:{
+//                      color: '#000',
+//                      size: 16
+//                  },
+//                  right:{
+//                      w: 300,
+//                      h: 40,
+//                      marginL: 0,
+//                      marginB: 0,
+//                      corner: 0,
+//                      bg: '#76CA78',
+//                      size: 16,
+//                      color:'#ffffff'
+//                  }
+//              }
+//          },function(ret){
+//              if (ret.eventType == 'right') {
+//                  var dialogBox = api.require('dialogBox');
+//                  dialogBox.close ({
+//                      dialogName: 'alert'
+//                  });
+//              }
+//          });
+			document.getElementById('bg').style.display="block";
+  			document.getElementById('show').style.display="block";
+        }
+        
+        function login(){
+            openNewWindow("userType","../user/userType.html",{})
+        }
+
+          apiready = function () {
+              api.showProgress({title: '努力加载中...',text: '先喝杯茶...'});
+        initFrameInWin(api.pageParam);
+         api.hideProgress();
+    };
+    	document.getElementById("bg").addEventListener("touchmove",function(e){
+        e.preventDefault();
+   });
+    	document.getElementById("show").addEventListener("touchmove",function(e){
+        e.preventDefault();
+    });
+    	function box_Hide(){
+  			document.getElementById('bg').style.display="none";
+  			document.getElementById('show').style.display="none";
+  			
+//			document.getElementById('pop-up_input').style.display="none";
+  		}
+    </script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>HTML</title>
+    <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background: #EBEBEB;
+            width: 100%; /*height: 100%;*/
+            min-height: 100%;
+        }
+
+
+         .item {
+            height: auto;
+            background: #FFF;
+            padding: 15px 10px 10px;
+            color: #333;
+            border-bottom: 10px solid #eaeaea;
+
+        }
+
+
+        .item:first-child {
+            border-bottom: 10px solid #eaeaea;
+            /*min-height: 85px;*/
+            height: auto;
+            background: #FFF;
+            padding: 15px 10px 10px;
+			border-top: 1px solid #eaeaea;;
+        }
+        .itemOn {
+            background: #EBEBEB;
+        }
+
+        .title{
+            font-size: 1em;
+            overflow : hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            font-weight: 500;
+        }
+
+
+        .info_2{
+            height: 30px;
+            line-height: 30px;
+            float: right;
+            width: 45%;
+            color: #FA8200;
+            font-size: 12px;
+            text-align: right;
+
+        }
+
+
+
+        .time{
+            color: #9296a3;
+            font-size: 12px;
+            line-height: 30px;
+            height: 30px;
+            width: 45%;
+            float: left;
+			margin-left: 1.3%;
+        }
+
+        .tagButton2{
+            font-size:18px;
+            padding-right: 5px;
+
+        }
+
+        .type{
+            color:  #75CA77;
+        }
+        #question{
+            position: fixed;
+            height: 50px;
+            text-align: center;
+            background-color: #fff;
+            margin: 10px 0 0 0 ;
+
+            font-size: 18px;
+            line-height: 50px;;
+            width: 100%;
+            bottom: 0;
+        }
+        .itemLeft span{
+            color: #FA8302;
+            font-size: 30px;
+            line-height: 50px;;
+        }
+
+
+
+        .info_1{
+            margin-top: 5px ;
+            height: 23px;
+        }
+        .itemLeft{
+            width: 50%;
+            float: left;
+            height: 50px;
+            line-height: 50px;
+            font-size: 14px;
+        }
+        .itemRight{
+            width: 50%;
+            float: right;
+            height: 50px;
+            background-color: #75CA77;
+            color: #ffffff;
+            text-align: center;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+<div id="mainDiv">
+
+    <div id="main">
+        <!--<div class="item" tapmode="itemOn" onclick="openTicketInfo(1);">-->
+            <!--<div class="title">-->
+                <!--<span class="type">美食</span>-->
+                <!--.星巴克水电费家里的事解放路会计分录圣诞节发牢骚的几率-->
+            <!--</div>-->
+            <!--<div >-->
+                <!--<div class="time">2016-01-12</div>-->
+                <!--<div class="info_2">-->
+                    <!--<span class="tagButton2">+3</span>金豆-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div style="clear: both"></div>-->
+        <!--</div>-->
+
+
+
+        <!--<div class="item" tapmode="itemOn" onclick="openTicketInfo(1);">-->
+            <!--<div class="title">-->
+                <!--<span class="type">美食</span>-->
+                <!--.星巴克水电费家里的事解放路会计分录圣诞节发牢骚的几率-->
+            <!--</div>-->
+            <!--<div >-->
+                <!--<div class="time">2016-01-12</div>-->
+                <!--<div class="info_2">-->
+                    <!--<span class="tagButton2">+3</span>金豆-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div style="clear: both"></div>-->
+        <!--</div>-->
+
+    </div>
+
+
+</div>
+
+
+
+
+
+</body>
+
+
+
+<script id="scriptDiv" type="text/html">
+    <% for (var i = 0; i < list.length; i ++) { %>
+
+    <div class="item" tapmode="itemOn" >
+        <div class="title">
+            <span class="type"></span>
+            <%=list[i].content%>
+        </div>
+        <div >
+            <div class="time"><%=list[i].time%></div>
+            <div class="info_2">
+                <span class="tagButton2">+<%=list[i].goldBean%></span>金豆
+            </div>
+        </div>
+
+        <div style="clear: both"></div>
+    </div>
+
+
+    <% } %>
+</script>
+
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript">
+
+    var uid;
+    var dialogBox;
+    var allResult = {};
+    apiready = function () {
+
+        var user = api.pageParam.user;
+        new datalistModel(addDataToHtml,userTotalGoldBeanPagerUrl,{uid:user.id},10,5,100,true);
+        dialogBox = api.require('dialogBox');
+    };
+
+    function openTicketInfo(id){
+        openNewWindow('ticketInfo','./ticketInfo.html',allResult[id],{reload:true});
+    }
+
+    function addDataToHtml(results, append) {
+        if (results && results.length > 0) {
+            for(var i=0;i<results.length;i++){
+                allResult[results[i].id]=results[i];
+                results[i].time =formatTimeToDay(results[i].time);
+            }
+            var data = {list: results};
+            var html = template('scriptDiv', data);
+            if (append) {
+                var div = document.createElement("div");
+                div.innerHTML = html;
+                document.getElementById('main').appendChild(div);
+            } else {
+                document.getElementById('main').innerHTML = html;
+            }
+        }else if(results.length==0){
+            document.getElementById('main').innerHTML = '';
+        }
+
+    }
+
+
+</script>
+
+</html>

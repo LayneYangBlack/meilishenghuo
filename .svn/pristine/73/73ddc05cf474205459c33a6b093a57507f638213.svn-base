@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="../../css/wangEditor-mobile.min.css"/>
+</head>
+
+<style>
+    *{margin:0;padding: 0;}
+    html{
+        font-size: 20px;
+    }
+    .fb img{
+        width:100%;
+    }
+    .fbhuise{
+        width: 99.5%;
+        height: 10px;
+        background: #f1f2f3;
+        /*border: 0.08rem solid #dbdbdc;*/
+    }
+    .fbcon1{
+
+        width: 94.44%;
+        margin-left: 5.5%;
+        overflow: hidden;
+        font-size:0.65rem;
+        padding-top: 0.8rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #d2d2d2;
+        position: relative;
+    }
+    .fbcon1h3{
+        float: left;
+        color:#333;
+    }
+    .fbcon1span{
+        float: right;
+        width: 64.5%;
+        margin-right: 10.83%;
+        color: #666;
+        text-align: left;
+    }
+    .fbcon2{
+        width: 94.44%;
+        padding: 0.85rem 0 0.3rem 0;
+        font-size: 0.75rem;
+        margin-left: 5.5%;
+        border-bottom: 1px solid #d2d2d2;
+        position: relative;
+    }
+    .fbcon2_1{
+        float: left;
+        font-size: 0.7rem;
+    }
+    .fbcon2_2{
+        font-size: 0.6rem;
+        float: right;
+        margin-right: 10.83%;
+        color: #666;
+    }
+    .fbcon2_3{
+        font-size: 0.5rem;
+        color: #ccc;
+
+    }
+    .fbcon3 span{
+        font-size: 0.7rem;
+        float: left;
+        margin-top: 0.5rem;
+        margin-left: 0.05rem;;
+    }
+    .fbcon3img{
+        font-size: 0.85rem;
+        float: right;
+        padding-right: 10.83%;
+        width: 30%;
+        height:3rem;
+        margin-top: -1%;;
+    }
+    .fbcon3{
+        width: 94.44%;
+        margin-left: 5.5%;
+        padding: 0.5rem 0 3.3rem 0;
+        position: relative;
+    }
+    #fbcon5{
+        width: 94.44%;
+        padding: 0.5rem 0 2rem 5.5%;
+        font-size: 1.1rem;
+        /*margin-left: 5.5%;*/
+        border-bottom: 1px solid #d2d2d2;
+    }
+    #fbcon5 span{
+        float:left;
+        font-size: 0.8rem;
+        line-height: 1.5rem;
+    }
+
+    .fbcon6{
+        width: 100%;
+        padding: 0.35rem 0 0.5rem  5.5%;
+        font-size: 0.6rem;
+    }
+    .fbcon7{
+        width: 100%;
+    }
+    .fbcon7 img{
+        width: 90%;
+        margin: 0.35rem 5% 0 5%;
+    }
+    .fbfoot{
+        overflow: hidden;
+        font-size: 18px;
+        text-align: center;
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+        margin-top: 5px;
+    }
+    .fbfoot1{
+        float: left;
+        width: 50%;
+		height: 50px;
+		line-height: 50px;
+    }
+    .fbfoot2{
+        float: right;
+        width: 50%;
+        background: #75ca77;
+        color: #fff;
+		height: 50px;
+		line-height: 50px;
+
+    }
+    .fbjiantou{
+        position: absolute;
+        right: 10px;
+        top: 0.7rem;
+        width: 20px;
+
+    }
+    .fbtext{
+        width: 90%;
+        font-size: 0.55rem;
+        margin: 0.7rem 5% 0 5%;
+        border: none;
+
+        padding-bottom: 0.3rem;
+        line-height: 1rem;;
+    }
+
+
+
+    /*弹出框*/
+
+    #bg_1{
+        display: none;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        z-index: 1001;
+        -moz-opacity: 0.7;
+        opacity: .70;
+        filter: alpha(opacity=70);
+    }
+    #show_1{
+        display: none;
+        position: absolute;
+        top: 50px;
+        width: 100%;
+        height: 200px;
+        /*background-color: white;*/
+        z-index: 1002;
+        overflow: auto;
+    }
+    #options{
+        display:none;
+        width: 100%;
+        height: 22rem;
+        background-color: #CCCCCC;
+        position: absolute;
+        bottom: 0;
+        text-align: center;
+    }
+    #pop-up_input{
+        display: block;
+        width: 80%;
+        height: 9rem;
+        background-color: #FFFFFF;
+        border: none;
+        position: absolute;
+        top: 0;
+        left: 10%;
+        text-align: center;
+    }
+    .title{
+        display: block;
+        height: 3rem;
+        line-height: 3rem;
+        color: #76CA78;
+        font-size: 18px;
+        background-color: #FFFFFF;
+    }
+    .input_title{
+        border: none;
+        font-size: 0.8rem;
+        /*font-weight: bolder;*/
+        border-bottom: 1px solid #CCCCCC;
+        width: 60%;
+    }
+    .button_cancel{
+        width: 50%;
+        background-color: #f1f2f3;
+        display: block;
+        text-align: center;
+        border: none;
+        height: 40px;
+        float: left;
+        position: absolute;
+        bottom: 0;
+        font-size: 16px;
+    }
+    .button_firm{
+        width: 50%;
+        background-color: #80CD82;
+        display: block;
+        text-align: center;
+        border: none;
+        height: 40px;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        color: #FFFFFF;
+        font-size: 16px;
+    }
+
+    .border_bot{
+        border-bottom: 1px solid #CCCCCC;
+    }
+    /*.input input{
+        text-align: right;
+        color: #9A9A9A;
+
+    }*/
+    .option{
+        font-size: 1rem;
+        clear: right;
+    }
+    .option_left{
+        float: left;
+        margin-left: 1rem;
+    }
+
+
+
+
+</style>
+<body>
+
+<div id="bg_1"></div>
+<div id="show_1">
+    <div id="pop-up_input">
+        <span class="title">请输入标题</span>
+        <!--<input type="text" name="" id="" value="" class="input_title" />-->
+        <textarea id="text-input"  rows="3" cols="30" class="input_title" maxlength="30"></textarea><br />
+        <!-- <small style="position: absolute;color:#CCCCCC;right:4rem;font-size: 0.1rem;"><span id="in_num">30</span>/30</small> -->
+        <button class="button_cancel" id="cancel_1" value="取消" onclick="box1_Hide()">取消</button>
+        <button class="button_firm"  onclick="confirmInput()" value="确定">确定</button>
+    </div>
+</div>
+<div class="fb">
+    <img  src="../../icon/mall/banner3.png" alt="" />
+</div>
+<div class="fbhuise"></div>
+<div class="fbcon1" onclick="boxShow()">
+    <div class="fbcon1h3">标题</div>
+    <span class="fbcon1span" id="result-title"></span>
+    <img class="fbjiantou"  src="../../icon/icon_right_normal.png" alt="" />
+</div>
+<div class="fbcon2">
+    <div style="overflow: hidden;">
+        <span class="fbcon2_1">公司信息显示设置</span>
+        <span class="fbcon2_2">默认不显示</span>
+        <img class="fbjiantou" src="../../icon/icon_right_normal.png" alt="" />
+    </div>
+    <span class="fbcon2_3">&nbsp公司电话、地址、网址等</span>
+</div>
+<div class="fbcon3" onclick="getImgUrl()">
+    <span>首页封面照设置</span>
+    <img class="fbcon3img" src="" id="icon"  alt=""  onerror="this.src='../../image/user-photo.png'" />
+    <img class="fbjiantou" src="../../icon/icon_right_normal.png" alt="" />
+</div>
+<div class="fbhuise"></div>
+<div id="fbcon5">
+    <span>内容</span>
+</div>
+<textarea id="textarea1" style="width:90%;margin-left: 5%;font-size: 0.5rem;height: 200px;padding-bottom: 50px">
+</textarea>
+
+
+<div class="fbfoot">
+	<div class="fbhuise"></div>
+    <div class="fbfoot1" style="background-color: #FFFFFF" onclick="preview()">预览</div>
+    <div class="fbfoot2" onclick="next()">下一步</div>
+</div>
+</body>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/lib/zepto.js"></script>
+<script type="text/javascript" src="../../script/lib/zepto.touch.js"></script>
+<script type="text/javascript" src="../../script/wangEditor-mobile.js"></script>
+
+
+<script type="text/javascript">
+    var cover = null;
+    var $txt = null;
+    var params = null;
+    apiready = function (){
+        api.showProgress({title: '努力加载中...',text: '先喝杯茶...'});
+        params = api.pageParam.params;
+        api.hideProgress();
+    };
+
+    function getImgUrl(){
+//        openNewWindow("uploadImg","../mall/uploadImg.html",{toPX:230,toPY:180,toNm:'imgName',winHtml:api.winName});
+        updateImageClip(255,150,'../main/imgClip.html');
+    }
+
+    function setImgUrl(data){
+        document.getElementById('icon').src = data;
+        cover = data;
+    }
+
+    $(function () {
+
+        // 全局配置
+        // ___E.config.menus = ['bold', 'color', 'quote'];
+
+        // 生成编辑器
+        var editor = new ___E('textarea1');
+
+        // 自定义配置
+        editor.config.uploadImgUrl = uploadImageBase64Url;
+
+        editor.config.menus = ['bold', 'quote', 'list','img'];
+
+        // 初始化
+        editor.init();
+
+        $txt = editor.$txt;
+        var html =  $txt.html();
+
+        document.getElementById("bg_1").addEventListener("touchmove",function(e){
+            e.preventDefault();
+        });
+        document.getElementById("show_1").addEventListener("touchmove",function(e){
+            e.preventDefault();
+        });
+    });
+
+
+
+
+    function box1_Hide(){
+        document.getElementById("bg_1").style.display="none";
+        document.getElementById("show_1").style.display="none";
+
+    }
+
+
+    function confirmInput(){
+        var inputPop = document.getElementById("text-input").value;
+        var inputTitle = document.getElementById("result-title");
+        if(isNotBlack(inputPop)){
+            inputTitle.innerHTML = inputPop;
+        }
+        box1_Hide();
+        var inputPop = document.getElementById("text-input").value = "";
+    }
+
+    function boxShow(){
+        document.getElementById("bg_1").style.display="block";
+        document.getElementById("show_1").style.display="block";
+    }
+
+
+    function commit(){
+
+        openNewWindow('publishSelectCondition','./publishSelectCondition.html',params)
+    }
+
+    function preview(){
+        var html = encodeURIComponent($txt.html());
+        var param = {
+            html:html
+        };
+        openNewWindow('preview','./preview.html',param);
+    }
+
+    function next(){
+        var title = document.getElementById("result-title").innerHTML;
+
+        if(isBlack(title)){
+            toast("标题不能为空！");
+            return;
+        }
+        params.title = title;
+
+        if(isBlack($txt.html())){
+            toast("你还没有填写内容！");
+            return;
+        }
+        var html =  encodeURIComponent($txt.html());
+        params.content = html;
+
+        if(isBlack(cover)){
+            toast("你还没有上传封面照片！");
+            return;
+        }
+        params.cover = cover;
+        openNewWindow("editQuestion","./editQuestion.html",{params:params})
+    }
+</script>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+    <style type="text/css">
+        .start{
+            color: #ff9900;
+            margin-left: 5px;
+        }
+        .awards_num{
+            background-color: #020202;
+
+        }
+        .rightInfo{
+            height: 44px;
+            position: absolute;
+            top:0;
+            min-width: 35px;;
+            right: 0;
+            font-size: 12px;
+            line-height: 44px;
+            background-color: #666666;
+            color: #ffffff;
+            padding: 0 12px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="topbar" class="topbar_info">
+    <div id="leftButton" onclick="closeWin()">
+        <img src="../../icon/back@2x-b.png" >
+    </div>
+    <div>修改个人信息</div>
+    <div class="rightInfo" onclick="saveInfo();" id="awardsNum">
+        保存
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script>
+
+    apiready = function () {
+        initFrameInWin(api.pageParam);
+
+    };
+
+    function saveInfo(){
+        api.execScript({
+            frameName: 'updateUserInfo_body',
+            script: 'commit()'
+        });
+    }
+</script>
+</html>

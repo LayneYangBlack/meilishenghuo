@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>我的二维码</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style type="text/css">
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background: #ffffff;
+            width: 100%; /*height: 100%;*/
+            min-height: 100%;
+        }
+        #code{
+            width: 80%;
+            text-align: center;
+            margin-top: 20px;
+            margin-left: 10%;
+        }
+        #code img{
+            width: 100%;
+        }
+        .left_box{
+            width: 20%;
+            margin:0 auto;
+        }
+        .left_box img{
+            width: 100%;
+        }
+        .name{
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+			color: #333;
+        }
+        #head{
+
+            padding-top: 30px;
+        }
+        #name{
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div id="head" class=" clearfix">
+            <div class="left_box">
+                <img id="icon" src="../../icon/user-photo@2x.png" onerror="this.src='../../icon/user-photo@2x.png'">
+            </div>
+            <div class="name">
+                <span id="name">qweqweqwdqdqwdq</span><img width="12px" id="sexIcon" style="vertical-align: top" src="../../icon/user/@2female.png">
+            </div>
+
+        </div>
+        <div id="code">
+            <img id="qrCode" src="">
+        </div>
+        <p style="text-align: center">扫码打开软件，注册有惊喜！</p>
+    </div>
+
+</body>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript" >
+    var imgSrc = document.getElementById("icon").src;
+    var user  = null;
+    apiready= function () {
+        user = api.pageParam.user;
+        document.getElementById('icon').src =user.icon;
+        document.getElementById('name').innerHTML =user.name;
+        if(user.sex == 1){
+            user.sexIcon = "../../icon/user/@2male.png"
+        }else{
+            user.sexIcon = "../../icon/user/@2female.png"
+        }
+        document.getElementById('sexIcon').src = user.sexIcon;
+
+
+
+        var qrCodeImagePath=$api.getStorage("qrCodeImagePath");
+        if(qrCodeImagePath){
+            document.getElementById("qrCode").src = qrCodeImagePath;
+        }else{
+            api.showProgress({title: '努力加载中...',text: '先喝杯茶...'});
+            var FNScanner = api.require('FNScanner');
+            FNScanner.encodeImg({
+                content: "http://youhuipai.quakoo.com?userId="+user.id,
+                saveToAlbum: false,
+                saveImg: {
+                    path: 'fs://album.png',
+                    w: 200,
+                    h: 200
+                }
+            }, function(ret, err){
+                if( ret.status ){
+                    var imgSrc =  ret.imgPath;
+                    document.getElementById("qrCode").src = imgSrc;
+                    $api.setStorage("qrCodeImagePath",imgSrc);
+                }
+                api.hideProgress();
+            });
+        }
+
+    }
+
+
+</script>
+</html>

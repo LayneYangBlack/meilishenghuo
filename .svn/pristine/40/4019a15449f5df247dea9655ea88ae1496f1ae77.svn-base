@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>法人</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+        *{margin: 0;padding: 0;}
+        html{
+            font-size: 10px;
+            background-color: #f1f2f3;
+        }
+        #yyzz{
+            width: 100%;
+            height: 2.5rem;
+            background: #e6e6e6;
+        }
+        .yyzzhead{
+            width: 94%;
+            height: 5.3rem;
+            margin-left: 6%;
+            border-bottom: 0.1rem solid #ccc;
+        }
+        .yyzzheadt1{
+            width: 100%;
+            height: 1.6rem;
+            font-size: 1.65rem;
+            padding-top: 1.5rem;
+            overflow: hidden;
+            position: relative;
+            color: #333;
+        }
+        .yyzzheadt1 img,.jiantou{
+            width:20px;
+        }
+        .yyzzmid{
+            width: 89.72%;
+            height: 8.99rem;
+            margin: 0 auto;
+            margin-top: 1.75rem;
+        }
+        .yyzzmid img{
+            width: 47.51%;
+            height: 8.9rem;
+        }
+        .xuanzephoto{
+            width: 94.7%;
+            margin-left: 5.3%;
+            overflow: hidden;
+        }
+        .xuanzephoto .photo{
+            width: 48%;
+            height: 7.2rem;
+            float: left;
+        }
+        .xuanzephoto .photo div{
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            color: #9296a3;
+        }
+        .xuanzephoto .photo input{
+            width: 75.4%;
+            height: 3rem;
+            line-height: 3rem;
+            border: 1px solid #ccc;
+            border-radius: 1.5rem;
+            margin-left: 10.11%;
+            background: #fff;
+            margin-top: 1rem;
+            font-size: 1.8rem;
+            color: #75ca77;
+        }
+        #shuoming{
+            padding-left: 6.66%;
+            padding-left: 4.7%;
+            width: 88.47%;
+            font-size: 1.2rem;
+            color: #9296a3;
+            padding-top:1rem;
+            line-height: 2rem;
+            padding-bottom: 1rem;
+        }
+        #shuoming span{
+            color: #ff9900;
+        }
+        #huisedai{
+            width: 100%;
+            height: 3.1rem;
+            background: #f1f2f3;
+        }
+        #huisedaixia{
+            width:100%;
+            font-size: 16px;
+            padding-top:16px;
+            padding-bottom: 12px;
+            color: #333;
+            height: 20px;
+            background-color: #fff;
+            border-bottom: 1px solid #ccc;
+            position: relative;
+        }
+        #huisedaixia div{
+            float: left;
+            margin-left: 6%;
+        }
+        #huisedaixia .zhangtiantu{
+            float: right;
+            margin-right: 30px;
+            text-align: right;
+        }
+        #shenfenzheng{
+            width: 100%;
+            font-size: 16px;
+            padding-top:14px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #ccc;
+            background-color: #FFFFFF;
+            position: relative;
+        }
+        #shenfenzheng .faren{
+            float: left;
+            margin-left: 6%;
+        }
+        #shenfenzheng .haoma{
+            float: right;
+            margin-right: 10%;
+            text-align: right;
+        }
+        .say{
+            width: 87.22%;
+            font-size: 1.4rem;
+            color: #9296a3;
+            margin-left: 5.69%;
+            padding-top:2rem;
+            padding-bottom: 2rem;
+        }
+        .texurenzheng{
+            width: 100%;
+            padding-top: 0.92rem;
+            padding-bottom: 0.92rem;
+            text-align: center;
+            font-size: 1.2rem;
+            background: #e6e6e6;
+            color: #9296a3;
+        }
+        .liutong{
+            width: 87.22%;
+            margin-left: 5.69%;
+            padding-top:2rem;
+            padding-bottom: 4rem;
+            padding-right: 6.25%;
+            font-size: 1.5rem;
+            color: #333;
+            border-bottom: 1px solid #ccc;
+            position: relative;
+        }
+        .liutong1{
+            float: left;
+        }
+        .liutong2{
+            float: right;
+            margin-right: 2.91%;
+        }
+        #foot{
+            width: 87.22%;
+            margin-left: 5.69%;
+            padding-top:2rem;
+            padding-bottom: 2.8rem;
+            font-size: 1.2rem;
+        }
+        #foothuise{
+            background: #e6e6e6;
+            width: 100%;
+            height: 1.6rem;
+        }
+        .jiantou{
+            position: absolute;
+            right: 10px;
+        }
+        .photo1{
+            margin-left: 21.23%;
+        }
+        .photo2{
+            text-align: center;
+        }
+        .box_2{
+            width: 100%;
+            background-color: #FFFFFF;
+        }
+
+        .cor_name,.cor_id{
+            border-style: none;
+            width:160px;
+            float: right;
+            text-align:right;
+            margin-right: 30px;
+        }
+
+        #jhzxfooter{
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            line-height:50px;
+            color: #fff;
+            font-size: 18px;
+            background: #75ca77;
+          
+        }
+        #main {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+        }
+        #wrap {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div id="huisedaixia">
+        <div>
+            <span>法人姓名</span><span style="color: #ff9933;">*</span>
+        </div>
+        <input type="text" id="legalPersonName" placeholder="未填" class="cor_name">
+        <img style="top: 14px;" class="jiantou" src="../../icon/icon_right_normal.png" alt="">
+    </div>
+    <div id="shenfenzheng">
+        <span class="faren">法人身份证号<span style="color: #ff9933;">*</span></span>&nbsp;
+        <input type="text" placeholder="未填" id="legalPersonIdCard" class="cor_id">
+        <img class="jiantou" style="top: 11px;" src="../../icon/icon_right_normal.png" alt="">
+    </div>
+    <div id="main">
+        <div class="box_2">
+            <div class="yyzzmid">
+                <img style="float: left;" id="legalPersonFrontIdCard" src="" alt="" />
+                <img style="float:right;" id="legalPersonBackIdCard" src="" alt="" />
+            </div>
+            <div class="xuanzephoto">
+                <div class="photo">
+                    <div class="photo1">
+                        身份证原件正面
+                    </div>
+
+                    <input type="button" onclick="getImgUrl('legalPersonFrontIdCard');"  value="选择照片">
+
+                </div>
+                <div class="photo" style="float:left;">
+                    <div class="photo2">
+                        身份证原件反面
+                    </div>
+                    <input type="button" onclick="getImgUrl('legalPersonBackIdCard')" value="选择照片">
+                </div>
+            </div>
+            <div class="say">
+                说明:1、身份证原件正/反面;2、确保照片中字体清晰。
+            </div>
+        </div>
+    </div>
+    <div id="jhzxfooter" onclick="commit()">
+        提交
+    </div>
+</div>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script>
+
+    function commit(){
+        var legalPersonName = document.getElementById("legalPersonName").value;
+        var legalPersonIdCard = document.getElementById("legalPersonIdCard").value;
+
+        var parms = {};
+        if(isBlack(legalPersonName)){
+            toast("姓名不能为空！");
+            return;
+        }
+
+        parms.legalPersonName = legalPersonName;
+
+        if(isBlack(legalPersonIdCard)){
+            toast("你还没有填写身份证号");
+            return;
+        }
+        parms.legalPersonIdCard = legalPersonIdCard;
+
+
+        if(isBlack(legalPersonFrontIdCard)){
+            toast("你还没有上传身份证正面照");
+            return;
+        }
+
+        parms.legalPersonFrontIdCard = legalPersonFrontIdCard;
+
+        if(isBlack(legalPersonBackIdCard)){
+            toast("你还没有上传身份证背面照");
+            return;
+        }
+        parms.legalPersonBackIdCard = legalPersonBackIdCard;
+        parms.type = "legalPerson";
+
+
+        //异步调用
+        api.execScript({
+            name:'mallInfo',
+            frameName: 'mallInfo_body',
+            script: 'changeStatus('+JSON.stringify(parms)+')'
+        });
+        closeWin();
+    }
+
+
+    var imgType = null;
+    var legalPersonFrontIdCard  =null;
+    var legalPersonBackIdCard = null;
+    function getImgUrl(type){
+        imgType = type;
+        //openNewWindow("uploadImg","../mall/uploadImg.html",{toPX:200,toPY:150,toNm:'imgName',winHtml:api.winName});
+        updateImageClip(200,150,'../main/imgClip.html');
+    }
+
+    function setImgUrl(data){
+        if(imgType == "legalPersonFrontIdCard"){
+            legalPersonFrontIdCard = data;
+        }else{
+            legalPersonBackIdCard = data;
+        }
+        document.getElementById(imgType).src = data;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/commonWindow.css" />
+    <title>活动内容详情及答案</title>
+    <style>
+        html,body{
+            width: 100%;
+            background: #F2F3F5;
+            margin: 0;padding: 0;
+        }
+        .input{
+            height: 1.2rem;
+            /*border-bottom: solid 1px #F2F3F5;*/
+            padding: 15px 10px 10px 0;
+        }
+        .border_bot{
+            border-bottom: solid 1px #F2F3F5;
+            font-size: 1rem;;
+
+        }
+        .input input{
+            text-align: right;
+            color: #9A9A9A;
+
+        }
+        .peple_number{
+            color: #80CD82;
+            font-size: 0.8rem;
+            float: right;
+        }
+        .item{
+            background-color: #ffffff;
+            padding: 1.2rem 0.8rem;
+        }
+        .item_margin{
+            margin-top: 0.8rem;
+        }
+        ul li{
+            list-style: none;
+            float: left;
+            width: 18%;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        ul{
+            margin-left: 10px;
+        }
+        #interest p{
+            margin: 5px 10px;
+
+        }
+        #interest{
+            padding-bottom: 10px;
+        }
+        #interest p span{
+            font-size: 14px;
+        }
+        #interest .select_num{
+            font-size: 16px;
+            color: #F7A449;
+        }
+        .right_box{
+            float: right;
+            padding-top: 5px;
+        }
+        .right_box img{
+            vertical-align: middle;
+        }
+        #main>p{
+            padding: 10px 0 5px 10px;
+        }
+        .right_span{
+            max-width: 60%;
+            float: right;
+            color: #9F9F9F;
+            padding-right: 0.8rem;
+        }
+        .icon_left{
+            width:1.2rem;
+            float:left;
+            margin-right: 0.5rem;
+        }
+        .icon_right{
+            width:1.2rem;
+            float:right;
+        }
+        .header_span{
+            vertical-align: middle;
+        }
+        .header_title{
+            font-size:  0.8rem;
+            color: #9296A3;
+            width: 80%;
+            display: inline-block;
+        }
+        .header_verticle9{
+            font-size: 1rem;
+        }
+        .header_verticle{
+            font-size: 0.8rem;;
+        }
+        .header_number_1{
+            font-size: 1.5rem;
+            color:#FA8200;
+        }
+        .header_number_2{
+            font-size: 1.5rem;
+            color:#80CD82;
+        }
+        .content_img{
+            width: 20rem;
+            margin-top: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .content_verticle{
+            line-height: 1.5rem;
+        }
+        .main_title{
+            font-size: 0.8rem;
+            display: block;
+            width: 80%;
+            float: right;
+        }
+        .answer
+        .topic{
+            color:#80CD82;
+            font-size: 1.2rem;
+        }
+        .option{
+            font-size: 1rem;
+            float: right;
+        }
+        .answer{
+            color:#FA8200;
+        }
+        .awards_num{
+            background-color: #020202;
+        }
+        .rightInfo{
+            height: 31px;
+            position: absolute;
+            top:6px;
+            right: 5px;
+            margin-right: 5px;
+            font-size: 12px;
+            line-height: 31px;
+            background-color: #020202;
+            color: #ffffff;
+            padding: 0 5px;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <!--<div class="item">-->
+            <!--<span class="header_verticle9">-->
+					<!--好吃不贵，我们全聚德的招牌菜，2016年6月17日优惠大酬宾-->
+            <!--</span>-->
+        <!--<div class="input">-->
+            <!--<span class="header_span"><img class="icon_left" src="../../icon/order/mall@2x.png" alt=""></span>-->
+            <!--<span class="header_title">北京全聚德中关村店</span>-->
+        <!--</div>-->
+        <!--<div class="input" onclick="">-->
+            <!--<img class="icon_left" src="../../icon/icon_phone.png" alt="">-->
+            <!--<span class="header_title">010-82567896</span>-->
+        <!--</div>-->
+        <!--<div class="input" onclick="">-->
+            <!--<img class="icon_left" src="../../icon/address@2x.png" alt="" style="">-->
+            <!--<span class="header_title">2.6公里&nbsp;北京市海淀区新起点嘉园6号楼</span>-->
+        <!--</div>-->
+        <!--<div class="input">-->
+            <!--<div class="header_verticle" style="text-align:center;"> <span class="header_number_1">120</span>金豆/份&nbsp;剩余<span class="header_number_2">50398</span>份 </div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="item item_margin">-->
+        <!--<img class="content_img" src="image/roast_duck_1.png" alt=""><br>-->
+        <!--<span class="content_verticle">幽静的室外环境，典雅的室内装饰，别具一格的皇家园林。逛北京，吃烤鸭，还数百年老店北京全聚德，将会给您留下深刻印象。</span>-->
+        <!--<img class="content_img" src="image/roast_duck_2.png" alt=""><br>-->
+        <!--<span class="content_verticle"><span>微信公众号:55ewsfsfsa</span><br><span>网站:www.qjdch.com</span></span>-->
+    <!--</div>-->
+    <!--<div class="item item_margin">-->
+        <!--<div class="input border_bot">-->
+            <!--<span class="topic">题目1</span>-->
+            <!--<span class="main_title">北京全聚德前门店周末在2016年几月几日进行优惠酬宾活动?</span>-->
+        <!--</div>-->
+        <!--<div class="input border_bot" onclick=""><span>A、</span><span class="option">7月 </span></div>-->
+        <!--<div class="input border_bot" onclick=""><span>B、</span><span class="option">8月 </span></div>-->
+        <!--<div class="input border_bot" onclick=""><span>C、</span><span class="option">9月 </span></div>-->
+        <!--<div class="input border_bot" onclick=""><span>D、</span><span class="option">10月</span></div>-->
+        <!--<div class="input border_bot" onclick=""><span>答案</span><span class="option answer">B、10月 </span></div>-->
+    <!--</div>-->
+    <!--<div class="item item_margin" onclick="openActivityDetail()">-->
+        <!--<div class="input border_bot">-->
+            <!--<span class="topic">题目2</span>-->
+            <!--<span class="main_title">北京全聚德的创始人是谁?</span>-->
+        <!--</div>-->
+        <!--<div class="input border_bot" onclick=""><span>A、</span><span class="option">杨宝禄 </span></div>-->
+        <!--<div class="input border_bot" onclick=""><span>B、</span><span class="option">杨德仁 </span></div>-->
+        <!--<div class="input border_bot" onclick=""><span>C、</span><span class="option">杨全仁</span></div>-->
+        <!--<div class="input border_bot" onclick=""><span>D、</span><span class="option">张菊德</span></div>-->
+        <!--<div class="input border_bot" onclick=""><span>答案</span><span class="option answer">C、杨全仁</span></div>-->
+    <!--</div>-->
+</div>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script id="scriptDiv" type="text/html">
+    <div class="item">
+            <span class="header_verticle9">
+					<%=list.title%>
+            </span>
+        <div class="input">
+            <span class="header_span"><img class="icon_left" src="../../icon/shop_icon.png" alt=""></span>
+            <span class="header_title"><%=list.shopName%></span>
+        </div>
+        <div class="input" onclick="">
+            <img class="icon_left" src="../../icon/phone_icon.png" alt="">
+            <span class="header_title"><%=list.shopPhone%></span>
+            <img class="icon_right"  src="../../icon/icon_right_normal.png" >
+        </div>
+        <div class="input" onclick="">
+
+            <img class="icon_left" src="../../icon/address@2x.png" alt="" style="">
+            <span class="header_title"><%=list.shopAddress%></span>
+            <img class="icon_right"  src="../../icon/icon_right_normal.png" style="">
+
+        </div>
+        <div class="input">
+            <div class="header_verticle" style="text-align:center;"> <span class="header_number_1"><%=list.goldBean%></span>金豆/份&nbsp;剩余<span class="header_number_2"><%=list.remainNum%></span>份 </div>
+        </div>
+    </div>
+    <div class="item item_margin">
+        <span class="content_verticle">
+            <%=list.content%>
+        </span>
+    </div>
+    <% var question = list.questions%>
+    <%for(var i = 0; i< question.length;i++){%>
+    <div class="item item_margin">
+        <div class="input border_bot">
+            <span class="topic">题目<%=i+1%></span>
+            <span class="main_title"><%=question[i].content%></span>
+        </div>
+        <div class="input border_bot" onclick=""><span>A、</span><span class="option"><%=question[i].options.A%> </span></div>
+        <div class="input border_bot" onclick=""><span>B、</span><span class="option"><%=question[i].options.B%> </span></div>
+        <div class="input border_bot" onclick=""><span>C、</span><span class="option"><%=question[i].options.C%> </span></div>
+        <div class="input border_bot" onclick=""><span>D、</span><span class="option"><%=question[i].options.D%></span></div>
+        <div class="input border_bot" onclick=""><span>答案</span><span class="option answer"><%=question[i].rightOption%>、<%=question[i].options[question[i].rightOption]%> </span></div>
+    </div>
+    <%}%>
+</script>
+<script type="text/javascript">
+    function openActivityDetail(){
+        openNewWindow("activityDetail","./activityDetail.html")
+    }
+
+    var activity = null;
+    apiready = function () {
+        api.showProgress({title: '努力加载中...',text: '客官请稍等...'});
+        activity = api.pageParam.activity;
+        var html = decodeURIComponent(activity.content);
+        activity.content = html;
+        var question = activity.questions;
+        for(var i =0;i< question.length;i++){
+            question[i].options = JSON.parse(question[i].options);
+        }
+        activity.questions = question;
+        var data = {list: activity};
+        var html1 = template('scriptDiv', data);
+        document.getElementById('main').innerHTML =html1;
+        api.hideProgress();
+
+    };
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发布展位内容</title>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="../../css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link href="../../css/mui.picker.all.css" rel="stylesheet" />
+    <link href="../../css/mui.poppicker.css" rel="stylesheet" />
+
+    <style>
+    	
+        .wp_100{width:100%; margin:0px auto; padding:0px;}
+        .top_bj{background: #343339;height:0.49rem; float: left;}
+        .top_bj p{text-align: center;line-height: 0.49rem;font-size: 18px;color: white;}
+        .zuo_arr{background:url("images/fabu/zuo_arr.png"); margin-top: 0.05rem; float: left;background-size: 0.2rem 0.35rem; width: 0.2rem;height: 0.35rem;margin-left: 5%;}
+        .nub_bj{height: 0.6rem;float: left;}
+        .nub_bj img{width: 100%;height: 100%;}
+        .nub_waiwei{width: 80%;margin-left: 10%;margin-right: 10%;}
+        .nub img{width:100%;height: 0.21rem;margin-top: 0.1rem;}
+        .nub_bj p{width: 30%;float: left;font-size: 0.1rem;}
+        .yi{text-align: left;padding-left: 4%;color: #75ca77;}
+        .er{text-align: center; color: #9296a3;padding-right: 2%;}
+        .san{text-align: right; padding-right: 4%;color: #9296a3;}
+        .item1 li{height: 50px;width: 100%;border-bottom: 1px solid #eaeaea;float: left;}
+        .item1 li p{line-height: 1rem;float: left; font-size: 0.15rem;}
+        .next{background: url("../../icon/icon_right_normal.png");margin-top: 0.15rem;float: right;background-size:cover;
+        ;width: 0.15rem;height: 0.2rem; margin-right: 15px;}
+        .item li span{}
+        .item1 li p:nth-child(2){float: right;margin-right: 30px;display: block; line-height: 0.5rem;}
+        .item1 li p:nth-child(1){float: left;padding-left: 6%; line-height: 0.5rem;}
+        .item1{float: left; }
+        .item2{float: left;}
+        .item2 li:nth-child(1){width: 90%;height: 0.4rem;border-bottom: 1px solid #eaeaea;float: left;line-height: 0.4rem; font-size: 0.15rem;
+            margin-left: 5%; }
+        .item2 li:nth-child(1) p{}
+        .diaoyu{width: 100%;border-bottom: 1px solid #eaeaea;float: left;line-height: 0.35rem;
+            font-size: 0.15rem; color: #9296a3;}
+        .dy_z{float: left;width: 80%; }
+        .dy_z p{float: left;margin-right: 0.1rem;padding-left: 6%;}
+        .dy_y{width: 20%;float: left;height: 0.7rem;}
+        .dy_y i{margin-top: 20%;margin-right: 0;}
+
+        #nav{width: 100%;height: 0.5rem;float: left;}
+        #nav li{width: 50%;height: 0.5rem;line-height:0.7rem;text-align: center;float: left;}
+        #nav li p{font-size: 0.16rem;line-height: 0.5rem;color: #333;}
+
+        .nav1{background: url("../../icon/tab_bj.png")no-repeat;background-size: 100% 0.5rem;color: #fff; }
+
+        .tab_nr{width: 100%;float: left;}
+        .tab_nr ul{width: 100%;float: left;}
+        #video img{width: 90%;margin-left: 5%;margin-right: 5%;height:2.5rem; }
+        #video a{border:1px solid #eaeaea; border-radius: 0.8rem;;height: 0.4rem;width: 1.8rem;display: block;line-height: 0.4rem;text-align: center;
+            color: #75ca77; margin:0.34rem auto 0.2rem auto;  font-size: 0.16rem;  }
+      
+        .ming1 li p{font-size: 0.15rem; color: #9296a3;}
+        .tijiao{text-align:center;line-height: 50px;font-size: 18px;float: left;}
+        .tijiao a{color: #fff;display: block;text-align: center;height: 50px;}
+        .ming1{height: 0.13rem;}
+        .pic_area{width: 100%;}
+        .pic_area div{width:22%;float: left;margin-left: 2.5%;overflow: hidden;}
+
+        .pic_area a{display: block;}
+        #imageList div{width:22%;float: left;margin-left: 2.5%;margin-top: 2%; }
+        .more1{  background: url("../../image/more.png")no-repeat;background-size: 100% 100%; height: 1rem;margin-top: 2%;}
+        #bg_1{  display: none;;;  position: absolute;  top: 0%;  left: 0%;  width: 100%;  height: 100%;
+            background-color: black;  z-index: 1001;  -moz-opacity: 0.7;  opacity: .70;  filter: alpha(opacity=70);  }
+        #show_1{  display: none;  position: absolute;  top: 50px;  width: 100%;  height: 200px;  z-index: 1002;  overflow: auto;  }
+        #pop-up_input{  display: block;  width: 80%;  height:1.6rem;  background-color: #FFFFFF;  border:none;  position: absolute;  top: 0;  left: 10%;  text-align: center;}
+        .title{  display: block; color: #76CA78;margin-top: 10px;  font-size: 18px;  background-color: #FFFFFF;  }
+        .input_title{
+            border: none;  font-size: 0.16rem;  padding-top: 0.1rem;;  margin-top: 25px;  border-bottom: 1px solid #eaeaea;  width: 80%;}
+        .button_cancel{
+            width: 50%;  background-color: #f1f2f3;  display: block;  text-align: center;  border: none;
+           height: 40px;  float: left;  position: absolute;  bottom: 0;  font-size: 16px;  }
+        .button_firm{
+            width: 50%;  background-color: #80CD82;  display: block;  text-align: center;
+            border: none;  height: 40px;  position: absolute;  bottom: 0;  left: 50%;  color: #FFFFFF;  font-size: 16px;  }
+        #title{  text-align: right;float: right;;line-height:0.5rem;font-size: 0.15rem;color: #333; }
+        #bq1,#bq2{border-bottom: }
+
+    </style>
+</head>
+<body id="body">
+<div id="bg_1"></div>
+<div id="show_1">
+    <div id="pop-up_input">
+        <span class="title" id="titles">请输入</span>
+        <input type="text" name="" id="input_title" value="" class="input_title" />
+        <button class="button_cancel" id="cancel_1" value="取消" onclick="box1_Hide()">取消</button>
+        <button class="button_firm"  onclick="confirmInput()" value="确定">确定</button>
+    </div>
+</div>
+<div class="wp_100 nub_bj">
+    <img src="../../icon/mall/there1.png" >
+</div>
+<div class="wp_100" style="height: 0.14rem;background:#ebebeb;float: left; "></div>
+<div class="wp_100 item1">
+    <li onclick="showBox('title')"  ><p id="bqnm">请输入发布标题</p><i class="next"></i><span id="title" style="color: #9296a3;"></span></li>
+    <li ><p>展位费用</p><p style="color: #9296a3"><span id="price"></span>元/天</p></li>
+    <li  id="date"><p>展期</p><i class="next"></i><p style="float: right;line-height: 0.52rem;color: #9296a3" id="dateResult">5天</p></li>
+    <li><p>费用合计</p><p style="color: #ffa024;" id="totalPrice">元</p></li>
+</div>
+<div class="wp_100" style="height: 0.14rem;background:#ebebeb;float: left; "></div>
+<div class="item2 wp_100" onclick="openShopInterest()">
+    <li><p>对象兴趣</p></li>
+    <div class="diaoyu">
+        <div class="dy_z" style="width: 80%;" id="interest"><p>未选择</p></div>
+        <div class="dy_y" style="width: 20%;"><div style="width: 0.15rem;height: 0.2rem;margin-top: 20%;margin-left: 51%;"><i class="next" ></i></div> </div>
+    </div>
+</div>
+<div class="wp_100" style="height: 0.14rem;background:#ebebeb;float: left; "></div>
+<div id="nav">
+    <li onClick="selectPublishType(this,'imageText')" id="bq1" class="" ><p>发布图文内容</p></li>
+    <li onClick="selectPublishType(this,'video')" id="bq2"  class="nav1" ><p style="color: #fff">发布视频内容</p></li>
+</div>
+<div class="tab_nr">
+    <ul id="imageText" style="display: none;" >
+        <div class="pic_area" >
+            <nav id="imageList">
+
+            </nav>
+            <a href="javascript:void(0)" onclick="selectImgUpload()">  <div class="more1" id="selectButton"  style="margin-bottom: 0.12rem;font-size: 0.15rem;position: relative; ">
+                <div class="span" style="position: absolute;top:0.5rem;left: 0.25rem;float:left;color: #ffffff;text-align: left;width: 50px;"><span id="selectNum">0</span>/<span>12</span></div></div></a>
+            <div style="width: 90%;margin-right: 5%;margin-left: 5%; ; position: relative;" >
+                <textarea  onkeyup="size(this);" style="width: 100%;height: 1.24rem; ;font-size: 0.15rem; color: #333;border: 1px solid #eaeaea;" id="textContent"></textarea>
+                <small style="position: absolute;bottom: 0.05rem;right: 0;font-size: 0.1rem; color: #AFB0B0;"><span id="span">300</span>/300</small>
+            </div>
+        </div>
+    </ul>
+    <ul id="video"style="margin-top: 20px;" >
+        <img id="videoImg" src="../../image/video.png">
+        <a href="javascript:void(0)" onclick="selectVideo()">选择视频</a>
+    </ul>
+
+</div>
+<div class="wp_100 ming1" style="height: auto; background:#ebebeb;float: left; ">
+    <li style="margin-top: 0.2rem;padding-left: 6%;"><p>说明</p></li>
+    <li><p style="padding-left: 6%;">1、所发布的内容出现在“赚积分”里边</p></li>
+    <li><p style="padding-left: 6%;">2、一次付款后，展期内的发布的内容会随机，无限循环</p></li>
+    <li><p style="padding-left: 6%;padding-bottom: 0.2rem;">3、符合个人兴趣的分类才会被观看，赚积分</p></li>
+</div>
+<div class="clearfix"></div>
+<div class="wp_100 tijiao" style="height: 0.5rem;background:#75ca77;float: left; " onclick="commit()">
+    <a href="#" >确认提交</a>
+</div>
+</body>
+<script type="text/javascript"  src="../../script/mui.min.js"></script>
+<script type="text/javascript"  src="../../script/mui.picker.all.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/city.data.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/html" id="scriptDiv">
+    <div style="height:<%=height%>px; ">        <img style="margin-bottom:<%=margin%>px;width: 100%;"  src="<%=list%>">               </div>
+</script>
+<script>
+    var selectType = 'video';
+    var duration = 5;
+    var interest=null;
+    var totalCost = null;
+    var dialogBox;
+    var imgIndex = 0;
+    var uploadFlag = true;
+    var uploadIndex = 0;
+    var margin = null;
+    apiready =function(){
+        dialogBox = api.require('dialogBox');
+        //调取展位
+        var showPrice = $api.getStorage("showPrice");
+        document.getElementById("price").innerHTML = showPrice;
+        document.getElementById("selectButton").style.height = api.frameWidth*0.22+"px";
+        checkCount();
+        document.getElementById("body").style.display = "block";
+
+    };
+    /**
+     * 上下裁剪图片
+     *
+     * c:屏幕百分比（计算宽度）
+     * m:补白（计算宽度）
+     * src:图片原始路径 (计算高度)
+     * p:百分比（计算高度和补白）
+     */
+    function getMargin(c,m,src,p) {
+        m = m || 0;
+        var width = Math.round((api.frameWidth )*p);
+        var imgRealHeight = getWidthAndHeightByImageSrc(src, width).h;
+        if (imgRealHeight > (width * p)) {
+            return (0 - Math.round((imgRealHeight - width) / 2));
+        } else {
+            return 0;
+        }
+    }
+
+
+    function selectPublishType(self,type){
+        selectType = type;
+        var item = document.getElementById('nav').querySelectorAll('li');
+        var ss =  document.getElementById("nav").querySelectorAll("p");
+        for(var i=0;i<item.length;i++){
+            item[i].className = "";
+            ss[i].style.color="#000";
+            item[i].style.border="none"
+        }
+        document.getElementById(type).style.display = 'block';
+        if(type == "video"){
+            document.getElementById('imageText').style.display = 'none';
+            self.className = "nav1";
+            self.querySelector("p").style.color="#fff";
+            document.getElementById('bq1').style.borderBottom ="1px solid #eaeaea";
+
+
+        }else{
+            document.getElementById('video').style.display = 'none';
+            self.className = "nav1";
+            self.querySelector("p").style.color="#fff";
+            document.getElementById('bq2').style.borderBottom = '1px solid #eaeaea';
+
+        }
+
+
+    }
+    function openPublishSelectCondition(){
+        openNewWindow("publishSelectCondition","./publishSelectCondition.html")
+    }
+
+    function box1_Hide(){
+        document.getElementById("bg_1").style.display="none";
+        document.getElementById("show_1").style.display="none";
+        document.getElementById('input_title').value ="";
+    }
+
+    var boxType = null;
+    function showBox(type){
+        boxType = type;
+        document.getElementById("bg_1").style.display="block";
+        document.getElementById("show_1").style.display="block";
+    }
+
+    function confirmInput(){
+        var target = document.getElementById(boxType);
+        var src = document.getElementById('input_title').value;
+        if(isNotBlack(src)){
+            target.innerHTML = src;
+
+        }
+        checkCount();
+        box1_Hide();
+    }
+
+    function size(par){
+        var max = 300;
+        if (par.value.length < max)
+            var str = max - par.value.length;
+        document.getElementById("span").innerHTML = str.toString();
+    }
+
+    var selectImgList = [];
+    function selectImgUpload(){
+        if(imgIndex >=12){
+            toast('已经超过12张了');
+            return;
+        }
+        openImage(12-imgIndex,true,function(ret){
+            if(isNotBlack(ret) && ret.status){
+                imgIndex = imgIndex + ret.data.length;
+                uploadIndex = 0;
+                selectImgList = ret.data;
+                uploadFlag = true;
+                uploadImg()
+            }
+        })
+    }
+
+
+    function uploadImg(){
+        //压缩图片
+        if(uploadIndex == selectImgList.length ){
+            return;
+        }
+
+        if(uploadIndex == selectImgList.length - 1){
+            uploadFlag = false;
+        }
+        var data = selectImgList[uploadIndex];
+        api.showProgress({title: '努力压缩...',text: '先喝杯茶...'});
+        compressImage(data.size,0,data.path,function(ret,err){
+            if(ret.status){
+                _uploadImg(ret.path,showImage,0);
+            }
+        });
+    }
+
+
+    function checkCount(){
+        var price = document.getElementById("price").innerHTML;
+
+        if(isBlack(price)|| !isNum(price)){
+            return;
+        }
+
+        if(isNotBlack(duration)){
+            price = parseInt(price);
+            var total = parseInt(duration)*price;
+            document.getElementById("totalPrice").innerHTML = total+"元";
+            totalCost = total;
+        }
+    }
+
+
+
+    function _uploadImg(path,callback,type) {
+        if(isNotBlack(type)&&type == 1){
+            api.showProgress({title: '正在上传视频....',text: '先喝杯茶...'});
+        }else{
+            api.showProgress({title: '上传第'+(uploadIndex+1)+"张",text: '先喝杯茶...'});
+        }
+
+        api.ajax({
+            url: uploadImageUrl,
+            method: 'post',
+            timeout: 120,
+            report: true,
+            dataType: 'json',
+            returnAll: false,
+            data: {
+                files: {file:path}
+            }
+        }, function (ret, err) {
+            if(ret.status == 1){
+                if(isFunction(callback)){
+                    callback(ret,path);
+                }
+            }
+
+        });
+    }
+
+    var imgList = [];
+    function showImage(ret,path){
+        var srcList = ret.body.ok;
+        imgList.push(srcList);
+        margin = getMargin(1,0,srcList,0.22);
+        var data = {list:selectImgList[uploadIndex].thumbPath,margin:margin,height:api.frameWidth*0.22};
+        var html1 = template('scriptDiv', data);
+        document.getElementById('imageList').innerHTML = document.getElementById('imageList').innerHTML + html1;
+        document.getElementById("selectNum").innerHTML = imgIndex;
+        uploadIndex++ ;
+        uploadImg();
+        if(!uploadFlag){
+            api.hideProgress();
+        }
+    }
+//    selectImgList[uploadIndex].thumbPath,margin:margin,
+    function openShopInterest(){
+        openNewWindow('shopInterest','./shopInterest.html',{type:'publishScore'});
+    }
+
+    function showInterest(data){
+        interest = data.ids;
+        if(interest == 0){
+            document.getElementById("interest").innerHTML = "<p>不限</p>";
+            return;
+        }
+        var list = data.list;
+        var text = "";
+        for(var i = 0; i < list.length;i++){
+            if(list[i].parentId != 0){
+                text = text +"<p>"+list[i].name +"</p>";
+            }
+        }
+
+        document.getElementById("interest").innerHTML = text;
+    }
+
+    function selectVideo(){
+        openVideo(gotoUpload);
+
+    }
+
+    var videoCover = null;
+    function gotoUpload(ret){
+        if(ret.status){
+            api.showProgress({title: '努力上传中...',text: '先喝杯茶...'});
+            var data = ret.data;
+            _uploadImg(data[0].path,showVideo,1);
+            _uploadImg(data[0].thumbPath,function(ret){
+                videoCover =ret.body.ok;
+            },1);
+        }else{
+            toast('你没有选择视频！');
+        }
+
+    }
+
+    var videoSrc = null;
+    var videoTime = null;
+    function showVideo(ret){
+        videoSrc = ret.body.ok;
+//        videoTime = ret.body.
+        document.getElementById("videoImg").src = videoCover;
+        api.hideProgress();
+
+    }
+
+    //todo 提炼一个框架
+    (function($, doc) {
+        $.init();
+        $.ready(function () {
+            var data  = [{value: '1',
+                text: '1天'
+            },{value: '2',
+                text: '2天'
+            },{value: '3',
+                text: '3天'
+            },{value: '4',
+                text: '4天'
+            },{value: '5',
+                text: '5天'
+            },{value: '6',
+                text: '6天'
+            },{value: '7',
+                text: '7天'
+            },{value: '8',
+                text: '8天'
+            },{value: '9',
+                text: '9天'
+            },{value: '10',
+                text: '10天'
+            },{value: '11',
+                text: '11天'
+            },{value: '12',
+                text: '12天'
+            },{value: '13',
+                text: '13天'
+            },{value: '14',
+                text: '14天'
+            },{value: '15',
+                text: '15天'
+            }];
+            //普通示例
+            var datePicker = new $.PopPicker();
+            datePicker.setData(data);
+            datePicker.setTitle("展期");
+            var showDatePickerButton = doc.getElementById('date');
+            var dateResult = doc.getElementById('dateResult');
+            showDatePickerButton.addEventListener('tap', function (event) {
+                datePicker.show(function (items) {
+                    dateResult.innerHTML = items[0].text;
+                    //返回 false 可以阻止选择框的关闭
+                    //return false;
+                    duration = items[0].value;
+                    checkCount();
+                });
+            }, false);
+        })
+    })(mui, document);
+
+    var flag = false;
+    //检查传值
+    function checkParams(){
+        var price = parseInt(document.getElementById('price').innerHTML);
+        var params = {};
+        if(isBlack(price)||!isNum(price)){
+            toast("价格没输入或者你输入的不是数字");
+            flag = false;
+            return;
+        }
+
+        params.price = price;
+        var title = document.getElementById("title").innerHTML;
+        if(isBlack(title)){
+            toast("你还没有输入标题");
+            flag = false;
+            return;
+        }
+        params.title = title;
+        if(isBlack(duration)){
+            toast("你还没有输入展期");
+            flag = false;
+            return;
+        }
+
+        params.duration = duration;
+
+
+
+        if(isBlack(totalCost)){
+            toast("总价格不能为空");
+            flag = false;
+            return;
+        }
+        params.totalPrice = totalCost;
+
+        if(selectType == "video"){
+            if(isBlack(videoSrc)){
+                flag = false;
+                toast("你还没有上传视频");
+                return;
+            }
+            params.type = 2;
+            var videoContent = {};
+            videoContent.videoSrc = videoSrc;
+            videoContent.videoCover = videoCover;
+            params.content = JSON.stringify(videoContent);
+            params.cover = videoCover;
+        }
+
+        if(isBlack(interest)&&interest!=0){
+            toast("你还没有选择兴趣");
+            return;
+        }
+
+        params.interestIds = interest;
+
+        if(selectType == "imageText"){
+            if(isBlack(imgList)||!isArray(imgList)){
+                flag = false;
+                toast("你还没有上传图片");
+                return;
+            }
+            params.type = 1;
+            var imageContent = {};
+            var textContent = document.getElementById("textContent").value;
+            imageContent.imgList = imgList;
+            if(isNotBlack(textContent)){
+                imageContent.content = textContent;
+            }
+            params.content = JSON.stringify(imageContent);
+            params.cover = imgList[0];
+        }
+
+        flag = true;
+
+        return params;
+
+    }
+
+
+
+    function commit(){
+        var params = checkParams();
+        if(flag){
+            ajaxGetWithProgress(createScoreUrl,params,function(ret){
+                if(isNotBlack(ret) && ret.success){
+                    toast("提交成功！");
+                    showDialog();
+                }
+
+            })
+        }
+
+    }
+
+
+
+    function showDialog(){
+
+        dialogBox.alert ({
+            texts: {
+                title: '提示',
+                content:'提交成功！我们将在48小时内审核完胜，请耐心等待',
+                rightBtnTitle: '确定'
+            },
+            styles:{
+                bg: '#fff',
+                w: 300,
+                title:{
+                    marginT : 20,
+                    titleSize : 18,
+                    titleColor : '#76CA78'
+                },
+                content:{
+                    color: '#000',
+                    size: 16
+                },
+                right:{
+                    w: 300,
+                    h: 40,
+                    marginL: 0,
+                    marginB: 0,
+                    corner: 0,
+                    bg: '#76CA78',
+                    size: 18,
+                    color:'#ffffff'
+                }
+            }
+        },function(ret){
+            if (ret.eventType == 'right') {
+                var dialogBox = api.require('dialogBox');
+                dialogBox.close ({
+                    dialogName: 'alert'
+                });
+
+                api.closeWin({
+                    name: 'selectPublishType'
+                });
+                api.execScript({
+                    name: 'mallDetail',
+                    frameName:'mallDetail.body',
+                    script: 'window.location.reload();'
+                });
+                closeWin()
+            }
+        });
+    }
+</script>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+    		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>趣味测试</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<style>
+			.testDiv {
+				width: 100%;
+				height: 150px;
+				font-size: 0px;
+				margin-bottom: 5px;
+			}
+			.title {
+				position: relative;
+				margin-top: -30px;
+				background: rgba(52, 52, 52, 0.5);
+				height: 30px;
+				font-size: 10px;
+				line-height: 30px;
+				padding-left: 5px;
+				color: #FFFFFF;
+				text-overflow: -o-ellipsis-lastline;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 1;
+				-webkit-box-orient: vertical;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="testDiv" style="padding: 5px;">
+			<!-- 测试DIV -->
+			<!--<div class="testDiv" >
+				<img style="width: 100%;height: 100%;" src="http://s.cn.bing.net/az/hprichbg/rb/CarresqueiraPortugal_ZH-CN7381172635_1920x1080.jpg" />
+				<div class="title">
+					测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题
+				</div>
+			</div>-->
+			<!-- 测试DIV -->
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/apiCloud.js"></script>
+	<script type="text/javascript" src="../../script/template-native.js"></script>
+	<script type="text/javascript" src="../../script/kv.js"></script>
+	<script type="text/javascript" src="../../script/user.js"></script>
+	<script type="text/javascript" src="../../script/data.js"></script>
+	<script type="text/javascript" src="../../script/util.js"></script>
+	<script type="text/javascript" src="../../script/public.js"></script>
+	<script id="listTemplet" type="text/html">
+		<% for (var i = 0; i < list.length; i ++) { %>
+			<div class="testDiv" onclick="openTest(<%=list[i].id %>,'<%=list[i].title %>','<%=list[i].image %>','<%=list[i].content %>');">
+				<img style="width: 100%;height: 100%;" src="<%=list[i].image %>" />
+				<div class="title">
+					<%=list[i].title %>
+				</div>
+			</div>
+		<% } %>
+	</script>
+	<script>
+		apiready = function () {
+			new datalistModel(addDataToHtml,testInterestListUrl,{},10,10,60);
+		};
+		
+		function addDataToHtml(results, append) {
+	        if (results && results.length > 0) {
+	            var data = {list: results};
+	            var html = template('listTemplet', data);
+	            if (append) {
+	                document.getElementById('testDiv').innerHTML += html;
+	            } else {
+	                document.getElementById('testDiv').innerHTML = html;
+	            }
+	        }
+	    }
+		
+		function openTest(id,title,image,content){
+			openNewWindow("webTest",'./webTest.html',{
+				id:id,
+				title:title,
+				image:image,
+				content:content
+			});
+		}
+		
+	</script>
+</html>

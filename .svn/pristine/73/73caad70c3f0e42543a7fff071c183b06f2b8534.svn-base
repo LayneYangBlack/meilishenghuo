@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+</head>
+<style>
+    *{margin: 0;padding: 0;}
+    html{
+        font-size: 10px;
+        overflow: hidden;
+        background: #ebebeb;
+    }
+    #yhzx{
+        width: 100%;
+        height: 10.65rem;
+        text-align: center;
+        position: relative;
+        border-bottom: 4px solid #d9d9d9;
+        background: #fff;
+    }
+    #yhzx h3{
+        font-size: 1.8rem;
+        color: #333;
+        padding-top: 2rem;
+    }
+    #yhzx div{
+        color: #ff9900;
+        font-size: 1.6rem;
+        margin-top: 0.8rem;
+    }
+
+    #yhzx1{
+        margin-top: 1.3rem;
+    }
+    #yhzx4,#yhzx3,#yhzx2,#yhzx1{
+        width: 100%;
+        height: 2.8rem;
+        font-size: 1.4rem;
+        color: #333;
+        text-indent: 1.6rem;
+        border-bottom: 1px solid #eaeaea;
+        padding-top: 0.8rem;
+        padding-bottom: 1.1rem;
+        background: #fff;
+        position: relative;
+    }
+    #yhzx4 span,#yhzx3 span,#yhzx2 span,#yhzx1 span{
+        color: #9296a3;
+
+        font-size: 1rem;
+        margin-bottom: -0.5rem;;
+        float: left;
+    }
+    #yhzx4 img,#yhzx3 img,#yhzx2 img,#yhzx1 img{
+        position:absolute ;
+        top:1rem ;
+        right: 1rem;
+    }
+    #zuanshi{
+        font-size: 1.6rem;
+        color: #333;
+        float: right;
+        margin-right: 2.75rem;
+    }
+    #yhzx4 h3,#yhzx3 h3,#yhzx2 h3{
+        float: left;
+        font-size:1.6rem;
+    }
+    h3{
+        font-weight: 300;
+    }
+    #yhzxfoot1{
+        width: 100%;
+        height: 2.6rem;
+
+        line-height: 2.8rem;
+        font-size: 1.6rem;
+        color: #333;
+        background: #fff;
+        padding-top: 0.8rem;
+        padding-bottom: 0.8rem;
+        text-indent: 1.6rem;
+        border-top: 1px solid #eaeaea;
+        border-bottom: 1px solid #eaeaea;
+        position: relative;
+    }
+    #yhzxfoot2{
+        width: 100%;
+        font-size: 1.6rem;
+        text-indent: 1.6rem;
+        padding-top: 0.8rem;
+        background: #fff;
+        color: #333;
+        border-bottom: 1px solid #eaeaea;
+    }
+    #yhzxfoot2 span{
+        color:#9296a3;
+        font-size:1.4rem;
+        margin-top:0.5rem;
+        float: left;;
+    }
+    #jhzxfooter{
+        width: 100%;
+        height:50px;
+        text-align: center;
+        line-height:50px;
+        color: #fff;
+        font-size: 18px;
+        background: #75ca77;
+    }
+
+    #no-click{
+        width: 100%;
+        height: 3rem;
+        text-align: center;
+        line-height:3rem;
+        color: #fff;
+        font-size: 1.8rem;
+        background: #ccc;
+        padding-top:1rem;
+        padding-bottom:1rem ;
+        float: left;;
+    }
+    img{
+        width: 20px;
+    }
+</style>
+<body style="
+  min-height: 100vh;
+  flex-direction: column; ">
+<div id="main">
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script id="scriptDiv" type="text/html">
+    <div style="display: flex;
+  min-height: 100vh;
+  flex-direction: column;">
+    <div id="main" style="flex: 1;">
+    <div id="yhzx">
+        <h3><%= shop.shopName %></h3>
+        <div><%= shop.level %></div>
+        <span style="color:#9296a3;font-size:1.2rem;position:absolute;bottom:3px;right:1.4rem;">升级到&nbsp<span style="color:#75ca77;"><%= shop.nextLevel %></span>&nbsp还需<%= shop.requiredScore %>积分</span>
+        <div style="background:#75ca77;width:<%= shop.percent %>%;height:0.4rem;position:absolute;bottom:-0.4rem;left:0;"></div>
+    </div>
+        <div id="yhzx1" onclick="openMallInfo()" style="margin-top: 10px;">
+            <h3>基本资料及认证</h3>
+            <span style="margin-top: 0.3rem;">商家名称</span>
+            <span style="margin-top: 0.3rem;">营业执照</span>
+            <span style="margin-top: 0.3rem;">特许经营许可证</span>
+            <img src="../../icon/icon_right_normal.png" alt="" />
+        </div>
+
+    <div id="yhzx2" onclick="openUserScoreList()">
+        <div style="overflow:hidden;">
+            <h3 style="float:left;">商家积分等级</h3>
+            <div id="zuanshi" style="line-height: 2.8rem;"><%= shop.score%><span style="color:#75ca77;font-size:1.6rem;line-height: 2.8rem;"></span>积分</div>
+
+        </div>
+        <span  style="float: left;margin-left: 0;margin-top: -0.5rem;">积分等级越高获得金豆比例更高</span>
+        <img src="../../icon/icon_right_normal.png" alt=""/>
+    </div>
+    <div id="yhzx3" onclick="openPublishList()">
+        <div style="overflow:hidden;">
+            <h3 style="float:left;">已发布金豆</h3>
+            <span style="float:right;margin-right:3.75rem;font-size:1.6rem;color:#333;line-height: 2.8rem;"><%= shop.createActivityNum %></span>
+        </div>
+        <span>赚金豆</span>
+        <img src="../../icon/icon_right_normal.png" alt="" />
+    </div>
+    <div id="yhzx4">
+        <div style="overflow:hidden;  border-bottom: none; "onclick="openPublishScoreList()" >
+            <h3>已发布展位推广</h3>
+            <span style="float:right;font-size:1.6rem;color:#333;margin-right:3.75rem;line-height: 2.8rem;"><%= shop.createEarnScoreNum %></span>
+        </div>
+        <span>赚积分</span>
+        <img src="../../icon/icon_right_normal.png" alt="" />
+    </div>
+    <div id="yhzxfoot1" onclick="openMessage()" style="height: 3rem;margin-top:1rem;border-top: none;">
+        消息
+        <span id="userNoticeDiv" style="display: none; position: absolute;left:5rem;top:1rem;width: 0.6rem;height:0.6rem;background:#ff4242;border-radius: 1rem;"></span>
+    </div>
+    <div id="yhzxfoot2" onclick="openSetting()" >
+        <div>设置</div>
+        <div style=" height: 2rem;" >
+            <span style="font-size: 1rem; float: left;">修改密码　　退出</span>
+
+        </div>
+    </div>
+        </div>
+    <div id="jhzxfooter" onclick="publishBean()"style="float: left;" >
+        发布
+    </div>
+    </div>
+</script>
+
+<script>
+    function openMessage(){
+       openNewWindow("message","../user/message.html",{openHtml:'mallDetail_body'});
+//        openNewWindow("register","../login/register.html",{});
+    }
+
+
+
+    function openMallInfo(){
+        openNewWindow("mallInfo","./mallInfo.html",{shop:shop});
+    }
+
+    function openUserScoreList(){
+        openNewWindow("shopScoreList","./shopScoreList.html",{user:shop});
+    }
+    var shop = null;
+    apiready = function () {
+        api.showProgress({title: '努力加载中...',text: '先喝杯茶...'});
+        ajaxGet(shopInfoUrl,{}, function (ret, err) {
+            if(isNotBlack(ret)){
+                shop = ret;
+            }else{
+                shop =  getUserInfo();
+            }
+            var percent = shop.score/(shop.score+shop.requiredScore)*100;
+            shop.percent = percent;
+            var data = {shop: shop};
+            var html = template('scriptDiv', data);
+
+            document.getElementById('main').innerHTML = html;
+            if($api.getStorage('redPint')){
+                document.getElementById('userNoticeDiv').style.display = 'block'
+            }
+
+        });
+
+        api.hideProgress();
+    };
+
+
+    function changeRed(){
+        document.getElementById('userNoticeDiv').style.display = 'none';
+        $api.setStorage('redPint',false);
+    }
+    function openSetting(){
+        openNewWindow("setting",'../user/setting.html',{})
+    }
+
+    function publishBean(){
+        if(shop.status == attest_access){
+            openNewWindow("selectPublishType","./selectPublishType.html",{user:shop});
+        }
+
+        if(shop.status == attest_no_access){
+            showDialog("","提示","你的信息没有审核通过，点击查看","取消","查看",function(){
+                openMallInfo();
+            })
+        }
+
+        if(shop.status == attest_no){
+            showDialog("","提示","你的信息还没有完善","取消","去完善",function(){
+                openMallInfo();
+            })
+        }
+
+        if(shop.status == attest_ing){
+            showDialog("","提示","你的信息正在审核中","取消","查看",function(){
+                openMallInfo();
+            })
+        }
+    }
+    function openPublishList(){
+        openNewWindow("publishList","./publishList.html",{user:shop});
+    }
+
+    function openPublishScoreList(){
+        openNewWindow("publishScoreList","./publishScoreList.html",{user:shop});
+    }
+</script>
+</html>

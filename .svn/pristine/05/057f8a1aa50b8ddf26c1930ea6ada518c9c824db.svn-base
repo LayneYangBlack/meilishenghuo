@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>计时答题</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style type="text/css">
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background: #ebebeb;
+            width: 100%; /*height: 100%;*/
+            min-height: 100%;
+        }
+
+        #question{
+            position: fixed;
+            height: 50px;
+            text-align: center;
+            background-color: #ffffff;
+            margin: 10px 0 0 0 ;
+            line-height: 50px;
+            font-size: 18px;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .itemConfim{
+            width: 100%;
+            float: right;
+            height: 50px;
+            background-color: #75ca77;
+            color: #ffffff;
+            text-align: center;
+        }
+        .itemRight{
+            width: 50%;
+            float: right;
+            height: 50px;
+            background-color: #75ca77;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .itemLeft{
+            width: 50%;
+            float: left;
+            height: 50px;
+            line-height: 50px;
+            font-size: 18px;
+        }
+
+        .item{
+            background-color: #ffffff;
+            padding: 20px 0;
+        }
+
+        .result_title{
+            /*background: url() no-repeat 28% center;*/
+            /*background-size: 30px;*/
+            height: 80px;
+            line-height: 80px;
+            font-size: 26px;
+            text-align: center;
+        }
+        .right_tip{
+            font-size: 18px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .right_tip span{
+            font-size: 16px;
+            color: #FF9900;
+        }
+
+
+        .question_tip{
+            text-align: center;
+            color: #9A9EA9;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        .question_tip span{
+            color: #75ca77;
+            font-size: 18px;
+
+        }
+
+
+        .error_tip{
+            font-size: 18px;
+            text-align: center;
+        }
+        .error_tip span{
+            color: #FF9900;
+            font-size: 20px;
+        }
+
+        #hr{
+            background-color: #D9D9D9;
+        }
+        #hr div{
+            background-color: #75CA77;
+            height: 3px;
+            margin-right: 60%
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <!--<div class="item">-->
+            <!--<div class="result_title"><img width="30px" style="vertical-align: middle;padding-right: 5px" src="../../icon/result/small/right.png">恭喜你!</div>-->
+            <!--<div class="right_tip">获得<span>50</span>金豆和<span>100</span>积分(连续答对50*2)</div>-->
+            <!--<div class="question_tip">今天中奖机会剩余<span>3</span>/共8次</div>-->
+            <!--<div class="question_tip">升级到<span>LV4</span>(中奖机会9次/天)还需要<span>1560</span>积分</div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<div class="result_title"><img width="30px" style="vertical-align: middle;padding-right: 5px" src="../../icon/result/small/error.png">答错了,别灰心继续努力</div>-->
+            <!--<div class="error_tip">正确答案：<span>D.北京烤鸭</span></div>-->
+            <!--<div class="question_tip">今天中奖机会剩余<span>3</span>/共8次</div>-->
+            <!--<div class="question_tip">升级到<span>LV4</span>(中奖机会9次/天)还需要<span>1560</span>积分</div>-->
+        <!--</div>-->
+
+        <!--<div class="item">-->
+            <!--<div class="result_title"><img width="30px" style="vertical-align: middle;padding-right: 5px" src="../../icon/result/small/wen.png">没时间了,下次加油哦</div>-->
+            <!--<div class="question_tip">今天中奖机会剩余<span>3</span>/共8次</div>-->
+            <!--<div class="question_tip">升级到<span>LV4</span>(中奖机会9次/天)还需要<span>1560</span>积分</div>-->
+        <!--</div>-->
+
+        <!--<div id="hr">-->
+            <!--<div></div>-->
+        <!--</div>-->
+        <!--<div  id="question" tapmode="itemOn" onclick="openKnowledgeInfo(1);">-->
+            <!--<div class="itemLeft">今天还有<span>3</span>次答题机会</div>-->
+            <!--<div class="itemRight" onclick="openQuestion()">开始抢答 </div>-->
+        <!--</div>-->
+    </div>
+
+</body>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script id="scriptDiv" type="text/html">
+    <%if(list.type==3){%>
+    <div class="item">
+        <div class="result_title"><img width="30px" style="vertical-align: middle;padding-right: 5px" src="../../icon/result/small/right.png">恭喜你!</div>
+        <div class="right_tip">获得<span><%=list.goldBean%></span>金豆和<span><%=list.score%></span>积分(<%=list.scoreDesc%>)</div>
+        <div class="question_tip">今天中奖机会剩余<span><%=list.remainNum%></span>/共8次</div>
+        <!--<div class="question_tip">升级到<span>LV4</span>(中奖机会9次/天)还需要<span>1560</span>积分</div>-->
+    </div>
+    <!--<div id="hr">-->
+        <!--<div></div>-->
+    <!--</div>-->
+    <div  id="question" tapmode="itemOn" onclick="returnHome();">
+        <div class="itemConfim" >返回首页</div>
+    </div>
+    <%}%>
+    <%if(list.type == 1){%>
+    <div class="item">
+        <div class="result_title"><img width="30px" style="vertical-align: middle;padding-right: 5px" src="../../icon/result/small/error.png">答错了,别灰心继续努力</div>
+        <div class="error_tip">正确答案：<span><%=list.rightOption%></span></div>
+        <div class="question_tip">今天中奖机会剩余<span><%=list.remainNum%></span>/共<%=list.remainNum%>次</div>
+        <!--<div class="question_tip">升级到<span>LV4</span>(中奖机会9次/天)还需要<span>1560</span>积分</div>-->
+    </div>
+    <!--<div id="hr">-->
+        <!--<div></div>-->
+    <!--</div>-->
+    <div  id="question" tapmode="itemOn" >
+        <div class="itemLeft" onclick="returnHome()">返回首页</div>
+        <div class="itemRight" onclick="againAnswer()">重新抢答</div>
+    </div>
+    <%}%>
+    <%if(list.type == 2){%>
+    <div class="item">
+        <div class="result_title"><img width="30px" style="vertical-align: middle;padding-right: 5px" src="../../icon/result/small/wen.png">没时间了,下次加油哦</div>
+        <div class="question_tip">今天中奖机会剩余<span><%=list.remainNum%></span>/共8次</div>
+        <!--<div class="question_tip">升级到<span>LV4</span>(中奖机会9次/天)还需要<span>1560</span>积分</div>-->
+    </div>
+    <!--<div id="hr">-->
+        <!--<div></div>-->
+    <!--</div>-->
+    <div  id="question" tapmode="itemOn" >
+        <div class="itemLeft" onclick="returnHome()">返回首页</div>
+        <div class="itemRight" onclick="againAnswer()">重新抢答</div>
+    </div>
+    <%}%>
+
+</script>
+<script type="text/javascript">
+    var result =null;
+    var activity = null;
+    apiready = function () {
+        result = api.pageParam.result;
+        var type = api.pageParam.type;
+        result.type = type;
+        activity = api.pageParam.activity;
+        if(type == 1){
+            result.rightOption = api.pageParam.rightOption;
+        }
+        var data = {list: result};
+        var html1 = template('scriptDiv', data);
+        document.getElementById('main').innerHTML = html1;
+    };
+
+    function againAnswer(){
+        api.closeWin({
+            name: 'question'
+        });
+        api.execScript({
+            name: 'ticketInfo',
+            frameName: 'ticketInfo_body',
+            script: 'reloadHtml();'
+        });
+        closeWin();
+
+    }
+
+    function returnHome(){
+        api.closeWin({
+            name: 'question'
+        });
+        api.closeWin({
+            name: 'ticketInfo'
+        });
+        api.execScript({
+            name: rootWindowName,
+            frameName:'ticketList1',
+            script: 'reloadHtml();'
+        });
+        api.execScript({
+            name: rootWindowName,
+            frameName:'ticketList2',
+            script: 'reloadHtml();'
+        });
+        api.execScript({
+            name: rootWindowName,
+            frameName:'ticketList3',
+            script: 'reloadHtml();'
+        });
+        closeWin()
+    }
+</script>
+</html>

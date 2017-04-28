@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>认可证</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        html{
+            font-size: 10px;
+            background-color: #ccc;
+
+        }
+        #yyzz{
+            width: 100%;
+            height: 2.5rem;
+            background: #e6e6e6;
+        }
+        .yyzzhead{
+            width: 94%;
+            height: 5.3rem;
+            margin-left: 6%;
+            border-bottom:1px solid #ccc;
+        }
+        .yyzzheadt1{
+            width: 100%;
+            height: 1.6rem;
+            font-size: 16px;
+            padding-top: 15px;
+            overflow: hidden;
+            position: relative;
+            color: #333;
+        }
+        .yyzzheadt1 img,.jiantou{
+            width: 20px;
+        }
+        .yyzzmid{
+            width: 89.72%;
+            height: 8.99rem;
+            margin: 0 auto;
+        }
+        .yyzzmid img{
+            width: 47.51%;
+            height: 8.9rem;
+        }
+        .xuanzephoto{
+            width: 94.7%;
+            margin-left: 5.3%;
+            overflow: hidden;
+        }
+        .xuanzephoto .photo{
+            width: 48%;
+            height: 7.2rem;
+            float: left;
+        }
+        .xuanzephoto .photo div{
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            color: #9296a3;
+        }
+        .xuanzephoto .photo input{
+            width: 75.4%;
+            height: 3rem;
+            line-height: 3rem;
+            border: 1px solid #b9b9b9;
+            border-radius: 1.5rem;
+            margin-left: 10.11%;
+            background: #fff;
+            margin-top: 1rem;
+            font-size: 1.8rem;
+            color: #75ca77;
+        }
+        #shuoming{
+            padding-left: 6.66%;
+            padding-left: 4.7%;
+            width: 88.47%;
+            font-size: 1.2rem;
+            color: #9296a3;
+            padding-top:1rem;
+            line-height: 2rem;
+            padding-bottom: 1rem;
+        }
+        #shuoming span{
+            color: #ff9900;
+        }
+        #huisedai{
+            width: 100%;
+            height: 3.1rem;
+            background: #f1f2f3;
+        }
+        #huisedaixia{
+            width: 88.05%;
+            font-size: 1.55rem;
+            padding-top:1.5rem;
+            padding-bottom: 3.5rem;
+            color: #333;
+            padding-right: 6.25%;
+            margin-left: 5.69%;
+            border-bottom: 1px solid #ccc;
+            position: relative;
+        }
+        #huisedaixia div{
+            float: left;
+        }
+        #huisedaixia .zhangtiantu{
+            float: right;
+            margin-right: 5%;
+        }
+        #shenfenzheng{
+            width: 87.22%;
+            font-size: 1.55rem;
+            padding-top:1.5rem;
+            padding-bottom: 1.5rem;
+            padding-right: 6.25%;
+            margin-left: 5.69%;
+            border-bottom: 1px solid #ccc;
+        }
+        #shenfenzheng .faren{
+            float: left;
+        }
+        #shenfenzheng .haoma{
+            float: right;
+            margin-right: 2.91%;
+        }
+        .say{
+            width: 87.22%;
+            font-size: 1.4rem;
+            color: #9296a3;
+            margin-left: 5.69%;
+            padding-top:2rem;
+            padding-bottom: 2rem;
+        }
+        .texurenzheng{
+            width: 100%;
+            padding-top: 0.92rem;
+            padding-bottom: 0.92rem;
+            text-align: center;
+            font-size: 1.2rem;
+            background: #e6e6e6;
+            color: #9296a3;
+        }
+        .liutong{
+            width: 100%;
+            padding-top:2rem;
+            font-size: 1.5rem;
+            color: #333;
+            overflow: hidden;
+            background-color: #FFFFFF;
+            border-bottom: 1px solid #ccc;
+            position: relative;
+        }
+        .liutong1{
+            float: left;
+            margin-left: 6%;
+        }
+        .liutong2{
+            float: right;
+            margin-right: 10%;
+        }
+        #foot{
+            width: 87.22%;
+            margin-left: 5.69%;
+            padding-top:2rem;
+            padding-bottom: 2.8rem;
+            font-size: 1.2rem;
+        }
+        #foothuise{
+            background: #e6e6e6;
+            width: 100%;
+            height: 1.6rem;
+        }
+        .jiantou{
+            position: absolute;
+            right: 10px;
+            top: 19px;
+        }
+        .photo1{
+            margin-left: 21.23%;
+        }
+        .photo2{
+            text-align: center;
+        }
+        .box_2{
+            width: 100%;
+            background-color: #FFFFFF;
+            padding-top:2rem;
+        }
+        .permission_name{
+            border: none;
+            float: right;
+            text-align: right;
+            margin-right: 30px;
+            font-size: 1.5rem;
+        }
+        @media (max-width: 359px){
+            .permission_name{width: 10rem}
+        }
+
+        #jhzxfooter{
+            width: 100%;
+            height: 2.5rem;
+            text-align: center;
+            line-height:2.5rem;
+            color: #fff;
+            font-size: 18px;
+            background: #75ca77;
+            /*position: absolute;*/
+            /*left: 0;*/
+            /*bottom: 0;*/
+            padding-top:1rem;
+            padding-bottom:1rem ;
+
+
+        }
+        #main {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+        }
+        #wrap {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+    </style>
+</head>
+<body>
+<div id="wrap">
+
+        <div class="liutong">
+            <div class="liutong1">
+                <div>许可证名称<span style="color:#ff9933;">*</span></div>
+                <span style="color:#9296a3;font-size:1rem;float: left;padding-top: 2px;">公司名称需同营业执照一致</span>
+            </div>
+            <input type="text" style="width: 135px;" id="specialLicenseName" placeholder="如：食品流通许可证" class="permission_name">
+            <img class="jiantou" src="../../icon/icon_right_normal.png" alt="">
+        </div>
+    <div id="main">
+        <div class="box_2">
+            <div class="yyzzmid">
+                <img style="float:left;" src="" id="specialLicense" alt="" />
+                <img style="float: right;" src="" id="specialLicenseCopy" alt="" />
+            </div>
+            <div class="xuanzephoto">
+                <div class="photo">
+                    <div class="photo1">
+                        营业执照原件
+                    </div>
+                    <input type="button" onclick="getImgUrl('specialLicense');" value="选择照片">
+                </div>
+                <div class="photo" style="float:left;">
+                    <div class="photo2" style="">
+                        复印件+加盖公章+法人签字
+                    </div>
+                    <input type="button" onclick="getImgUrl('specialLicenseCopy');" value="选择照片">
+                </div>
+            </div>
+            <div id="foot">
+                说明:1、许可证复印件<span style="color: #ff9900;">加盖公章</span>;&nbsp2、确保照片中字体清晰。
+            </div>
+        </div>
+    </div>
+        <div id="jhzxfooter" onclick="commit()">
+        提交
+    </div>
+
+
+</div>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script>
+
+    function commit(){
+        var specialLicenseName = document.getElementById("specialLicenseName").value;
+        var parms = {};
+        if(isBlack(specialLicenseName)){
+            toast("证件名称不能为空！");
+            return;
+        }
+
+        parms.legalPersonName = specialLicenseName;
+        if(isBlack(specialLicense)){
+            toast("你还没有上传证件原照");
+            return;
+        }
+        parms.specialLicense = specialLicense;
+
+        if(isBlack(specialLicenseCopy)){
+            toast("你还没有上传证件背面照");
+            return;
+        }
+        parms.specialLicenseCopy = specialLicenseCopy;
+        parms.type = "license";
+
+
+
+        //异步调用
+        api.execScript({
+            name:'mallInfo',
+            frameName: 'mallInfo_body',
+            script: 'changeStatus('+JSON.stringify(parms)+')'
+        });
+        closeWin();
+    }
+
+    var imgType = null;
+    var specialLicense  =null;
+    var specialLicenseCopy = null;
+    function getImgUrl(type){
+        imgType = type;
+//        openNewWindow("uploadImg","../mall/uploadImg.html",{toPX:200,toPY:150,toNm:'imgName',winHtml:api.winName});
+        updateImageClip(200,150,'../main/imgClip.html');
+    }
+
+    function setImgUrl(data){
+        if(imgType == "specialLicense"){
+            specialLicense = data;
+        }else{
+            specialLicenseCopy = data;
+        }
+        document.getElementById(imgType).src = data;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>工作/学历认证</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style type="text/css">
+        html {
+            width: 100%;
+        }
+        body {
+            background: #ebebeb;
+            width: 100%; /*height: 100%;*/
+            min-height: 100%;
+        }
+        h4{
+            color: #9296a3;
+            font-size: 12px;
+        }
+        ul li{
+            list-style: none;
+            color: #9296a3;
+            font-size: 14px;
+            line-height: 25px;
+            margin: 0 5px;
+        }
+        #intro{
+            padding: 10px;
+        }
+        #question{
+            height: 50px;
+            text-align: center;
+            background-color: #75ca77;
+            margin: 10px 0 0 0 ;
+            line-height: 50px;
+            font-size: 18px;
+            width: 100%;
+            color: #fff;
+        }
+        .selectPhone{
+            border: solid 1px #76CA78;
+            line-height: 38px;
+            border-radius: 20px;
+            font-size: 18px;
+            color: #75ca77;
+            margin-left: auto;
+            margin-right: auto;
+            width: 150px;
+        }
+        #card{
+            text-align: center;
+        }
+        #card img{
+            width: 100%;
+            height: 10rem;
+        }
+        #card>div:first-child{
+            margin: 20px;
+        }
+        .title{
+            padding-top: 10px;
+            margin-left: 20px;
+            color: #333;
+        }
+        .item{
+            background-color: #ffffff;
+            padding-bottom: 20px;
+        }
+        #main{
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        .wrap{
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+        }
+    </style>
+    </head>
+<body>
+<div id="main">
+    <div class="item">
+        <div class="title">工作/学历认证</div>
+        <div id="card">
+            <div onclick="getImgUrl()">
+                <img id="work" src="../../image/test/1.jpg" onerror="this.src='../../image/user-photo.png'">
+            </div>
+            <div class="selectPhone" onclick="getImgUrl()">选择照片</div>
+        </div>
+    </div>
+    <div id="intro" class="wrap">
+        <h4>说明</h4>
+        <ul>
+            <li>
+                1、本人真实有效证件。
+            </li>
+            <li>
+                2、工作证、名片、学生证、军官士兵等均可。
+            </li>
+            <li>
+                3、照片清晰、不得有水印。
+            </li>
+        </ul>
+    </div>
+    <div  id="question" tapmode="itemOn" onclick="commit()">
+        提交审核
+    </div>
+</div>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/apiCloud.js"></script>
+<script type="text/javascript" src="../../script/template-native.js"></script>
+<script type="text/javascript" src="../../script/kv.js"></script>
+<script type="text/javascript" src="../../script/user.js"></script>
+<script type="text/javascript" src="../../script/data.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+
+<script type="text/javascript">
+
+    var workSrc = null;
+
+    apiready = function(){
+        var user = api.pageParam;
+        if(isNotBlack(user.legalPersonIdCard)){
+            showValue(user);
+        }
+    };
+    function getImgUrl(){
+
+//        openNewWindow("uploadImg","../mall/uploadImg.html",{toPX:200,toPY:150,toNm:'imgName',winHtml:api.winName});
+        updateImageClip(200,150,'../main/imgClip.html');
+    }
+
+
+    function setImgUrl(data){
+        document.getElementById('work').src = data;
+        workSrc =data;
+    }
+
+
+
+    function commit(){
+
+        var workCard = workSrc;
+        var params = {};
+
+        if(isBlack(workCard)){
+            toast("你还没有上传工作证照片");
+            return;
+        }
+        params.workCard = workCard;
+
+        ajaxGetWithProgress(userWorkCardSubmitInfoUrl,params, function (ret, err) {
+            if(ret && ret.success){
+                toast("提交成功！");
+                //异步调用
+                api.execScript({
+                    name:'userInfo',
+                    frameName: 'userInfo_body',
+                    script: 'changeStatus("workCard")'
+                });
+//                api.execScript({
+//                    name: 'userInfo',
+//                    frameName: 'userInfo_body',
+//                    script: 'reloadHtml();'
+//                });
+                closeWin();
+            }else{
+                toast("当前网络不给力！稍后重试");
+            }
+        });
+    }
+
+    function showValue(data){
+        if(isNotBlack(data.workCard)){
+            document.getElementById("work").src = data.workCard;
+            workSrc = data.workCard;
+        }
+    }
+
+
+</script>
+</body>
+</html>
